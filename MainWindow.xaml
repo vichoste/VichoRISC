@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VichoRISC"
         mc:Ignorable="d"
-        Title="Vicho's RISC Interpreter" Height="720" MinHeight="720" Width="1280" MinWidth="1280" Icon="cpu.ico" WindowStyle="ThreeDBorderWindow">
-    <Grid>
-        
-    </Grid>
+        Title="Vicho's RISC Interpreter" Height="720" MinHeight="720" Width="1280" MinWidth="1280" Icon="cpu.ico" WindowStyle="ThreeDBorderWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <DockPanel>
+		<materialDesign:Card Padding="32" Margin="16">
+			<TextBlock Style="{DynamicResource MaterialDesignTextBlock}">My First Material Design App</TextBlock>
+		</materialDesign:Card>
+	</DockPanel>
 </Window>
