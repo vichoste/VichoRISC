@@ -11,58 +11,37 @@ namespace VichoRISC.Components {
 	public partial class Cpu {
 		#region Current Program Status (Flags)
 		/// <summary>
-		/// Negative flag
+		/// Negative bit
 		/// </summary>
-		public bool N { get; set; }
+		private bool N { get; set; }
 		/// <summary>
-		/// Negative flag
+		/// Negative bit
 		/// </summary>
-		public bool Negative {
-			get => this.N;
-			set => this.N = value;
-		}
+		public bool Negative => this.N;
 		/// <summary>
-		/// Zero flag
+		/// Zero bit
 		/// </summary>
-		public bool Z { get; set; }
+		private bool Z { get; set; }
 		/// <summary>
-		/// Zero flag
+		/// Zero bit
 		/// </summary>
-		public bool Zero {
-			get => this.Z;
-			set => this.Z = value;
-		}
+		public bool Zero => this.Z;
 		/// <summary>
-		/// Carry flag
+		/// Carry bit
 		/// </summary>
-		public bool C { get; set; }
+		private bool C { get; set; }
 		/// <summary>
-		/// Carry flag
+		/// Carry bit
 		/// </summary>
-		public bool Carry {
-			get => this.C;
-			set => this.Z = value;
-		}
+		public bool Carry => this.C;
 		/// <summary>
-		/// Overflow flag
+		/// Overflow bit
 		/// </summary>
-		public bool V { get; set; }
+		private bool V { get; set; }
 		/// <summary>
-		/// Overflow flag
+		/// Overflow bit
 		/// </summary>
-		public bool Overflow {
-			get => this.V;
-			set => this.V = value;
-		}
-		public bool Underflow { get; set; }
-		public bool Jazelle { get; set; }
-		public bool GreaterThanOrEqual { get; set; }
-		public bool Endianness { get; set; }
-		public bool AbortDisable { get; set; }
-		public bool IrqDisable { get; set; }
-		public bool FiqDisable { get; set; }
-		public bool Thumb { get; set; }
-		public bool ProcessorMode { get; set; }
+		public bool Overflow => this.V;
 		#endregion
 	}
 }
