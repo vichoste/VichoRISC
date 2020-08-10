@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:VichoRISC"
         mc:Ignorable="d"
         Title="Vicho's RISC Interpreter" Height="720" MinHeight="720" Width="1280" MinWidth="1280" Icon="cpu.ico" WindowStyle="ThreeDBorderWindow"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
@@ -28,5 +28,7 @@
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Paso a paso"></MenuItem>
 			</MenuItem>
 		</Menu>
+		<DataGrid Style="{DynamicResource MaterialDesignDataGrid}" DockPanel.Dock="Left"></DataGrid>
+		<RichTextBox Style="{DynamicResource MaterialDesignRichTextBox}"></RichTextBox>
 	</DockPanel>
 </Window>
