@@ -10,6 +10,7 @@ namespace VichoRISC.Components {
 	/// Defines the CPU
 	/// </summary>
 	public partial class Cpu {
+		#region Instruction set
 		/// <summary>
 		/// Defines the instruction set of RISC
 		/// </summary>
@@ -120,5 +121,6 @@ namespace VichoRISC.Components {
 			[Description("return")]
 			Return
 		}
+		#endregion
 	}
 }
