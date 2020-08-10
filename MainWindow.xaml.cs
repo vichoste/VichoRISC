@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace VichoRISC {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Main window
 	/// </summary>
 	public partial class MainWindow : Window {
 		public MainWindow() {
