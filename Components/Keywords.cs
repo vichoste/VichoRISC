@@ -10,7 +10,7 @@ namespace VichoRISC.Components {
 	/// Defines the CPU
 	/// </summary>
 	public partial class Cpu {
-		#region Instruction set
+		#region Keywords
 		/// <summary>
 		/// Defines the instruction set of RISC
 		/// </summary>
@@ -19,22 +19,22 @@ namespace VichoRISC.Components {
 			/// Addition
 			/// </summary>
 			[Description("add")]
-			Addition,
+			Add,
 			/// <summary>
 			/// Substraction
 			/// </summary>
 			[Description("sub")]
-			Substraction,
+			Substract,
 			/// <summary>
 			/// Multiplication
 			/// </summary>
 			[Description("mul")]
-			Multiplication,
+			Multiply,
 			/// <summary>
 			/// Division
 			/// </summary>
 			[Description("div")]
-			Division,
+			Divide,
 			/// <summary>
 			/// Modulo
 			/// </summary>
