@@ -93,7 +93,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\Cpu.cs" />
+    <Compile Include="Components\Instructions.cs" />
     <Compile Include="Components\CurrentProgramStatusRegister.cs" />
     <Compile Include="Components\Keywords.cs" />
     <Compile Include="Components\Registers.cs" />
