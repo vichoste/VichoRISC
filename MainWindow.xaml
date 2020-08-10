@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VichoRISC"
 		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:Components="clr-namespace:VichoRISC.Components" x:Class="VichoRISC.MainWindow"
+        xmlns:Components="clr-namespace:VichoRISC.Components" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="VichoRISC.MainWindow"
         mc:Ignorable="d"
         Title="Vicho's RISC Interpreter" Height="720" MinHeight="720" Width="1280" MinWidth="1280" Icon="cpu.ico" WindowStyle="ThreeDBorderWindow"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -16,7 +16,45 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
 	<Window.DataContext>
-		<Components:Cpu x:Name="Cpu"/>
+		<Components:Cpu x:Name="Cpu">
+			<Components:Cpu.RegisterNames>
+				<System:String>R0</System:String>
+				<System:String>R1</System:String>
+				<System:String>R2</System:String>
+				<System:String>R3</System:String>
+				<System:String>R4</System:String>
+				<System:String>R5</System:String>
+				<System:String>R6</System:String>
+				<System:String>R7</System:String>
+				<System:String>R8</System:String>
+				<System:String>R9</System:String>
+				<System:String>R10</System:String>
+				<System:String>R11 (FP)</System:String>
+				<System:String>R12 (IP)</System:String>
+				<System:String>R13 (SP)</System:String>
+				<System:String>R14 (LR)</System:String>
+				<System:String>R15 (PC)</System:String>
+			</Components:Cpu.RegisterNames>
+			<Components:Cpu.Registers>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+				<System:Int32>0</System:Int32>
+			</Components:Cpu.Registers>
+		</Components:Cpu>
 	</Window.DataContext>
 	<DockPanel>
 		<Menu Style="{DynamicResource MaterialDesignMenu}" DockPanel.Dock="Top">
@@ -32,7 +70,12 @@
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Paso a paso"/>
 			</MenuItem>
 		</Menu>
-		<DataGrid Style="{DynamicResource MaterialDesignDataGrid}" CellStyle="{DynamicResource MaterialDesignDataGridCell}" DockPanel.Dock="Left" GridLinesVisibility="All" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False"/>
+		<DataGrid Style="{DynamicResource MaterialDesignDataGrid}" DockPanel.Dock="Left" GridLinesVisibility="All" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" ItemsSource="{Binding Registers}">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Registro"></DataGridTextColumn>
+				<DataGridTextColumn Binding="{Binding}" Header="Valor"/>
+			</DataGrid.Columns>
+		</DataGrid>
 		<RichTextBox Style="{DynamicResource MaterialDesignRichTextBox}"/>
 	</DockPanel>
 </Window>

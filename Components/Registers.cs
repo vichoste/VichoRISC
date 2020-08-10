@@ -10,9 +10,13 @@ namespace VichoRISC.Components {
 	/// </summary>
 	public partial class Cpu {
 		/// <summary>
-		/// List of registers
+		/// Register names
 		/// </summary>
-		public List<int> Registers { get; private set; }
+		public List<string> RegisterNames { get; set; }
+		/// <summary>
+		/// Register values
+		/// </summary>
+		public List<int> Registers { get; set; }
 		#region General purpose registers
 		/// <summary>
 		/// General purpose register 0
