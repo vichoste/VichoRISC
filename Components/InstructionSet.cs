@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,87 +17,108 @@ namespace VichoRISC.Components {
 			/// <summary>
 			/// Addition
 			/// </summary>
-			Add,
+			[Description("add")]
+			Addition,
 			/// <summary>
 			/// Substraction
 			/// </summary>
-			Sub,
+			[Description("sub")]
+			Substraction,
 			/// <summary>
 			/// Multiplication
 			/// </summary>
-			Mul,
+			[Description("mul")]
+			Multiplication,
 			/// <summary>
 			/// Division
 			/// </summary>
-			Div,
+			[Description("div")]
+			Division,
 			/// <summary>
 			/// Modulo
 			/// </summary>
-			Mod,
+			[Description("mod")]
+			Modulo,
 			/// <summary>
 			/// Comparison
 			/// </summary>
-			Cmp,
+			[Description("cmp")]
+			Compare,
 			/// <summary>
 			/// Bitwise AND
 			/// </summary>
-			And,
+			[Description("and")]
+			BitwiseAnd,
 			/// <summary>
 			/// Bitwise OR
 			/// </summary>
-			Or,
+			[Description("or")]
+			BitwiseOr,
 			/// <summary>
 			/// Bitwise NOT
 			/// </summary>
-			Not,
+			[Description("not")]
+			BitwiseNot,
 			/// <summary>
 			/// Move data
 			/// </summary>
-			Mov,
+			[Description("mov")]
+			Move,
 			/// <summary>
 			/// Logical left shift
 			/// </summary>
-			Lsl,
+			[Description("lsl")]
+			LogicalShiftLeft,
 			/// <summary>
 			/// Logical right shift
 			/// </summary>
-			Lsr,
+			[Description("lsr")]
+			LogicalShiftRight,
 			/// <summary>
 			/// Arithmetical right shift
 			/// </summary>
-			Asr,
+			[Description("asr")]
+			ArithmeticalShiftRight,
 			/// <summary>
 			/// No operation
 			/// </summary>
-			Nop,
+			[Description("nop")]
+			NoOperation,
 			/// <summary>
 			/// Load from memory
 			/// </summary>
-			Ld,
+			[Description("ld")]
+			Load,
 			/// <summary>
 			/// Store in memory
 			/// </summary>
-			St,
+			[Description("st")]
+			Store,
 			/// <summary>
 			/// Branch equal
 			/// </summary>
-			Beq,
+			[Description("beq")]
+			BranchEqual,
 			/// <summary>
 			/// Branch great than
 			/// </summary>
-			Bgt,
+			[Description("bgt")]
+			BranchGreaterThan,
 			/// <summary>
 			/// Branch
 			/// </summary>
-			B,
+			[Description("b")]
+			Branch,
 			/// <summary>
 			/// Call procedure
 			/// </summary>
+			[Description("call")]
 			Call,
 			/// <summary>
 			/// Return
 			/// </summary>
-			Ret
+			[Description("return")]
+			Return
 		}
 	}
 }

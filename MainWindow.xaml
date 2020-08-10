@@ -14,9 +14,19 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <DockPanel>
-		<materialDesign:Card Padding="32" Margin="16">
-			<TextBlock Style="{DynamicResource MaterialDesignTextBlock}">My First Material Design App</TextBlock>
-		</materialDesign:Card>
+	<DockPanel>
+		<Menu Style="{DynamicResource MaterialDesignMenu}" DockPanel.Dock="Top">
+			<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Archivo">
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Nuevo"></MenuItem>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Abrir"></MenuItem>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar"></MenuItem>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar Como"></MenuItem>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Salir"></MenuItem>
+			</MenuItem>
+			<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Depuración">
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar"></MenuItem>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Paso a paso"></MenuItem>
+			</MenuItem>
+		</Menu>
 	</DockPanel>
 </Window>
