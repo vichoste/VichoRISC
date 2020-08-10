@@ -1,12 +1,13 @@
-﻿<Window x:Class="VichoRISC.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VichoRISC"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:Components="clr-namespace:VichoRISC.Components" x:Class="VichoRISC.MainWindow"
         mc:Ignorable="d"
         Title="Vicho's RISC Interpreter" Height="720" MinHeight="720" Width="1280" MinWidth="1280" Icon="cpu.ico" WindowStyle="ThreeDBorderWindow"
-		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
@@ -14,21 +15,24 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
+	<Window.DataContext>
+		<Components:Cpu x:Name="Cpu"/>
+	</Window.DataContext>
 	<DockPanel>
 		<Menu Style="{DynamicResource MaterialDesignMenu}" DockPanel.Dock="Top">
 			<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Archivo">
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Nuevo"></MenuItem>
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Abrir"></MenuItem>
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar"></MenuItem>
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar Como"></MenuItem>
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Salir"></MenuItem>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Nuevo"/>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Abrir"/>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar"/>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar Como"/>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Salir"/>
 			</MenuItem>
 			<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Depuración">
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar"></MenuItem>
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Paso a paso"></MenuItem>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar"/>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Paso a paso"/>
 			</MenuItem>
 		</Menu>
-		<DataGrid Style="{DynamicResource MaterialDesignDataGrid}" DockPanel.Dock="Left"></DataGrid>
-		<RichTextBox Style="{DynamicResource MaterialDesignRichTextBox}"></RichTextBox>
+		<DataGrid Style="{DynamicResource MaterialDesignDataGrid}" CellStyle="{DynamicResource MaterialDesignDataGridCell}" DockPanel.Dock="Left" GridLinesVisibility="All" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False"/>
+		<RichTextBox Style="{DynamicResource MaterialDesignRichTextBox}"/>
 	</DockPanel>
 </Window>
