@@ -13,7 +13,7 @@ namespace VichoRISC.Components {
 		/// <summary>
 		/// Defines the instruction set of RISC
 		/// </summary>
-		public enum InstructionSet {
+		public enum Keywords {
 			/// <summary>
 			/// Addition
 			/// </summary>

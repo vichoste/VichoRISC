@@ -94,7 +94,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\Cpu.cs" />
-    <Compile Include="Components\InstructionSet.cs" />
+    <Compile Include="Components\Keywords.cs" />
     <Compile Include="Components\Registers.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
