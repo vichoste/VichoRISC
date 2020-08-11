@@ -21,7 +21,7 @@
 	</Window.DataContext>
 	<DockPanel>
 		<materialDesign:Card DockPanel.Dock="Top" Margin="16">
-			<Menu Margin="4" Style="{DynamicResource MaterialDesignMenu}">
+			<Menu Style="{DynamicResource MaterialDesignMenu}">
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Archivo">
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Nuevo"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Abrir"/>
