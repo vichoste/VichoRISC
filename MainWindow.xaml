@@ -66,7 +66,7 @@
 			</Menu>
 		</materialDesign:Card>
 		<materialDesign:Card DockPanel.Dock="Left" Margin="16,0,0,16">
-			<DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Registers}" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+			<DataGrid IsEnabled="False" AutoGenerateColumns="False" ItemsSource="{Binding Registers}" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Registro"></DataGridTextColumn>
 					<DataGridTextColumn Binding="{Binding Value}" Header="Valor"></DataGridTextColumn>
