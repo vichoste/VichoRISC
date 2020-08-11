@@ -48,8 +48,8 @@
 		<KeyBinding Key="M" Modifiers="Ctrl" Command="{StaticResource SeeMemory}"/>
 		<KeyBinding Key="Q" Modifiers="Ctrl" Command="{StaticResource Exit}"/>
 	</Window.InputBindings>
-	<DockPanel>
-		<materialDesign:Card DockPanel.Dock="Top" Margin="16">
+	<DockPanel Margin="16">
+		<materialDesign:Card DockPanel.Dock="Top" Margin="0,0,0,16">
 			<Menu Style="{DynamicResource MaterialDesignMenu}">
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Archivo">
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Nuevo"/>
@@ -61,11 +61,11 @@
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Depuración">
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar programa"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar programa paso a paso"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ver memoria" IsEnabled="False"/>
+					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ver memoria" Click="MenuItem_Click"/>
 				</MenuItem>
 			</Menu>
 		</materialDesign:Card>
-		<materialDesign:Card DockPanel.Dock="Left" Margin="16,0,0,16">
+		<materialDesign:Card DockPanel.Dock="Left">
 			<DataGrid IsEnabled="False" AutoGenerateColumns="False" ItemsSource="{Binding Registers}" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Registro"></DataGridTextColumn>
@@ -73,14 +73,14 @@
 				</DataGrid.Columns>
 			</DataGrid>
 		</materialDesign:Card>
-		<materialDesign:Card DockPanel.Dock="Bottom" Margin="16">
+		<materialDesign:Card DockPanel.Dock="Bottom" Margin="16,16,0,0">
 			<StatusBar Foreground="{DynamicResource MaterialDesignBodyLight}" Background="{DynamicResource MaterialDesignPaper}">
 				<StatusBarItem>
 					<TextBlock Style="{DynamicResource MaterialDesignTextBlock}">Status</TextBlock>
 				</StatusBarItem>
 			</StatusBar>
 		</materialDesign:Card>
-		<materialDesign:Card Margin="16,0">
+		<materialDesign:Card Margin="16,0,0,0">
 			<RichTextBox Margin="16" Style="{DynamicResource MaterialDesignRichTextBox}" FontFamily="Consolas" Block.LineHeight="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
 		</materialDesign:Card>
 	</DockPanel>
