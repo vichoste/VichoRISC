@@ -17,5 +17,10 @@ namespace VichoRISC.Components {
 		/// Value of the register
 		/// </summary>
 		public int Value { get; set; }
+		/// <summary>
+		/// Creates a register
+		/// </summary>
+		/// <param name="name">Name of the register</param>
+		public Register(string name) => this.Name = name;
 	}
 }

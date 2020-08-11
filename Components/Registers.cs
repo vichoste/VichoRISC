@@ -63,11 +63,18 @@ namespace VichoRISC.Components {
 			set => this.Registers[6].Value = value;
 		}
 		/// <summary>
-		/// General purpose register 7
+		/// General purpose register 7 (Syscall number)
 		/// </summary>
 		public int RegisterSeven {
 			get => this.Registers[7].Value;
 			set => this.Registers[7].Value = value;
+		}
+		/// <summary>
+		/// General purpose register 7 (Syscall number)
+		/// </summary>
+		public int SyscallNumber {
+			get => this.RegisterSeven;
+			set => this.RegisterSeven = value;
 		}
 		/// <summary>
 		/// General purpose register 8

@@ -33,8 +33,12 @@
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Paso a paso"/>
 			</MenuItem>
 		</Menu>
-		<DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Registers}" Style="{DynamicResource MaterialDesignDataGrid}" DockPanel.Dock="Left" GridLinesVisibility="All" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+		<DataGrid x:Name="RegistersDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Registers}" Style="{DynamicResource MaterialDesignDataGrid}" DockPanel.Dock="Left" GridLinesVisibility="All" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding Name}" Header="Registro"></DataGridTextColumn>
+				<DataGridTextColumn Binding="{Binding Value}" Header="Valor"></DataGridTextColumn>
+			</DataGrid.Columns>
 		</DataGrid>
-		<RichTextBox Style="{DynamicResource MaterialDesignRichTextBox}"/>
+		<RichTextBox Style="{DynamicResource MaterialDesignRichTextBox}" FontFamily="Consolas" Block.LineHeight="1"/>
 	</DockPanel>
 </Window>
