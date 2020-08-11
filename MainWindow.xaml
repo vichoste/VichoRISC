@@ -20,7 +20,7 @@
 		</Components:Cpu>
 	</Window.DataContext>
 	<DockPanel>
-		<Menu Style="{DynamicResource MaterialDesignMenu}" DockPanel.Dock="Top">
+		<Menu BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="4" Margin="4" Style="{DynamicResource MaterialDesignMenu}" DockPanel.Dock="Top">
 			<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Archivo">
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Nuevo"/>
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Abrir"/>
@@ -39,6 +39,11 @@
 				<DataGridTextColumn Binding="{Binding Value}" Header="Valor"></DataGridTextColumn>
 			</DataGrid.Columns>
 		</DataGrid>
+		<StatusBar Foreground="{DynamicResource MaterialDesignBodyLight}" Background="{DynamicResource MaterialDesignPaper}" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="4" Margin="4" DockPanel.Dock="Bottom">
+			<StatusBarItem>
+				<TextBlock Style="{DynamicResource MaterialDesignTextBlock}">Status</TextBlock>
+			</StatusBarItem>
+		</StatusBar>
 		<RichTextBox BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="4" Margin="4" Style="{DynamicResource MaterialDesignRichTextBox}" FontFamily="Consolas" Block.LineHeight="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
 	</DockPanel>
 </Window>
