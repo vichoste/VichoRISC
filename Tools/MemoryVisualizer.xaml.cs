@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using VichoRISC.Components;
 
 namespace VichoRISC.Tools {
 	/// <summary>
@@ -18,8 +19,16 @@ namespace VichoRISC.Tools {
 	/// </summary>
 	public partial class MemoryVisualizer : Window {
 		/// <summary>
+		/// Holds the reference for the memory
+		/// </summary>
+		public Memory Memory { get; private set; }
+		/// <summary>
 		/// Creates a memory visualizer instance
 		/// </summary>
-		public MemoryVisualizer() => this.InitializeComponent();
+		public MemoryVisualizer(Memory memory) {
+			this.InitializeComponent();
+			this.Memory = memory;
+			this.DataContext = this.Memory;
+		}
 	}
 }

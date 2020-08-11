@@ -23,9 +23,7 @@ namespace VichoRISC {
 		/// <summary>
 		/// Creates the main window
 		/// </summary>
-		public MainWindow() {
-			this.InitializeComponent();
-		}
+		public MainWindow() => this.InitializeComponent();
 		/// <summary>
 		/// Executes the new command
 		/// </summary>
@@ -88,7 +86,7 @@ namespace VichoRISC {
 		/// <param name="sender">Who sends the event</param>
 		/// <param name="e">Event arguments</param>
 		private void SeeMemory(object sender, ExecutedRoutedEventArgs e) {
-			var memoryVisualizer = new MemoryVisualizer();
+			var memoryVisualizer = new MemoryVisualizer(this.Cpu.Memory);
 			memoryVisualizer.Show();
 		}
 		/// <summary>
@@ -97,7 +95,7 @@ namespace VichoRISC {
 		/// <param name="sender">Who sends the event</param>
 		/// <param name="e">Event arguments</param>
 		private void MenuItem_Click(object sender, RoutedEventArgs e) {
-			var memoryVisualizer = new MemoryVisualizer();
+			var memoryVisualizer = new MemoryVisualizer(this.Cpu.Memory);
 			memoryVisualizer.Show();
 		}
 	}

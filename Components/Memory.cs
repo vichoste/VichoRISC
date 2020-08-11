@@ -13,23 +13,23 @@ namespace VichoRISC.Components {
 		/// <summary>
 		/// Instead of a long array that overflows, I'm using a hashtable that emulates RAM
 		/// </summary>
-		private Hashtable _Ram;
+		public Hashtable Ram { get; private set; }
 		/// <summary>
 		/// Creates a memory
 		/// </summary>
-		public Memory() => this._Ram = new Hashtable();
+		public Memory() => this.Ram = new Hashtable();
 		/// <summary>
 		/// Gets a memory value
 		/// </summary>
 		/// <param name="address">Desired address</param>
 		/// <returns>Value of the address</returns>
 		public int this[int address] {
-			get => (int)this._Ram[address];
+			get => (int)this.Ram[address];
 			set {
-				if (!this._Ram.ContainsKey(address)) {
-					this._Ram.Add(address, value);
+				if (!this.Ram.ContainsKey(address)) {
+					this.Ram.Add(address, value);
 				} else {
-					this._Ram[address] = value;
+					this.Ram[address] = value;
 				}
 			}
 		}
@@ -38,8 +38,8 @@ namespace VichoRISC.Components {
 		/// </summary>
 		/// <param name="address">Desired address</param>
 		public void Clear(int address) {
-			if (this._Ram.ContainsKey(address)) {
-				this._Ram.Remove(address);
+			if (this.Ram.ContainsKey(address)) {
+				this.Ram.Remove(address);
 			}
 		}
 	}

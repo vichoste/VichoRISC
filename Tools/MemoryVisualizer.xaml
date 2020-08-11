@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VichoRISC.Tools"
 		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:Components="clr-namespace:VichoRISC.Components" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="VichoRISC.Tools.MemoryVisualizer"
+        xmlns:Components="clr-namespace:VichoRISC.Components" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:VichoRISC="clr-namespace:VichoRISC" x:Class="VichoRISC.Tools.MemoryVisualizer"
         mc:Ignorable="d"
         Title="Visor de memoria" Height="480" MinHeight="640" Width="480" MinWidth="640" Icon="../cpu.ico"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,12 +15,12 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ShowInTaskbar="False">
-	<Window.DataContext>
-		<Components:Cpu x:Name="Cpu"/>
-	</Window.DataContext>
-	<StackPanel>
-		<DataGrid IsEnabled="False" AutoGenerateColumns="False" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
-
+	<materialDesign:Card Margin="4">
+		<DataGrid ItemsSource="{Binding Ram}" AutoGenerateColumns="False" IsEnabled="False" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding Key}" Header="Dirección"></DataGridTextColumn>
+				<DataGridTextColumn Binding="{Binding Value}" Header="Valor"></DataGridTextColumn>
+			</DataGrid.Columns>
 		</DataGrid>
-	</StackPanel>
+	</materialDesign:Card>
 </Window>

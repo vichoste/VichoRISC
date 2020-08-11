@@ -9,7 +9,10 @@ namespace VichoRISC.Components {
 	/// Defines the CPU
 	/// </summary>
 	public partial class Cpu {
-		public Memory Memory;
+		/// <summary>
+		/// Memory
+		/// </summary>
+		public Memory Memory { get; set; }
 		/// <summary>
 		/// Creates a new CPU
 		/// </summary>
