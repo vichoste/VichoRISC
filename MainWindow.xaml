@@ -14,7 +14,8 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignDarkBackground}"
-        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen"
+		Closing="Window_Closing">
 	<Window.DataContext>
 		<Components:Cpu x:Name="Cpu"/>
 	</Window.DataContext>

@@ -98,5 +98,11 @@ namespace VichoRISC {
 			var memoryVisualizer = new MemoryVisualizer(this.Cpu.Memory);
 			memoryVisualizer.Show();
 		}
+		/// <summary>
+		/// Overrides the close behavior
+		/// </summary>
+		/// <param name="sender">Who sends the event</param>
+		/// <param name="e">Event arguments</param>
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => Application.Current.Shutdown();
 	}
 }
