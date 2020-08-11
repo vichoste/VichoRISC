@@ -16,7 +16,12 @@
         Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ShowInTaskbar="False"
 	    Closing="Window_Closing">
+	<Window.DataContext>
+		<Components:Cpu x:Name="Cpu"/>
+	</Window.DataContext>
 	<StackPanel>
-		
+		<DataGrid IsEnabled="False" AutoGenerateColumns="False" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+
+		</DataGrid>
 	</StackPanel>
 </Window>
