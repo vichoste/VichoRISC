@@ -16,7 +16,7 @@
         Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ShowInTaskbar="False">
 	<materialDesign:Card Margin="4">
-		<DataGrid ItemsSource="{Binding Ram}" AutoGenerateColumns="False" IsEnabled="False" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+		<DataGrid ItemsSource="{Binding Ram}" AutoGenerateColumns="False" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding Key}" Header="Dirección"></DataGridTextColumn>
 				<DataGridTextColumn Binding="{Binding Value}" Header="Valor"></DataGridTextColumn>
