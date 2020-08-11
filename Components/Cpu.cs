@@ -9,6 +9,9 @@ namespace VichoRISC.Components {
 	/// Defines the CPU
 	/// </summary>
 	public partial class Cpu {
+		/// <summary>
+		/// Creates a new CPU
+		/// </summary>
 		public Cpu() => this.Registers = new List<Register>() {
 			new Register("R0"),
 			new Register("R1"),
