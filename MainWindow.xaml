@@ -14,10 +14,40 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignDarkBackground}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
 	<Window.DataContext>
 		<Components:Cpu x:Name="Cpu"/>
 	</Window.DataContext>
+	<Window.Resources>
+		<RoutedUICommand x:Key="New"/>
+		<RoutedUICommand x:Key="Open"/>
+		<RoutedUICommand x:Key="Save"/>
+		<RoutedUICommand x:Key="SaveAs"/>
+		<RoutedUICommand x:Key="Run"/>
+		<RoutedUICommand x:Key="Step"/>
+		<RoutedUICommand x:Key="SeeMemory"/>
+		<RoutedUICommand x:Key="Exit"/>
+	</Window.Resources>
+	<Window.CommandBindings>
+		<CommandBinding Command="{StaticResource New}" Executed="New"/>
+		<CommandBinding Command="{StaticResource Open}" Executed="Open"/>
+		<CommandBinding Command="{StaticResource Save}" Executed="Save"/>
+		<CommandBinding Command="{StaticResource SaveAs}" Executed="SaveAs"/>
+		<CommandBinding Command="{StaticResource Run}" Executed="Run"/>
+		<CommandBinding Command="{StaticResource Step}" Executed="Step"/>
+		<CommandBinding Command="{StaticResource SeeMemory}" Executed="SeeMemory"/>
+		<CommandBinding Command="{StaticResource Exit}" Executed="Exit"/>
+	</Window.CommandBindings>
+	<Window.InputBindings>
+		<KeyBinding Key="N" Modifiers="Ctrl" Command="{StaticResource New}"/>
+		<KeyBinding Key="O" Modifiers="Ctrl" Command="{StaticResource New}"/>
+		<KeyBinding Key="S" Modifiers="Ctrl" Command="{StaticResource New}"/>
+		<KeyBinding Key="A" Modifiers="Ctrl" Command="{StaticResource New}"/>
+		<KeyBinding Key="R" Modifiers="Ctrl" Command="{StaticResource New}"/>
+		<KeyBinding Key="T" Modifiers="Ctrl" Command="{StaticResource New}"/>
+		<KeyBinding Key="M" Modifiers="Ctrl" Command="{StaticResource New}"/>
+		<KeyBinding Key="Q" Modifiers="Ctrl" Command="{StaticResource New}"/>
+	</Window.InputBindings>
 	<DockPanel>
 		<materialDesign:Card DockPanel.Dock="Top" Margin="16">
 			<Menu Style="{DynamicResource MaterialDesignMenu}">
@@ -29,8 +59,8 @@
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Salir"/>
 				</MenuItem>
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Depuración">
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Paso a paso"/>
+					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar programa"/>
+					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar programa paso a paso"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ver memoria" IsEnabled="False"/>
 				</MenuItem>
 			</Menu>

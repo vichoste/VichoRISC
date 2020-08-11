@@ -23,5 +23,30 @@ namespace VichoRISC {
 		/// Creates the main window
 		/// </summary>
 		public MainWindow() => this.InitializeComponent();
+
+		private void New(object sender, ExecutedRoutedEventArgs e) {
+
+		}
+		private void Open(object sender, ExecutedRoutedEventArgs e) {
+
+		}
+		private void Save(object sender, ExecutedRoutedEventArgs e) {
+
+		}
+		private void SaveAs(object sender, ExecutedRoutedEventArgs e) {
+
+		}
+		private void Exit(object sender, ExecutedRoutedEventArgs e) {
+
+		}
+		private void Run(object sender, ExecutedRoutedEventArgs e) {
+
+		}
+		private void Step(object sender, ExecutedRoutedEventArgs e) {
+
+		}
+		private void SeeMemory(object sender, ExecutedRoutedEventArgs e) {
+
+		}
 	}
 }
