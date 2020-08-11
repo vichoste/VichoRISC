@@ -10,89 +10,85 @@ namespace VichoRISC.Components {
 	/// </summary>
 	public partial class Cpu {
 		/// <summary>
-		/// Register names
-		/// </summary>
-		public List<string> RegisterNames { get; set; }
-		/// <summary>
 		/// Register values
 		/// </summary>
-		public List<int> Registers { get; set; }
+		public List<Register> Registers { get; set; }
 		#region General purpose registers
 		/// <summary>
 		/// General purpose register 0
 		/// </summary>
 		public int RegisterZero {
-			get => this.Registers[0];
-			set => this.Registers[0] = value;
+			get => this.Registers[0].Value;
+			set => this.Registers[0].Value = value;
 		}
 		/// <summary>
 		/// General purpose register 1
 		/// </summary>
 		public int RegisterOne {
-			get => this.Registers[1];
-			set => this.Registers[1] = value;
+			get => this.Registers[1].Value;
+			set => this.Registers[1].Value = value;
 		}
 		/// <summary>
 		/// General purpose register 2
 		/// </summary>
 		public int RegisterTwo {
-			get => this.Registers[2];
-			set => this.Registers[2] = value;
+			get => this.Registers[2].Value;
+			set => this.Registers[2].Value = value;
 		}
 		/// <summary>
 		/// General purpose register 3
 		/// </summary>
 		public int RegisterThree {
-			get => this.Registers[3];
-			set => this.Registers[3] = value;
+			get => this.Registers[3].Value;
+			set => this.Registers[3].Value = value;
 		}
 		/// <summary>
 		/// General purpose register 4
 		/// </summary>
 		public int RegisterFour {
-			get => this.Registers[4];
-			set => this.Registers[4] = value;
+			get => this.Registers[4].Value;
+			set => this.Registers[4].Value = value;
 		}
 		/// <summary>
 		/// General purpose register 5
 		/// </summary>
 		public int RegisterFive {
-			get => this.Registers[5];
-			set => this.Registers[5] = value; }
+			get => this.Registers[5].Value;
+			set => this.Registers[5].Value = value; }
 		/// <summary>
 		/// General purpose register 6
 		/// </summary>
 		public int RegisterSix {
-			get => this.Registers[6];
-			set => this.Registers[6] = value;
+			get => this.Registers[6].Value;
+			set => this.Registers[6].Value = value;
 		}
 		/// <summary>
 		/// General purpose register 7
 		/// </summary>
 		public int RegisterSeven {
-			get => this.Registers[7];
-			set => this.Registers[7] = value;
+			get => this.Registers[7].Value;
+			set => this.Registers[7].Value = value;
 		}
 		/// <summary>
 		/// General purpose register 8
 		/// </summary>
 		public int RegisterEight {
-			get => this.Registers[8];
-			set => this.Registers[8] = value;
+			get => this.Registers[8].Value;
+			set => this.Registers[8].Value = value;
 		}
 		/// <summary>
 		/// General purpose register 9
 		/// </summary>
 		public int RegisterNine {
-			get => this.Registers[9];
-			set => this.Registers[9] = value;
+			get => this.Registers[9].Value;
+			set => this.Registers[9].Value = value;
 		}
 		/// <summary>
 		/// General purpose register 10
 		/// </summary>
 		public int RegisterTen {
-			get => this.Registers[10];
-			set => this.Registers[10] = value;
+			get => this.Registers[10].Value;
+			set => this.Registers[10].Value = value;
 		}
 		#endregion
 		#region Special purpose registers
@@ -100,8 +96,8 @@ namespace VichoRISC.Components {
 		/// Frame pointer (Register 11)
 		/// </summary>
 		public int RegisterEleven {
-			get => this.Registers[11];
-			set => this.Registers[11] = value;
+			get => this.Registers[11].Value;
+			set => this.Registers[11].Value = value;
 		}
 		/// <summary>
 		/// Frame pointer (Register 11)
@@ -114,8 +110,8 @@ namespace VichoRISC.Components {
 		/// Intra procedural call (Register 12)
 		/// </summary>
 		public int RegisterTwelve {
-			get => this.Registers[12];
-			set => this.Registers[12] = value;
+			get => this.Registers[12].Value;
+			set => this.Registers[12].Value = value;
 		}
 		/// <summary>
 		/// Intra procedural call (Register 12)
@@ -128,8 +124,8 @@ namespace VichoRISC.Components {
 		/// Stack pointer (Register 13)
 		/// </summary>
 		public int RegisterThirteen {
-			get => this.Registers[13];
-			set => this.Registers[13] = value;
+			get => this.Registers[13].Value;
+			set => this.Registers[13].Value = value;
 		}
 		/// <summary>
 		/// Stack pointer (Register 13)
@@ -142,8 +138,8 @@ namespace VichoRISC.Components {
 		/// Link register (Register 14)
 		/// </summary>
 		public int RegisterFourteen {
-			get => this.Registers[14];
-			set => this.Registers[14] = value;
+			get => this.Registers[14].Value;
+			set => this.Registers[14].Value = value;
 		}
 		/// <summary>
 		/// Link register (Register 14)
@@ -156,8 +152,8 @@ namespace VichoRISC.Components {
 		/// Program counter (Register 15)
 		/// </summary>
 		public int RegisterFifteen {
-			get => this.Registers[15];
-			set => this.Registers[15] = value;
+			get => this.Registers[15].Value;
+			set => this.Registers[15].Value = value;
 		}
 		/// <summary>
 		/// Program counter (Register 15)
