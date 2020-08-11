@@ -32,6 +32,7 @@
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Depuración">
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Paso a paso"/>
+					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ver memoria"/>
 				</MenuItem>
 			</Menu>
 		</materialDesign:Card>
