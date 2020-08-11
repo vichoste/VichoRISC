@@ -17,15 +17,9 @@ namespace VichoRISC.Tools {
 	/// Memory visualizer tool
 	/// </summary>
 	public partial class MemoryVisualizer : Window {
-		public MemoryVisualizer() => this.InitializeComponent();
 		/// <summary>
-		/// Overrides the window closing behavior
+		/// Creates a memory visualizer instance
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-			e.Cancel = true;
-			this.Hide();
-		}
+		public MemoryVisualizer() => this.InitializeComponent();
 	}
 }

@@ -20,13 +20,11 @@ namespace VichoRISC {
 	/// Main window
 	/// </summary>
 	public partial class MainWindow : Window {
-		public MemoryVisualizer MemoryVisualizer { get; set; }
 		/// <summary>
 		/// Creates the main window
 		/// </summary>
 		public MainWindow() {
 			this.InitializeComponent();
-			this.MemoryVisualizer = new MemoryVisualizer();
 		}
 		/// <summary>
 		/// Executes the new command
@@ -89,12 +87,18 @@ namespace VichoRISC {
 		/// </summary>
 		/// <param name="sender">Who sends the event</param>
 		/// <param name="e">Event arguments</param>
-		private void SeeMemory(object sender, ExecutedRoutedEventArgs e) => this.MemoryVisualizer.Show();
+		private void SeeMemory(object sender, ExecutedRoutedEventArgs e) {
+			var memoryVisualizer = new MemoryVisualizer();
+			memoryVisualizer.Show();
+		}
 		/// <summary>
 		/// Executes the see memory command
 		/// </summary>
 		/// <param name="sender">Who sends the event</param>
 		/// <param name="e">Event arguments</param>
-		private void MenuItem_Click(object sender, RoutedEventArgs e) => this.MemoryVisualizer.Show();
+		private void MenuItem_Click(object sender, RoutedEventArgs e) {
+			var memoryVisualizer = new MemoryVisualizer();
+			memoryVisualizer.Show();
+		}
 	}
 }
