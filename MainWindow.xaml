@@ -7,7 +7,7 @@
 		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:Components="clr-namespace:VichoRISC.Components" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="VichoRISC.MainWindow"
         mc:Ignorable="d"
-        Title="Vicho's RISC Interpreter" Height="720" MinHeight="720" Width="1280" MinWidth="1280" Icon="cpu.ico" WindowStyle="ThreeDBorderWindow"
+        Title="Vicho's RISC Emulator" Height="720" MinHeight="720" Width="1280" MinWidth="1280" Icon="cpu.ico" WindowStyle="ThreeDBorderWindow"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
