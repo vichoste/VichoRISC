@@ -10,14 +10,9 @@ namespace VichoRISC.Components {
 	/// </summary>
 	public partial class Cpu {
 		/// <summary>
-		/// Memory
-		/// </summary>
-		public Memory Memory { get; set; }
-		/// <summary>
 		/// Creates a new CPU
 		/// </summary>
-		public Cpu() {
-			this.Registers = new List<Register>() {
+		public Cpu() => this.Registers = new List<Register>() {
 				new Register("R0"),
 				new Register("R1"),
 				new Register("R2"),
@@ -35,7 +30,5 @@ namespace VichoRISC.Components {
 				new Register("R14 (LR)"),
 				new Register("R15 (PC)"),
 			};
-			this.Memory = new Memory();
-		}
 	}
 }

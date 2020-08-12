@@ -36,7 +36,6 @@
 		<CommandBinding Command="{StaticResource SaveAs}" Executed="SaveAs"/>
 		<CommandBinding Command="{StaticResource Run}" Executed="Run"/>
 		<CommandBinding Command="{StaticResource Step}" Executed="Step"/>
-		<CommandBinding Command="{StaticResource SeeMemory}" Executed="SeeMemory"/>
 		<CommandBinding Command="{StaticResource Exit}" Executed="Exit"/>
 	</Window.CommandBindings>
 	<Window.InputBindings>
@@ -62,7 +61,6 @@
 				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Depuración">
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar programa"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar programa paso a paso"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ver memoria" Click="MenuItem_Click"/>
 				</MenuItem>
 			</Menu>
 		</materialDesign:Card>

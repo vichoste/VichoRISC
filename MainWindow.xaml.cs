@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VichoRISC.Components;
-using VichoRISC.Tools;
 
 namespace VichoRISC {
 	/// <summary>
@@ -79,24 +78,6 @@ namespace VichoRISC {
 		/// <param name="e">Event arguments</param>
 		private void Step(object sender, ExecutedRoutedEventArgs e) {
 
-		}
-		/// <summary>
-		/// Executes the see memory command
-		/// </summary>
-		/// <param name="sender">Who sends the event</param>
-		/// <param name="e">Event arguments</param>
-		private void SeeMemory(object sender, ExecutedRoutedEventArgs e) {
-			var memoryVisualizer = new MemoryVisualizer(this.Cpu.Memory);
-			memoryVisualizer.Show();
-		}
-		/// <summary>
-		/// Executes the see memory command
-		/// </summary>
-		/// <param name="sender">Who sends the event</param>
-		/// <param name="e">Event arguments</param>
-		private void MenuItem_Click(object sender, RoutedEventArgs e) {
-			var memoryVisualizer = new MemoryVisualizer(this.Cpu.Memory);
-			memoryVisualizer.Show();
 		}
 		/// <summary>
 		/// Overrides the close behavior
