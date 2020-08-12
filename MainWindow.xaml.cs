@@ -79,11 +79,5 @@ namespace VichoRISC {
 		private void Step(object sender, ExecutedRoutedEventArgs e) {
 
 		}
-		/// <summary>
-		/// Overrides the close behavior
-		/// </summary>
-		/// <param name="sender">Who sends the event</param>
-		/// <param name="e">Event arguments</param>
-		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => Application.Current.Shutdown();
 	}
 }
