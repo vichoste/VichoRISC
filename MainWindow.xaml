@@ -62,6 +62,7 @@
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar programa"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar programa paso a paso"/>
 				</MenuItem>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar"></MenuItem>
 			</Menu>
 		</materialDesign:Card>
 		<materialDesign:Card DockPanel.Dock="Left">
