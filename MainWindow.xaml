@@ -14,7 +14,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignDarkBackground}"
-        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" TabIndex="0">
 	<Window.DataContext>
 		<Components:Cpu x:Name="Cpu"/>
 	</Window.DataContext>
@@ -45,18 +45,18 @@
 	<DockPanel Margin="16">
 		<materialDesign:Card DockPanel.Dock="Top" Margin="0,0,0,16">
 			<Menu Style="{DynamicResource MaterialDesignMenu}">
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Archivo">
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Nuevo"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Abrir"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar Como"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Salir"/>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Archivo" TabIndex="3">
+					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Nuevo" TabIndex="4"/>
+					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Abrir" TabIndex="5"/>
+					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar" TabIndex="6"/>
+					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar Como" TabIndex="7"/>
+					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Salir" TabIndex="8"/>
 				</MenuItem>
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar"></MenuItem>
+				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar" TabIndex="9"></MenuItem>
 			</Menu>
 		</materialDesign:Card>
 		<materialDesign:Card DockPanel.Dock="Left">
-			<DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Registers}" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+			<DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Registers}" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" TabIndex="2">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Registro"></DataGridTextColumn>
 					<DataGridTextColumn Binding="{Binding Value}" Header="Valor"></DataGridTextColumn>
@@ -71,7 +71,7 @@
 			</StatusBar>
 		</materialDesign:Card>
 		<materialDesign:Card Margin="16,0,0,0">
-			<RichTextBox Margin="16" Style="{DynamicResource MaterialDesignRichTextBox}" FontFamily="Consolas" Block.LineHeight="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+			<RichTextBox Margin="16" Style="{DynamicResource MaterialDesignRichTextBox}" FontFamily="Consolas" Block.LineHeight="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" TabIndex="1" ToolTip="Ingrese aquí su código de ensamblador ARM" UndoLimit="128" UseLayoutRounding="False" VerticalContentAlignment="Stretch"/>
 		</materialDesign:Card>
 	</DockPanel>
 </Window>
