@@ -86,7 +86,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Components\Memory.cs" />
-    <Compile Include="Components\Stack.cs" />
     <Compile Include="Tools\MemoryVisualizer.xaml.cs">
       <DependentUpon>MemoryVisualizer.xaml</DependentUpon>
     </Compile>

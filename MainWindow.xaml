@@ -63,7 +63,6 @@
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar programa"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar programa paso a paso"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ver memoria" Click="MenuItem_Click"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ver stack"/>
 				</MenuItem>
 			</Menu>
 		</materialDesign:Card>
