@@ -71,13 +71,5 @@ namespace VichoRISC {
 		private void Run(object sender, ExecutedRoutedEventArgs e) {
 
 		}
-		/// <summary>
-		/// Executes the step by step command
-		/// </summary>
-		/// <param name="sender">Who sends the event</param>
-		/// <param name="e">Event arguments</param>
-		private void Step(object sender, ExecutedRoutedEventArgs e) {
-
-		}
 	}
 }
