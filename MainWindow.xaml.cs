@@ -21,6 +21,19 @@ namespace VichoRISC {
 	/// Main window
 	/// </summary>
 	public partial class MainWindow : Window {
+		private static readonly Parser<string> _Type1 = from instruction in Parse.LetterOrDigit.Many().Text()
+											   from firstWhiteSpace in Parse.WhiteSpace
+											   from firstPrefix in Parse.Char('r').Once().Text()
+											   from firstInputNumber in Parse.Number
+											   from firstComma in Parse.Char(',').Once().Text()
+											   from secondWhiteSpace in Parse.WhiteSpace
+											   from secondPrefix in Parse.Char('r').Once().Text()
+											   from secondInputNumber in Parse.Number
+											   from secondComma in Parse.Char(',').Once().Text()
+											   from thirdWhiteSpace in Parse.WhiteSpace
+											   from thirdPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
+											   from thirdInputNumber in Parse.Number
+											   select instruction + firstInputNumber + secondInputNumber + thirdPrefix + thirdInputNumber;
 		/// <summary>
 		/// Creates the main window
 		/// </summary>
@@ -71,8 +84,11 @@ namespace VichoRISC {
 		/// </summary>
 		private void RunCode() {
 			System.Diagnostics.Debug.WriteLine("Run!");
-			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Split('\t');
+			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Replace("\r", string.Empty).Split('\n');
 			foreach (var line in code) {
+				if (string.IsNullOrWhiteSpace(line)) {
+					continue;
+				}
 				/*
 				 * Regex patterns
 				 * and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
@@ -83,7 +99,13 @@ namespace VichoRISC {
 				 * @: @\w+
 				 * .: \.\w+
 				 */
-				System.Diagnostics.Debug.WriteLine(line);
+				try {
+					var detectedInput = _Type1.Parse(line);
+					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
+					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
+				} catch (Exception) {
+
+				}
 			}
 		}
 		/// <summary>
