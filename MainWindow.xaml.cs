@@ -102,10 +102,23 @@ namespace VichoRISC {
 				 * nop: nop
 				 * beq, bgt, b, call: (beq|bgt|b|call) \w+
 				 * @: @\w+
-				 * .: \.\w+
+				 * label: \w+:
 				 */
 				try {
-					var detectedInput = FirstType.Parse(line);
+					var detectedInput = string.Empty;
+					// and, sub, mul, div, mod, and, or, lsl, lsr, asr
+					if (line.Contains(Cpu.Keyword.Add)
+						|| line.Contains(Cpu.Keyword.Substract)
+						|| line.Contains(Cpu.Keyword.Multiply)
+						|| line.Contains(Cpu.Keyword.Divide)
+						|| line.Contains(Cpu.Keyword.Modulo)
+						|| line.Contains(Cpu.Keyword.BitwiseAnd)
+						|| line.Contains(Cpu.Keyword.BitwiseOr)
+						|| line.Contains(Cpu.Keyword.LogicalShiftLeft)
+						|| line.Contains(Cpu.Keyword.LogicalShiftRight)
+						|| line.Contains(Cpu.Keyword.ArithmeticalShiftRight)) {
+						detectedInput = FirstType.Parse(line);
+					}
 					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
 					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
 				} catch (Exception) {

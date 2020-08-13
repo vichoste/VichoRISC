@@ -14,112 +14,91 @@ namespace VichoRISC.Components {
 		/// <summary>
 		/// Defines the instruction set of RISC
 		/// </summary>
-		public enum Keywords {
+		public class Keyword {
 			/// <summary>
 			/// Addition
 			/// </summary>
-			[Description("add")]
-			Add,
+			public static string Add = "add";
 			/// <summary>
 			/// Substraction
 			/// </summary>
-			[Description("sub")]
-			Substract,
+			public static string Substract = "sub";
 			/// <summary>
 			/// Multiplication
 			/// </summary>
-			[Description("mul")]
-			Multiply,
+			public static string Multiply = "mul";
 			/// <summary>
 			/// Division
 			/// </summary>
-			[Description("div")]
-			Divide,
+			public static string Divide = "div";
 			/// <summary>
 			/// Modulo
 			/// </summary>
-			[Description("mod")]
-			Modulo,
+			public static string Modulo = "mod";
 			/// <summary>
 			/// Comparison
 			/// </summary>
-			[Description("cmp")]
-			Compare,
+			public static string Compare = "cmp";
 			/// <summary>
 			/// Bitwise AND
 			/// </summary>
-			[Description("and")]
-			BitwiseAnd,
+			public static string BitwiseAnd = "and";
 			/// <summary>
 			/// Bitwise OR
 			/// </summary>
-			[Description("or")]
-			BitwiseOr,
+			public static string BitwiseOr = "or";
 			/// <summary>
 			/// Bitwise NOT
 			/// </summary>
-			[Description("not")]
-			BitwiseNot,
+			public static string BitwiseNot = "not";
 			/// <summary>
 			/// Move data
 			/// </summary>
-			[Description("mov")]
-			Move,
+			public static string Move = "mov";
 			/// <summary>
 			/// Logical left shift
 			/// </summary>
-			[Description("lsl")]
-			LogicalShiftLeft,
+			public static string LogicalShiftLeft = "lsl";
 			/// <summary>
 			/// Logical right shift
 			/// </summary>
-			[Description("lsr")]
-			LogicalShiftRight,
+			public static string LogicalShiftRight = "lsr";
 			/// <summary>
 			/// Arithmetical right shift
 			/// </summary>
-			[Description("asr")]
-			ArithmeticalShiftRight,
+			public static string ArithmeticalShiftRight = "asr";
 			/// <summary>
 			/// No operation
 			/// </summary>
-			[Description("nop")]
-			NoOperation,
+			public static string NoOperation = "nop";
 			/// <summary>
 			/// Load from memory
 			/// </summary>
-			[Description("ld")]
-			Load,
+			public static string Load = "ld";
 			/// <summary>
 			/// Store in memory
 			/// </summary>
-			[Description("st")]
-			Store,
+			public static string Store = "st";
 			/// <summary>
 			/// Branch equal
 			/// </summary>
-			[Description("beq")]
-			BranchEqual,
+			public static string BranchEqual = "beq";
 			/// <summary>
-			/// Branch great than
+			/// Branch greater than
 			/// </summary>
-			[Description("bgt")]
-			BranchGreaterThan,
+			public static string BranchGreaterThan = "bgt";
 			/// <summary>
-			/// Branch
+			/// Unconditional branch
 			/// </summary>
-			[Description("b")]
-			Branch,
+			public static string Branch = "b";
 			/// <summary>
 			/// Call procedure
 			/// </summary>
-			[Description("call")]
-			Call,
+			public static string Call = "call";
 			/// <summary>
 			/// Return
 			/// </summary>
-			[Description("return")]
-			Return
+			public static string Return = "ret";
 		}
 		#endregion
 	}
