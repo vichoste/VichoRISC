@@ -99,9 +99,12 @@
     <Compile Include="Components\Cpu.cs" />
     <Compile Include="Components\Instructions.cs" />
     <Compile Include="Components\CurrentProgramStatusRegister.cs" />
-    <Compile Include="Components\Keywords.cs" />
     <Compile Include="Components\Register.cs" />
     <Compile Include="Components\Registers.cs" />
+    <Compile Include="Lexical\CodeRegexParser.cs" />
+    <Compile Include="Lexical\Instructions\FirstTypeInstruction.cs" />
+    <Compile Include="Lexical\Instructions\Instruction.cs" />
+    <Compile Include="Lexical\Keyword.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
