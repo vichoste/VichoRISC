@@ -160,7 +160,6 @@ namespace VichoRISC {
 				}
 				try {
 					var detectedInput = string.Empty;
-					// and, sub, mul, div, mod, and, or, lsl, lsr, asr
 					if (line.Contains(Cpu.Keyword.Add)
 						|| line.Contains(Cpu.Keyword.Substract)
 						|| line.Contains(Cpu.Keyword.Multiply)
@@ -170,7 +169,7 @@ namespace VichoRISC {
 						|| line.Contains(Cpu.Keyword.BitwiseOr)
 						|| line.Contains(Cpu.Keyword.LogicalShiftLeft)
 						|| line.Contains(Cpu.Keyword.LogicalShiftRight)
-						|| line.Contains(Cpu.Keyword.ArithmeticalShiftRight)) {
+						|| line.Contains(Cpu.Keyword.ArithmeticalShiftRight)) { // and, sub, mul, div, mod, and, or, lsl, lsr, asr
 						detectedInput = _FirstType.Parse(line);
 					} else if (line.Contains(Cpu.Keyword.Move)
 						|| line.Contains(Cpu.Keyword.BitwiseNot)) { // mov, not
@@ -186,7 +185,7 @@ namespace VichoRISC {
 						detectedInput = _SeventhType.Parse(line);
 					} else if (line.Contains(Cpu.Keyword.Label)) { // Label: \w+:
 						detectedInput = _EightType.Parse(line);
-					} else {
+					} else { // It's not a keyword
 						_ = this.StatusListBox.Items.Add($"Instrucción no válida en la línea {lineNumber}");
 						isTheCodeRegexGood = false;
 					}

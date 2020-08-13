@@ -35,12 +35,12 @@
 		<CommandBinding Command="{StaticResource Exit}" Executed="Exit"/>
 	</Window.CommandBindings>
 	<Window.InputBindings>
-		<KeyBinding Key="N" Modifiers="Shift" Command="{StaticResource New}"/>
-		<KeyBinding Key="O" Modifiers="Shift" Command="{StaticResource Open}"/>
-		<KeyBinding Key="S" Modifiers="Shift" Command="{StaticResource Save}"/>
-		<KeyBinding Key="A" Modifiers="Shift" Command="{StaticResource SaveAs}"/>
-		<KeyBinding Key="R" Modifiers="Shift" Command="{StaticResource Run}"/>
-		<KeyBinding Key="Q" Modifiers="Shift" Command="{StaticResource Exit}"/>
+		<KeyBinding Key="N" Gesture="Alt" Command="{StaticResource New}"/>
+		<KeyBinding Key="O" Gesture="Alt" Command="{StaticResource Open}"/>
+		<KeyBinding Key="S" Gesture="Alt" Command="{StaticResource Save}"/>
+		<KeyBinding Key="A" Gesture="Alt" Command="{StaticResource SaveAs}"/>
+		<KeyBinding Key="R" Gesture="Alt" Command="{StaticResource Run}"/>
+		<KeyBinding Key="Q" Gesture="Alt" Command="{StaticResource Exit}"/>
 	</Window.InputBindings>
 	<DockPanel Margin="16">
 		<materialDesign:Card DockPanel.Dock="Top" Margin="0,0,0,16">
@@ -65,8 +65,8 @@
 		</materialDesign:Card>
 		<materialDesign:Card DockPanel.Dock="Bottom" Margin="16,16,0,0">
 			<StatusBar Foreground="{DynamicResource MaterialDesignBodyLight}" Background="{DynamicResource MaterialDesignPaper}">
-				<StatusBarItem MinHeight="114" MaxHeight="114" HorizontalContentAlignment="Stretch">
-					<ListBox MinHeight="114" x:Name="StatusListBox" Style="{DynamicResource MaterialDesignListBox}" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" TabIndex="9" HorizontalContentAlignment="Stretch">Listo</ListBox>
+				<StatusBarItem MinHeight="114" MaxHeight="114" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+					<ListBox x:Name="StatusListBox" Style="{DynamicResource MaterialDesignListBox}" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" TabIndex="9" HorizontalContentAlignment="Stretch">Listo</ListBox>
 				</StatusBarItem>
 			</StatusBar>
 		</materialDesign:Card>
