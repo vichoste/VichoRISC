@@ -50,7 +50,7 @@ namespace VichoRISC {
 															 from secondInputNumber in Parse.Number
 															 select instruction + firstInputNumber + secondPrefix + secondInputNumber;
 		/// <summary>
-		/// Parser for: ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
+		/// Parser for: ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)
 		/// </summary>
 		private static readonly Parser<string> _ThirdType = from instruction in Parse.LetterOrDigit.Many().Text()
 															from firstWhiteSpace in Parse.WhiteSpace
@@ -58,11 +58,23 @@ namespace VichoRISC {
 															from firstInputNumber in Parse.Number
 															from firstComma in Parse.Char(',').Once().Text()
 															from secondWhiteSpace in Parse.WhiteSpace
-															from secondPointerPrefix in Parse.Char('[').Once().Text()
 															from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
 															from secondInputNumber in Parse.Number
-															from secondPointerSuffix in Parse.Char(']').Once().Text()
-															select instruction + firstInputNumber + secondPointerPrefix + secondPrefix + secondInputNumber + secondPointerSuffix;
+															select instruction + firstInputNumber + secondPrefix + secondInputNumber;
+		/// <summary>
+		/// Parser for ld, st: (ld|st) r[0-9]+, \[r[0-9]+\]
+		/// </summary>
+		private static readonly Parser<string> _FourthType = from instruction in Parse.LetterOrDigit.Many().Text()
+															 from firstWhiteSpace in Parse.WhiteSpace
+															 from firstPrefix in Parse.Char('r').Once().Text()
+															 from firstInputNumber in Parse.Number
+															 from firstComma in Parse.Char(',').Once().Text()
+															 from secondWhiteSpace in Parse.WhiteSpace
+															 from startPointer in Parse.Char('[').Once().Text()
+															 from secondPrefix in Parse.Char('r').Once().Text()
+															 from secondInputNumber in Parse.Number
+															 from endPointer in Parse.Char(']').Once().Text()
+															 select instruction + firstInputNumber + startPointer + secondPrefix + secondInputNumber + endPointer;
 		/// <summary>
 		/// Creates the main window
 		/// </summary>
@@ -148,7 +160,7 @@ namespace VichoRISC {
 						detectedInput = _SecondType.Parse(line);
 					} else if (line.Contains(Cpu.Keyword.Load)
 						|| line.Contains(Cpu.Keyword.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
-						detectedInput = _ThirdType.Parse(line);
+						detectedInput = line.Contains('[') && line.Contains(']') ? _FourthType.Parse(line) : _ThirdType.Parse(line);
 					}
 					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
 					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
