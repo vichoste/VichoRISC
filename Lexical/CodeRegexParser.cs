@@ -28,7 +28,7 @@ namespace VichoRISC.Lexical {
 															from thirdInputNumber in Parse.Number
 															select instruction.Trim() + firstInputNumber.Trim() + secondInputNumber.Trim() + thirdPrefix.Trim() + thirdInputNumber.Trim();
 		/// <summary>
-		/// Parser for: mov, not: ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
+		/// Parser for: mov, not, ld (no pointer), st (no pointer): ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
 		/// </summary>
 		private static readonly Parser<string> _SecondType = from instruction in Parse.LetterOrDigit.Many().Text()
 															 from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
@@ -40,21 +40,9 @@ namespace VichoRISC.Lexical {
 															 from secondInputNumber in Parse.Number
 															 select instruction.Trim() + firstInputNumber.Trim() + secondPrefix.Trim() + secondInputNumber.Trim();
 		/// <summary>
-		/// Parser for: ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)
-		/// </summary>
-		private static readonly Parser<string> _ThirdType = from instruction in Parse.LetterOrDigit.Many().Text()
-															from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
-															from firstPrefix in Parse.Char('r').Once().Text()
-															from firstInputNumber in Parse.Number
-															from firstComma in Parse.Char(',').Once().Text()
-															from secondWhiteSpace in Parse.WhiteSpace.Many().Text()
-															from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
-															from secondInputNumber in Parse.Number
-															select instruction.Trim() + firstInputNumber.Trim() + secondPrefix.Trim() + secondInputNumber.Trim();
-		/// <summary>
 		/// Parser for ld, st: (ld|st) r[0-9]+, \[r[0-9]+\]
 		/// </summary>
-		private static readonly Parser<string> _FourthType = from instruction in Parse.LetterOrDigit.Many().Text()
+		private static readonly Parser<string> _ThirdType = from instruction in Parse.LetterOrDigit.Many().Text()
 															 from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
 															 from firstPrefix in Parse.Char('r').Once().Text()
 															 from firstInputNumber in Parse.Number
@@ -68,25 +56,25 @@ namespace VichoRISC.Lexical {
 		/// <summary>
 		/// Parser for nop: nop
 		/// </summary>
-		private static readonly Parser<string> _FifthType = from instruction in Parse.LetterOrDigit.Many().Text()
+		private static readonly Parser<string> _FourthType = from instruction in Parse.LetterOrDigit.Many().Text()
 															select instruction.Trim();
 		/// <summary>
 		/// Parser for beq, bgt, b, call: (beq|bgt|b|call) \w+
 		/// </summary>
-		private static readonly Parser<string> _SixthType = from instruction in Parse.LetterOrDigit.Many().Text()
+		private static readonly Parser<string> _FifthType = from instruction in Parse.LetterOrDigit.Many().Text()
 															from whiteSpace in Parse.WhiteSpace.Many().Text()
 															from label in Parse.LetterOrDigit.Many().Text()
 															select instruction.Trim() + label.Trim();
 		/// <summary>
 		/// Parser for comment: @\w+
 		/// </summary>
-		private static readonly Parser<string> _SeventhType = from symbol in Parse.Char('@').Once().Text()
+		private static readonly Parser<string> _SixthType = from symbol in Parse.Char('@').Once().Text()
 															  from comment in Parse.LetterOrDigit.Or(Parse.WhiteSpace).Many().Text()
 															  select symbol.Trim() + comment.Trim();
 		/// <summary>
 		/// Parser for label: \w+:
 		/// </summary>
-		private static readonly Parser<string> _EightType = from label in Parse.LetterOrDigit.Or(Parse.WhiteSpace).Many().Text()
+		private static readonly Parser<string> _SeventhType = from label in Parse.LetterOrDigit.Or(Parse.WhiteSpace).Many().Text()
 															from symbol in Parse.Char(':').Once().Text()
 															select label.Trim() + symbol.Trim();
 
@@ -111,15 +99,15 @@ namespace VichoRISC.Lexical {
 				detectedInput = _SecondType.Parse(line);
 			} else if (line.Contains(Keyword.Load)
 				|| line.Contains(Keyword.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
-				detectedInput = line.Contains('[') && line.Contains(']') ? _FourthType.Parse(line) : _ThirdType.Parse(line);
+				detectedInput = line.Contains('[') && line.Contains(']') ? _ThirdType.Parse(line) : _SecondType.Parse(line);
 			} else if (line.Contains(Keyword.NoOperation)) {
-				detectedInput = _FifthType.Parse(line);
+				detectedInput = _FourthType.Parse(line);
 			} else if (line.Contains(Keyword.Branch) || line.Contains(Keyword.BranchEqual) || line.Contains(Keyword.BranchGreaterThan) || line.Contains(Keyword.Call)) {
-				detectedInput = _SixthType.Parse(line);
+				detectedInput = _FifthType.Parse(line);
 			} else if (line.Contains(Keyword.Comment)) { // Comment: @\w+
-				detectedInput = _SeventhType.Parse(line);
+				detectedInput = _SixthType.Parse(line);
 			} else if (line.Contains(Keyword.Label)) { // Label: \w+:
-				detectedInput = _EightType.Parse(line);
+				detectedInput = _SeventhType.Parse(line);
 			} else { // It's not a keyword
 				return false;
 			}

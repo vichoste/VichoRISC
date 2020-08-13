@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
 	/// Defines the first type of instruction
-	/// and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
+	/// mov, not: ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)
 	/// </summary>
-	public sealed class FirstTypeInstruction : Instruction {
+	public sealed class ThirdTypeInstruction : Instruction {
 		/// <summary>
 		/// Operand used as destination
 		/// </summary>
@@ -23,28 +23,23 @@ namespace VichoRISC.Lexical.Instructions {
 		/// </summary>
 		public string SecondOperand { get; private set; }
 		/// <summary>
-		/// Third operand
+		/// Determines if the second operand is an immediate value
 		/// </summary>
-		public string ThirdOperand { get; private set; }
-		/// <summary>
-		/// Determines if the third operand is an immediate value
-		/// </summary>
-		public bool IsThirdOperandImmediate { get; private set; }
+		public bool IsSecondOperandImmediate { get; private set; }
 		/// <summary>
 		/// Creates a first type instruction
 		/// </summary>
 		/// <param name="lineNumber">Line number</param>
 		/// <param name="keyword">Instruction keyword</param>
-		/// <param name="destination">Destination operand</param>
+		/// <param name="destination">Destination register</param>
 		/// <param name="firstOperand">First operand</param>
+		/// <param name="secondOperandPrefix">Second operand prefix to determine if it's an immediate value</param>
 		/// <param name="secondOperand">Second operand</param>
-		/// <param name="thirdOperandPrefix">Third operand prefix to determine if it's an immediate value</param>
-		/// <param name="thirdOperand">Third operand</param>
-		public FirstTypeInstruction(int lineNumber, string keyword, string destination, string firstOperand, string secondOperand, string thirdOperandPrefix, string thirdOperand) : base(lineNumber, keyword) {
+		public ThirdTypeInstruction(int lineNumber, string keyword, string destination, string firstOperand, string secondOperandPrefix, string secondOperand) : base(lineNumber, keyword) {
 			this.FirstOperand = firstOperand;
 			this.Destination = destination;
-			this.ThirdOperand = thirdOperand;
-			this.IsThirdOperandImmediate = string.Compare(thirdOperandPrefix, "r") != 0;
+			this.SecondOperand = secondOperand;
+			this.IsSecondOperandImmediate = string.Compare(secondOperandPrefix, "r") != 0;
 		}
 	}
 }
