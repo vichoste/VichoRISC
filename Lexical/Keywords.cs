@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VichoRISC.Lexical {
+﻿namespace VichoRISC.Lexical {
 	#region Keywords
 	/// <summary>
 	/// Defines the instruction set of RISC

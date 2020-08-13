@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace VichoRISC.Components {
 	/// <summary>
@@ -54,7 +50,8 @@ namespace VichoRISC.Components {
 		/// </summary>
 		public int RegisterFive {
 			get => this.Registers[5].Value;
-			set => this.Registers[5].Value = value; }
+			set => this.Registers[5].Value = value;
+		}
 		/// <summary>
 		/// General purpose register 6
 		/// </summary>
