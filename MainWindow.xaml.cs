@@ -70,8 +70,9 @@ namespace VichoRISC {
 		private void RunCode() {
 			System.Diagnostics.Debug.WriteLine("Run!");
 			var armCodeRichTextBox = this.ArmCodeRichTextBox;
-			var wholeCode = new TextRange(armCodeRichTextBox.Document.ContentStart, armCodeRichTextBox.Document.ContentEnd);
-			System.Diagnostics.Debug.WriteLine(wholeCode.Text);
+			var selection = new TextRange(armCodeRichTextBox.Document.ContentStart, armCodeRichTextBox.Document.ContentEnd);
+			var code = selection.Text;
+			System.Diagnostics.Debug.WriteLine(code);
 		}
 		/// <summary>
 		/// Executes the run command
