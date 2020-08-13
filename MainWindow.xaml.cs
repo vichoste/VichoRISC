@@ -25,15 +25,15 @@ namespace VichoRISC {
 		/// Parser for: and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
 		/// </summary>
 		private static readonly Parser<string> _FirstType = from instruction in Parse.LetterOrDigit.Many().Text()
-															from firstWhiteSpace in Parse.WhiteSpace.Once().Text()
+															from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
 															from firstPrefix in Parse.Char('r').Once().Text()
 															from firstInputNumber in Parse.Number
 															from firstComma in Parse.Char(',').Once().Text()
-															from secondWhiteSpace in Parse.WhiteSpace.Once().Text()
+															from secondWhiteSpace in Parse.WhiteSpace.Many().Text()
 															from secondPrefix in Parse.Char('r').Once().Text()
 															from secondInputNumber in Parse.Number
 															from secondComma in Parse.Char(',').Once().Text()
-															from thirdWhiteSpace in Parse.WhiteSpace.Once().Text()
+															from thirdWhiteSpace in Parse.WhiteSpace.Many().Text()
 															from thirdPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
 															from thirdInputNumber in Parse.Number
 															select instruction.Trim() + firstInputNumber.Trim() + secondInputNumber.Trim() + thirdPrefix.Trim() + thirdInputNumber.Trim();
@@ -41,11 +41,11 @@ namespace VichoRISC {
 		/// Parser for: mov, not: ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
 		/// </summary>
 		private static readonly Parser<string> _SecondType = from instruction in Parse.LetterOrDigit.Many().Text()
-															 from firstWhiteSpace in Parse.WhiteSpace.Once().Text()
+															 from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
 															 from firstPrefix in Parse.Char('r').Once().Text()
 															 from firstInputNumber in Parse.Number
 															 from firstComma in Parse.Char(',').Once().Text()
-															 from secondWhiteSpace in Parse.WhiteSpace.Once().Text()
+															 from secondWhiteSpace in Parse.WhiteSpace.Many().Text()
 															 from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
 															 from secondInputNumber in Parse.Number
 															 select instruction.Trim() + firstInputNumber.Trim() + secondPrefix.Trim() + secondInputNumber.Trim();
@@ -53,11 +53,11 @@ namespace VichoRISC {
 		/// Parser for: ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)
 		/// </summary>
 		private static readonly Parser<string> _ThirdType = from instruction in Parse.LetterOrDigit.Many().Text()
-															from firstWhiteSpace in Parse.WhiteSpace.Once().Text()
+															from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
 															from firstPrefix in Parse.Char('r').Once().Text()
 															from firstInputNumber in Parse.Number
 															from firstComma in Parse.Char(',').Once().Text()
-															from secondWhiteSpace in Parse.WhiteSpace.Once().Text()
+															from secondWhiteSpace in Parse.WhiteSpace.Many().Text()
 															from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
 															from secondInputNumber in Parse.Number
 															select instruction.Trim() + firstInputNumber.Trim() + secondPrefix.Trim() + secondInputNumber.Trim();
@@ -65,11 +65,11 @@ namespace VichoRISC {
 		/// Parser for ld, st: (ld|st) r[0-9]+, \[r[0-9]+\]
 		/// </summary>
 		private static readonly Parser<string> _FourthType = from instruction in Parse.LetterOrDigit.Many().Text()
-															 from firstWhiteSpace in Parse.WhiteSpace.Once().Text()
+															 from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
 															 from firstPrefix in Parse.Char('r').Once().Text()
 															 from firstInputNumber in Parse.Number
 															 from firstComma in Parse.Char(',').Once().Text()
-															 from secondWhiteSpace in Parse.WhiteSpace.Once().Text()
+															 from secondWhiteSpace in Parse.WhiteSpace.Many().Text()
 															 from startPointer in Parse.Char('[').Once().Text()
 															 from secondPrefix in Parse.Char('r').Once().Text()
 															 from secondInputNumber in Parse.Number
@@ -84,7 +84,7 @@ namespace VichoRISC {
 		/// Parser for beq, bgt, b, call: (beq|bgt|b|call) \w+
 		/// </summary>
 		private static readonly Parser<string> _SixthType = from instruction in Parse.LetterOrDigit.Many().Text()
-															from whiteSpace in Parse.WhiteSpace.Once().Text()
+															from whiteSpace in Parse.WhiteSpace.Many().Text()
 															from label in Parse.LetterOrDigit.Many().Text()
 															select instruction.Trim() + label.Trim();
 		/// <summary>
@@ -177,7 +177,7 @@ namespace VichoRISC {
 						detectedInput = _SixthType.Parse(line);
 					}
 					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
-					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
+					System.Diagnostics.Debug.WriteLine($"Parser: {detectedInput}");
 				} catch (Exception) {
 					_ = this.StatusListBox.Items.Add($"Error de sintaxis en la línea {lineNumber}");
 					isTheCodeRegexGood = false;
