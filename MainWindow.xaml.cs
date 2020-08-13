@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -69,13 +70,15 @@ namespace VichoRISC {
 		/// </summary>
 		private void RunCode() {
 			System.Diagnostics.Debug.WriteLine("Run!");
-			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text;
-			System.Diagnostics.Debug.WriteLine(code);
+			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Split('\t');
+			foreach (var line in code) {
+				System.Diagnostics.Debug.WriteLine(line);
+			}
 		}
 		/// <summary>
 		/// Executes the run command
 		/// </summary>
-		/// <param name="sender">Who sends the event</param>
+		/// <param name="sender">Whos ends the event</param>
 		/// <param name="e">Event arguments</param>
 		private void Run(object sender, ExecutedRoutedEventArgs e) => this.RunCode();
 		#endregion
