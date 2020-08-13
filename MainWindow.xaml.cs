@@ -21,6 +21,7 @@ namespace VichoRISC {
 	/// Main window
 	/// </summary>
 	public partial class MainWindow : Window {
+		#region Parsers
 		/// <summary>
 		/// Parser for: and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
 		/// </summary>
@@ -100,10 +101,12 @@ namespace VichoRISC {
 															from symbol in Parse.Char(':').Once().Text()
 															select label.Trim() + symbol.Trim();
 
+		#endregion
 		/// <summary>
 		/// Creates the main window
 		/// </summary>
 		public MainWindow() => this.InitializeComponent();
+		#region New
 		/// <summary>
 		/// Executes the new command
 		/// </summary>
@@ -112,6 +115,8 @@ namespace VichoRISC {
 		private void New(object sender, ExecutedRoutedEventArgs e) {
 
 		}
+		#endregion
+		#region Open
 		/// <summary>
 		/// Executes the open command
 		/// </summary>
@@ -120,6 +125,8 @@ namespace VichoRISC {
 		private void Open(object sender, ExecutedRoutedEventArgs e) {
 
 		}
+		#endregion
+		#region Save and Save As
 		/// <summary>
 		/// Executes the save command
 		/// </summary>
@@ -136,6 +143,8 @@ namespace VichoRISC {
 		private void SaveAs(object sender, ExecutedRoutedEventArgs e) {
 
 		}
+		#endregion
+		#region Exit
 		/// <summary>
 		/// Executes the exit command
 		/// </summary>
@@ -144,6 +153,7 @@ namespace VichoRISC {
 		private void Exit(object sender, ExecutedRoutedEventArgs e) {
 
 		}
+		#endregion
 		#region Run
 		/// <summary>
 		/// Actually runs the code
