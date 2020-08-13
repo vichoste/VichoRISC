@@ -32,6 +32,12 @@ namespace VichoRISC.Lexical.Instructions {
 				|| keyword.Equals(Keywords.Store))) {
 				throw new ArgumentException("Keyword not valid.");
 			}
+			if (int.Parse(firstOperand) < 0 || int.Parse(firstOperand) > 15) {
+				throw new ArgumentException("Register from first operand is not valid.");
+			}
+			if (string.Compare(secondOperandPrefix, "r") == 0 && (int.Parse(secondOperand) < 0 || int.Parse(secondOperand) > 15)) {
+				throw new ArgumentException("Register from second operand is not valid.");
+			}
 			this.FirstOperand = firstOperand;
 			this.SecondOperand = secondOperand;
 			this.IsSecondOperandImmediate = string.Compare(secondOperandPrefix, "r") != 0;
