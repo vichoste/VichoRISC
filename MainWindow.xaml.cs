@@ -88,11 +88,18 @@ namespace VichoRISC {
 															from label in Parse.LetterOrDigit.Many().Text()
 															select instruction.Trim() + label.Trim();
 		/// <summary>
-		/// Parser for @: @\w+
+		/// Parser for comment: @\w+
 		/// </summary>
 		private static readonly Parser<string> _SeventhType = from symbol in Parse.Char('@').Once().Text()
-															  from comment in Parse.LetterOrDigit.Many().Text()
-															  select symbol + comment;
+															  from comment in Parse.LetterOrDigit.Or(Parse.WhiteSpace).Many().Text()
+															  select symbol.Trim() + comment.Trim();
+		/// <summary>
+		/// Parser for label: \w+:
+		/// </summary>
+		private static readonly Parser<string> _EightType = from label in Parse.LetterOrDigit.Or(Parse.WhiteSpace).Many().Text()
+															from symbol in Parse.Char(':').Once().Text()
+															select label.Trim() + symbol.Trim();
+
 		/// <summary>
 		/// Creates the main window
 		/// </summary>
@@ -144,7 +151,6 @@ namespace VichoRISC {
 		private void VerifyCodeRegex() {
 			var isTheCodeRegexGood = true;
 			this.StatusListBox.Items.Clear();
-			System.Diagnostics.Debug.WriteLine("Run!");
 			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Replace("\r", string.Empty).Split('\n');
 			var lineNumber = 0;
 			foreach (var line in code) {
@@ -152,10 +158,6 @@ namespace VichoRISC {
 				if (string.IsNullOrWhiteSpace(line)) {
 					continue;
 				}
-				/*
-				 * Regex patterns
-				 * label: \w+:
-				 */
 				try {
 					var detectedInput = string.Empty;
 					// and, sub, mul, div, mod, and, or, lsl, lsr, asr
@@ -180,9 +182,14 @@ namespace VichoRISC {
 						detectedInput = _FifthType.Parse(line);
 					} else if (line.Contains(Cpu.Keyword.Branch) || line.Contains(Cpu.Keyword.BranchEqual) || line.Contains(Cpu.Keyword.BranchGreaterThan) || line.Contains(Cpu.Keyword.Call)) {
 						detectedInput = _SixthType.Parse(line);
+					} else if (line.Contains(Cpu.Keyword.Comment)) { // Comment: @\w+
+						detectedInput = _SeventhType.Parse(line);
+					} else if (line.Contains(Cpu.Keyword.Label)) { // Label: \w+:
+						detectedInput = _EightType.Parse(line);
+					} else {
+						_ = this.StatusListBox.Items.Add($"Instrucción no válida en la línea {lineNumber}");
+						isTheCodeRegexGood = false;
 					}
-					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
-					System.Diagnostics.Debug.WriteLine($"Parser: {detectedInput}");
 				} catch (Exception) {
 					_ = this.StatusListBox.Items.Add($"Error de sintaxis en la línea {lineNumber}");
 					isTheCodeRegexGood = false;
