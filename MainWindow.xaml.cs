@@ -22,9 +22,9 @@ namespace VichoRISC {
 	/// </summary>
 	public partial class MainWindow : Window {
 		/// <summary>
-		/// and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
+		/// Parser for: and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
 		/// </summary>
-		private static readonly Parser<string> FirstType = from instruction in Parse.LetterOrDigit.Many().Text()
+		private static readonly Parser<string> _FirstType = from instruction in Parse.LetterOrDigit.Many().Text()
 											   from firstWhiteSpace in Parse.WhiteSpace
 											   from firstPrefix in Parse.Char('r').Once().Text()
 											   from firstInputNumber in Parse.Number
@@ -37,6 +37,18 @@ namespace VichoRISC {
 											   from thirdPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
 											   from thirdInputNumber in Parse.Number
 											   select instruction + firstInputNumber + secondInputNumber + thirdPrefix + thirdInputNumber;
+		/// <summary>
+		/// Parser for: mov, not: ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
+		/// </summary>
+		private static readonly Parser<string> _SecondType = from instruction in Parse.LetterOrDigit.Many().Text()
+															from firstWhiteSpace in Parse.WhiteSpace
+															from firstPrefix in Parse.Char('r').Once().Text()
+															from firstInputNumber in Parse.Number
+															from firstComma in Parse.Char(',').Once().Text()
+															from secondWhiteSpace in Parse.WhiteSpace
+															from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
+															from secondInputNumber in Parse.Number
+															select instruction + firstInputNumber + secondPrefix + secondInputNumber;
 		/// <summary>
 		/// Creates the main window
 		/// </summary>
@@ -97,7 +109,6 @@ namespace VichoRISC {
 				}
 				/*
 				 * Regex patterns
-				 * mov, not: ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
 				 * ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
 				 * nop: nop
 				 * beq, bgt, b, call: (beq|bgt|b|call) \w+
@@ -117,7 +128,10 @@ namespace VichoRISC {
 						|| line.Contains(Cpu.Keyword.LogicalShiftLeft)
 						|| line.Contains(Cpu.Keyword.LogicalShiftRight)
 						|| line.Contains(Cpu.Keyword.ArithmeticalShiftRight)) {
-						detectedInput = FirstType.Parse(line);
+						detectedInput = _FirstType.Parse(line);
+					} else if (line.Contains(Cpu.Keyword.Move)
+						|| line.Contains(Cpu.Keyword.BitwiseNot)) { // mov, not
+						detectedInput = _SecondType.Parse(line);
 					}
 					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
 					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
