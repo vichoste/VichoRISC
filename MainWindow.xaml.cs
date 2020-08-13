@@ -66,6 +66,7 @@ namespace VichoRISC {
 		/// Actually runs the code
 		/// </summary>
 		private void VerifyCodeRegex() {
+			this.ArmCodeRichTextBox.IsEnabled = false;
 			var isTheCodeRegexGood = true;
 			this.StatusListBox.Items.Clear();
 			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Replace("\r", string.Empty).Split('\n');
@@ -90,6 +91,7 @@ namespace VichoRISC {
 			if (isTheCodeRegexGood) {
 
 			}
+			this.ArmCodeRichTextBox.IsEnabled = true;
 		}
 		/// <summary>
 		/// Executes the run command
