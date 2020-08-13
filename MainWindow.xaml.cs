@@ -50,6 +50,20 @@ namespace VichoRISC {
 															 from secondInputNumber in Parse.Number
 															 select instruction + firstInputNumber + secondPrefix + secondInputNumber;
 		/// <summary>
+		/// Parser for: ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
+		/// </summary>
+		private static readonly Parser<string> _ThirdType = from instruction in Parse.LetterOrDigit.Many().Text()
+															from firstWhiteSpace in Parse.WhiteSpace
+															from firstPrefix in Parse.Char('r').Once().Text()
+															from firstInputNumber in Parse.Number
+															from firstComma in Parse.Char(',').Once().Text()
+															from secondWhiteSpace in Parse.WhiteSpace
+															from secondPointerPrefix in Parse.Char('[').Once().Text()
+															from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
+															from secondInputNumber in Parse.Number
+															from secondPointerSuffix in Parse.Char(']').Once().Text()
+															select instruction + firstInputNumber + secondPointerPrefix + secondPrefix + secondInputNumber + secondPointerSuffix;
+		/// <summary>
 		/// Creates the main window
 		/// </summary>
 		public MainWindow() => this.InitializeComponent();
@@ -110,7 +124,6 @@ namespace VichoRISC {
 				}
 				/*
 				 * Regex patterns
-				 * ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
 				 * nop: nop
 				 * beq, bgt, b, call: (beq|bgt|b|call) \w+
 				 * @: @\w+
@@ -133,6 +146,9 @@ namespace VichoRISC {
 					} else if (line.Contains(Cpu.Keyword.Move)
 						|| line.Contains(Cpu.Keyword.BitwiseNot)) { // mov, not
 						detectedInput = _SecondType.Parse(line);
+					} else if (line.Contains(Cpu.Keyword.Load)
+						|| line.Contains(Cpu.Keyword.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
+						detectedInput = _ThirdType.Parse(line);
 					}
 					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
 					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
@@ -140,6 +156,9 @@ namespace VichoRISC {
 					_ = this.StatusListBox.Items.Add($"Error de sintaxis en la línea {lineNumber}");
 					isTheCodeSyntaxGood = false;
 				}
+			}
+			if (isTheCodeSyntaxGood) {
+
 			}
 		}
 		/// <summary>
