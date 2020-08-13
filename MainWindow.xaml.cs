@@ -83,9 +83,12 @@ namespace VichoRISC {
 		/// Actually runs the code
 		/// </summary>
 		private void RunCode() {
+			this.StatusListBox.Items.Clear();
 			System.Diagnostics.Debug.WriteLine("Run!");
 			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Replace("\r", string.Empty).Split('\n');
+			var lineNumber = 0;
 			foreach (var line in code) {
+				++lineNumber;
 				if (string.IsNullOrWhiteSpace(line)) {
 					continue;
 				}
@@ -104,7 +107,7 @@ namespace VichoRISC {
 					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
 					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
 				} catch (Exception) {
-
+					_ = this.StatusListBox.Items.Add($"Error de sintaxis en la línea {lineNumber}");
 				}
 			}
 		}

@@ -56,7 +56,7 @@
 			</Menu>
 		</materialDesign:Card>
 		<materialDesign:Card DockPanel.Dock="Left">
-			<DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Registers}" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" TabIndex="2">
+			<DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Registers}" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" TabIndex="2" ToolTip="Visor de valores de registros">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Registro"></DataGridTextColumn>
 					<DataGridTextColumn Binding="{Binding Value}" Header="Valor"></DataGridTextColumn>
@@ -65,8 +65,8 @@
 		</materialDesign:Card>
 		<materialDesign:Card DockPanel.Dock="Bottom" Margin="16,16,0,0">
 			<StatusBar Foreground="{DynamicResource MaterialDesignBodyLight}" Background="{DynamicResource MaterialDesignPaper}">
-				<StatusBarItem>
-					<TextBlock Style="{DynamicResource MaterialDesignTextBlock}">Status</TextBlock>
+				<StatusBarItem MinHeight="114" MaxHeight="114" HorizontalContentAlignment="Stretch">
+					<ListBox MinHeight="114" x:Name="StatusListBox" Style="{DynamicResource MaterialDesignListBox}" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" TabIndex="9" HorizontalContentAlignment="Stretch">Listo</ListBox>
 				</StatusBarItem>
 			</StatusBar>
 		</materialDesign:Card>
