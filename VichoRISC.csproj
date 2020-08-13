@@ -104,6 +104,7 @@
     <Compile Include="Lexical\CodeRegexParser.cs" />
     <Compile Include="Lexical\Instructions\FirstTypeInstruction.cs" />
     <Compile Include="Lexical\Instructions\Instruction.cs" />
+    <Compile Include="Lexical\Instructions\SecondTypeInstruction.cs" />
     <Compile Include="Lexical\Keyword.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
