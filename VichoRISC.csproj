@@ -102,9 +102,14 @@
     <Compile Include="Components\Register.cs" />
     <Compile Include="Components\Registers.cs" />
     <Compile Include="Lexical\CodeRegexParser.cs" />
+    <Compile Include="Lexical\Instructions\FifthTypeInstruction.cs" />
     <Compile Include="Lexical\Instructions\FirstTypeInstruction.cs" />
+    <Compile Include="Lexical\Instructions\FourthTypeInstruction.cs" />
     <Compile Include="Lexical\Instructions\Instruction.cs" />
     <Compile Include="Lexical\Instructions\SecondTypeInstruction.cs" />
+    <Compile Include="Lexical\Instructions\SeventhTypeInstruction.cs" />
+    <Compile Include="Lexical\Instructions\SixthTypeInstruction.cs" />
+    <Compile Include="Lexical\Instructions\ThirdTypeInstruction.cs" />
     <Compile Include="Lexical\Keyword.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

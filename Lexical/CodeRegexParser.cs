@@ -9,7 +9,7 @@ namespace VichoRISC.Lexical {
 	/// <summary>
 	/// Parses the input code via regex
 	/// </summary>
-	public class CodeRegexParser {
+	public sealed class CodeRegexParser {
 		#region Parsers
 		/// <summary>
 		/// Parser for: and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)

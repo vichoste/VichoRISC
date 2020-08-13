@@ -8,7 +8,7 @@ namespace VichoRISC.Components {
 	/// <summary>
 	/// Defines the CPU
 	/// </summary>
-	public partial class Cpu {
+	public partial sealed class Cpu {
 		#region Current Program Status (Flags)
 		/// <summary>
 		/// Negative bit

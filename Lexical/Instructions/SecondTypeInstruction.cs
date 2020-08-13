@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
-	/// Defines the first type of instruction
+	/// Defines the second type of instruction
 	/// mov, not, ld (no pointer), st (no pointer): ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
 	/// </summary>
 	public sealed class SecondTypeInstruction : Instruction {
@@ -27,7 +27,7 @@ namespace VichoRISC.Lexical.Instructions {
 		/// </summary>
 		public bool IsSecondOperandImmediate { get; private set; }
 		/// <summary>
-		/// Creates a first type instruction
+		/// Creates a second type instruction
 		/// </summary>
 		/// <param name="lineNumber">Line number</param>
 		/// <param name="keyword">Instruction keyword</param>

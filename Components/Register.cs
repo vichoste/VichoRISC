@@ -8,7 +8,7 @@ namespace VichoRISC.Components {
 	/// <summary>
 	/// Defines a register
 	/// </summary>
-	public class Register {
+	public sealed class Register {
 		/// <summary>
 		/// Name of the register
 		/// </summary>

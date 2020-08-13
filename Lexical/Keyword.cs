@@ -9,7 +9,7 @@ namespace VichoRISC.Lexical {
 	/// <summary>
 	/// Defines the instruction set of RISC
 	/// </summary>
-	public class Keyword {
+	public sealed class Keyword {
 		/// <summary>
 		/// Addition
 		/// </summary>
