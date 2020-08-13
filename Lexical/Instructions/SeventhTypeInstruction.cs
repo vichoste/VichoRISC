@@ -2,10 +2,10 @@
 
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
-	/// Defines the seventh type of instruction
+	/// Defines the sixth type of instruction
 	/// label: \w+:
 	/// </summary>
-	public sealed class SeventhTypeInstruction : Instruction {
+	public sealed class SeventhTypeInstrucion : Instruction {
 		/// <summary>
 		/// Operand
 		/// </summary>
@@ -15,11 +15,15 @@ namespace VichoRISC.Lexical.Instructions {
 		/// </summary>
 		/// <param name="keyword">Instruction keyword</param>
 		/// <param name="operand">Operand</param>
-		public SeventhTypeInstruction(string keyword, string operand) : base(keyword) {
+		public SeventhTypeInstrucion(string keyword, string operand) : base(keyword) {
 			if (!keyword.Equals(Keywords.Label)) {
 				throw new ArgumentException("Keyword not valid.");
 			}
 			this.Operand = operand;
 		}
+		/// <summary>
+		/// Prints to debug
+		/// </summary>
+		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"Seventh type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} - 1: {this.Operand}");
 	}
 }

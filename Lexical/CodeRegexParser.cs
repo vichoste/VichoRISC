@@ -72,9 +72,9 @@ namespace VichoRISC.Lexical {
 		/// <summary>
 		/// Parser for label: \w+:
 		/// </summary>
-		private static readonly Parser<SeventhTypeInstruction> _SeventhType = from label in Parse.LetterOrDigit.Or(Parse.WhiteSpace).Many().Text()
-																			  from symbol in Parse.Char(':').Once().Text()
-																			  select new SeventhTypeInstruction(symbol.Trim(), label.Trim());
+		private static readonly Parser<SeventhTypeInstrucion> _SeventhType = from label in Parse.LetterOrDigit.Or(Parse.WhiteSpace).Many().Text()
+																			 from symbol in Parse.Char(':').Once().Text()
+																			 select new SeventhTypeInstrucion(symbol.Trim(), label.Trim());
 
 		#endregion
 		private List<Instruction> _Instructions;
@@ -108,9 +108,11 @@ namespace VichoRISC.Lexical {
 			} else if (line.Contains(Keywords.Label)) { // Label: \w+:
 				detectedInstruction = _SeventhType.Parse(line);
 			} else { // It's not a keyword
+				System.Diagnostics.Debug.WriteLine($"Line {line} is not a keyword.");
 				return false;
 			}
 			detectedInstruction.LineNumber = lineNumber;
+			detectedInstruction.PrintDebug();
 			this._Instructions.Add(detectedInstruction);
 			return true;
 		}

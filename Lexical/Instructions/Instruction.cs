@@ -16,5 +16,9 @@
 		/// </summary>
 		/// <param name="keyword">Instruction keyword</param>
 		public Instruction(string keyword) => this.Keyword = keyword;
+		/// <summary>
+		/// Prints to debug
+		/// </summary>
+		public virtual void PrintDebug() => System.Diagnostics.Debug.WriteLine($"Generic instruction. Line: {this.LineNumber} - Keyword: {this.Keyword}");
 	}
 }

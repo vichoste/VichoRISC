@@ -48,5 +48,9 @@ namespace VichoRISC.Lexical.Instructions {
 			this.ThirdOperand = thirdOperand;
 			this.IsThirdOperandImmediate = string.Compare(thirdOperandPrefix, "r") != 0;
 		}
+		/// <summary>
+		/// Prints to debug
+		/// </summary>
+		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"First type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} - 1: r{this.FirstOperand} - 2: r{this.SecondOperand} - 3: {(this.IsThirdOperandImmediate ? "#" : "r")}{this.ThirdOperand}");
 	}
 }

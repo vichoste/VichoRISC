@@ -16,5 +16,9 @@ namespace VichoRISC.Lexical.Instructions {
 				throw new ArgumentException("Keyword not valid.");
 			}
 		}
+		/// <summary>
+		/// Prints to debug
+		/// </summary>
+		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"Fourth type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword}");
 	}
 }

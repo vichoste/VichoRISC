@@ -24,5 +24,9 @@ namespace VichoRISC.Lexical.Instructions {
 			}
 			this.Operand = operand;
 		}
+		/// <summary>
+		/// Prints to debug
+		/// </summary>
+		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"Fifth type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} - 1: {this.Operand}");
 	}
 }
