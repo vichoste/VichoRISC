@@ -8,7 +8,7 @@ namespace VichoRISC.Components {
 	/// <summary>
 	/// Defines the CPU
 	/// </summary>
-	public partial sealed class Cpu {
+	public sealed partial class Cpu {
 		#region Instructions
 		/// <summary>
 		/// Adds two registers

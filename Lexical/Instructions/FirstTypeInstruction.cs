@@ -11,10 +11,6 @@ namespace VichoRISC.Lexical.Instructions {
 	/// </summary>
 	public sealed class FirstTypeInstruction : Instruction {
 		/// <summary>
-		/// Operand used as destination
-		/// </summary>
-		public string Destination { get; private set; }
-		/// <summary>
 		/// First operand
 		/// </summary>
 		public string FirstOperand { get; private set; }
@@ -33,16 +29,13 @@ namespace VichoRISC.Lexical.Instructions {
 		/// <summary>
 		/// Creates a first type instruction
 		/// </summary>
-		/// <param name="lineNumber">Line number</param>
 		/// <param name="keyword">Instruction keyword</param>
-		/// <param name="destination">Destination operand</param>
 		/// <param name="firstOperand">First operand</param>
 		/// <param name="secondOperand">Second operand</param>
 		/// <param name="thirdOperandPrefix">Third operand prefix to determine if it's an immediate value</param>
 		/// <param name="thirdOperand">Third operand</param>
-		public FirstTypeInstruction(int lineNumber, string keyword, string destination, string firstOperand, string secondOperand, string thirdOperandPrefix, string thirdOperand) : base(lineNumber, keyword) {
+		public FirstTypeInstruction(string keyword, string firstOperand, string secondOperand, string thirdOperandPrefix, string thirdOperand) : base(keyword) {
 			this.FirstOperand = firstOperand;
-			this.Destination = destination;
 			this.ThirdOperand = thirdOperand;
 			this.IsThirdOperandImmediate = string.Compare(thirdOperandPrefix, "r") != 0;
 		}

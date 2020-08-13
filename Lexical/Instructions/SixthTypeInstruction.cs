@@ -17,9 +17,8 @@ namespace VichoRISC.Lexical.Instructions {
 		/// <summary>
 		/// Creates a sixth type instruction
 		/// </summary>
-		/// <param name="lineNumber">Line number</param>
 		/// <param name="keyword">Instruction keyword</param>
 		/// <param name="operand">Operand</param>
-		public SixthTypeInstruction(int lineNumber, string keyword, string operand) : base(lineNumber, keyword) => this.Operand = operand;
+		public SixthTypeInstruction(string keyword, string operand) : base(keyword) => this.Operand = operand;
 	}
 }

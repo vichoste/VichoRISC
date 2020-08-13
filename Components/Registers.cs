@@ -8,7 +8,7 @@ namespace VichoRISC.Components {
 	/// <summary>
 	/// Defines the CPU
 	/// </summary>
-	public partial sealed class Cpu {
+	public sealed partial class Cpu {
 		/// <summary>
 		/// Register values
 		/// </summary>

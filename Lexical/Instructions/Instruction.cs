@@ -12,7 +12,7 @@ namespace VichoRISC.Lexical {
 		/// <summary>
 		/// Instruction order
 		/// </summary>
-		public int LineNumber { get; private set; }
+		public int LineNumber { get; set; }
 		/// <summary>
 		/// Instruction keyword
 		/// </summary>
@@ -20,11 +20,7 @@ namespace VichoRISC.Lexical {
 		/// <summary>
 		/// Creates an instruction
 		/// </summary>
-		/// <param name="lineNumber">Instruction order</param>
 		/// <param name="keyword">Instruction keyword</param>
-		public Instruction(int lineNumber, string keyword) {
-			this.Keyword = keyword;
-			this.LineNumber = lineNumber;
-		}
+		public Instruction(string keyword) => this.Keyword = keyword;
 	}
 }

@@ -11,10 +11,6 @@ namespace VichoRISC.Lexical.Instructions {
 	/// </summary>
 	public sealed class ThirdTypeInstruction : Instruction {
 		/// <summary>
-		/// Operand used as destination
-		/// </summary>
-		public string Destination { get; private set; }
-		/// <summary>
 		/// First operand
 		/// </summary>
 		public string FirstOperand { get; private set; }
@@ -25,14 +21,11 @@ namespace VichoRISC.Lexical.Instructions {
 		/// <summary>
 		/// Creates a third type instruction
 		/// </summary>
-		/// <param name="lineNumber">Line number</param>
 		/// <param name="keyword">Instruction keyword</param>
-		/// <param name="destination">Destination register</param>
 		/// <param name="firstOperand">First operand</param>
 		/// <param name="secondOperand">Second operand</param>
-		public ThirdTypeInstruction(int lineNumber, string keyword, string destination, string firstOperand, string secondOperand) : base(lineNumber, keyword) {
+		public ThirdTypeInstruction(string keyword, string firstOperand, string secondOperand) : base(keyword) {
 			this.FirstOperand = firstOperand;
-			this.Destination = destination;
 			this.SecondOperand = secondOperand;
 		}
 	}

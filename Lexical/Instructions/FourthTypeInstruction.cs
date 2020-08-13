@@ -13,9 +13,8 @@ namespace VichoRISC.Lexical.Instructions {
 		/// <summary>
 		/// Creates a fourth type instruction
 		/// </summary>
-		/// <param name="lineNumber">Line number</param>
 		/// <param name="keyword">Instruction keyword</param>
-		public FourthTypeInstruction(int lineNumber, string keyword) : base(lineNumber, keyword) {
+		public FourthTypeInstruction(string keyword) : base(keyword) {
 		}
 	}
 }
