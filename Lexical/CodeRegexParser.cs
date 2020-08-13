@@ -72,38 +72,41 @@ namespace VichoRISC.Lexical {
 		/// <summary>
 		/// Parser for label: \w+:
 		/// </summary>
-		private static readonly Parser<SeventhTypeInstrucion> _SeventhType = from label in Parse.LetterOrDigit.Or(Parse.WhiteSpace).Many().Text()
+		private static readonly Parser<SeventhTypeInstrucion> _SeventhType = from label in Parse.LetterOrDigit.Many().Text()
 																			 from symbol in Parse.Char(':').Once().Text()
 																			 select new SeventhTypeInstrucion(symbol.Trim(), label.Trim());
 
 		#endregion
-		private List<Instruction> _Instructions;
+		private readonly List<Instruction> _Instructions;
 		public CodeRegexParser() => this._Instructions = new List<Instruction>();
 		public bool AddLine(int lineNumber, string line) {
 			Instruction detectedInstruction;
-			if (line.Contains(Keywords.Add)
-				|| line.Contains(Keywords.Substract)
-				|| line.Contains(Keywords.Multiply)
-				|| line.Contains(Keywords.Divide)
-				|| line.Contains(Keywords.Modulo)
-				|| line.Contains(Keywords.BitwiseAnd)
-				|| line.Contains(Keywords.BitwiseOr)
-				|| line.Contains(Keywords.LogicalShiftLeft)
-				|| line.Contains(Keywords.LogicalShiftRight)
-				|| line.Contains(Keywords.ArithmeticalShiftRight)) { // and, sub, mul, div, mod, and, or, lsl, lsr, asr
+			if (line.StartsWith(Keywords.Add)
+				|| line.StartsWith(Keywords.Substract)
+				|| line.StartsWith(Keywords.Multiply)
+				|| line.StartsWith(Keywords.Divide)
+				|| line.StartsWith(Keywords.Modulo)
+				|| line.StartsWith(Keywords.BitwiseAnd)
+				|| line.StartsWith(Keywords.BitwiseOr)
+				|| line.StartsWith(Keywords.LogicalShiftLeft)
+				|| line.StartsWith(Keywords.LogicalShiftRight)
+				|| line.StartsWith(Keywords.ArithmeticalShiftRight)) { // and, sub, mul, div, mod, and, or, lsl, lsr, asr
 				detectedInstruction = _FirstType.Parse(line);
-			} else if (line.Contains(Keywords.Move)
-				|| line.Contains(Keywords.BitwiseNot)) { // mov, not
+			} else if (line.StartsWith(Keywords.Move)
+				|| line.StartsWith(Keywords.BitwiseNot)) { // mov, not
 				detectedInstruction = _SecondType.Parse(line);
-			} else if (line.Contains(Keywords.Load)
-				|| line.Contains(Keywords.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
+			} else if (line.StartsWith(Keywords.Load)
+				|| line.StartsWith(Keywords.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
 				detectedInstruction = line.Contains('[') && line.Contains(']') ? _ThirdType.Parse(line) : _SecondType.Parse(line) as Instruction;
-			} else if (line.Contains(Keywords.NoOperation)
-				|| line.Contains(Keywords.Return)) {
+			} else if (line.StartsWith(Keywords.NoOperation)
+				|| line.StartsWith(Keywords.Return)) {
 				detectedInstruction = _FourthType.Parse(line);
-			} else if (line.Contains(Keywords.Branch) || line.Contains(Keywords.BranchEqual) || line.Contains(Keywords.BranchGreaterThan) || line.Contains(Keywords.Call)) {
+			} else if (line.StartsWith(Keywords.Branch)
+				|| line.StartsWith(Keywords.BranchEqual)
+				|| line.StartsWith(Keywords.BranchGreaterThan)
+				|| line.StartsWith(Keywords.Call)) {
 				detectedInstruction = _FifthType.Parse(line);
-			} else if (line.Contains(Keywords.Comment)) { // Comment: @\w+
+			} else if (line.StartsWith(Keywords.Comment)) { // Comment: @\w+
 				detectedInstruction = _SixthType.Parse(line);
 			} else if (line.Contains(Keywords.Label)) { // Label: \w+:
 				detectedInstruction = _SeventhType.Parse(line);
