@@ -25,61 +25,68 @@ namespace VichoRISC {
 		/// Parser for: and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
 		/// </summary>
 		private static readonly Parser<string> _FirstType = from instruction in Parse.LetterOrDigit.Many().Text()
-															from firstWhiteSpace in Parse.WhiteSpace
+															from firstWhiteSpace in Parse.WhiteSpace.Once().Text()
 															from firstPrefix in Parse.Char('r').Once().Text()
 															from firstInputNumber in Parse.Number
 															from firstComma in Parse.Char(',').Once().Text()
-															from secondWhiteSpace in Parse.WhiteSpace
+															from secondWhiteSpace in Parse.WhiteSpace.Once().Text()
 															from secondPrefix in Parse.Char('r').Once().Text()
 															from secondInputNumber in Parse.Number
 															from secondComma in Parse.Char(',').Once().Text()
-															from thirdWhiteSpace in Parse.WhiteSpace
+															from thirdWhiteSpace in Parse.WhiteSpace.Once().Text()
 															from thirdPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
 															from thirdInputNumber in Parse.Number
-															select instruction + firstInputNumber + secondInputNumber + thirdPrefix + thirdInputNumber;
+															select instruction.Trim() + firstInputNumber.Trim() + secondInputNumber.Trim() + thirdPrefix.Trim() + thirdInputNumber.Trim();
 		/// <summary>
 		/// Parser for: mov, not: ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
 		/// </summary>
 		private static readonly Parser<string> _SecondType = from instruction in Parse.LetterOrDigit.Many().Text()
-															 from firstWhiteSpace in Parse.WhiteSpace
+															 from firstWhiteSpace in Parse.WhiteSpace.Once().Text()
 															 from firstPrefix in Parse.Char('r').Once().Text()
 															 from firstInputNumber in Parse.Number
 															 from firstComma in Parse.Char(',').Once().Text()
-															 from secondWhiteSpace in Parse.WhiteSpace
+															 from secondWhiteSpace in Parse.WhiteSpace.Once().Text()
 															 from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
 															 from secondInputNumber in Parse.Number
-															 select instruction + firstInputNumber + secondPrefix + secondInputNumber;
+															 select instruction.Trim() + firstInputNumber.Trim() + secondPrefix.Trim() + secondInputNumber.Trim();
 		/// <summary>
 		/// Parser for: ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)
 		/// </summary>
 		private static readonly Parser<string> _ThirdType = from instruction in Parse.LetterOrDigit.Many().Text()
-															from firstWhiteSpace in Parse.WhiteSpace
+															from firstWhiteSpace in Parse.WhiteSpace.Once().Text()
 															from firstPrefix in Parse.Char('r').Once().Text()
 															from firstInputNumber in Parse.Number
 															from firstComma in Parse.Char(',').Once().Text()
-															from secondWhiteSpace in Parse.WhiteSpace
+															from secondWhiteSpace in Parse.WhiteSpace.Once().Text()
 															from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
 															from secondInputNumber in Parse.Number
-															select instruction + firstInputNumber + secondPrefix + secondInputNumber;
+															select instruction.Trim() + firstInputNumber.Trim() + secondPrefix.Trim() + secondInputNumber.Trim();
 		/// <summary>
 		/// Parser for ld, st: (ld|st) r[0-9]+, \[r[0-9]+\]
 		/// </summary>
 		private static readonly Parser<string> _FourthType = from instruction in Parse.LetterOrDigit.Many().Text()
-															 from firstWhiteSpace in Parse.WhiteSpace
+															 from firstWhiteSpace in Parse.WhiteSpace.Once().Text()
 															 from firstPrefix in Parse.Char('r').Once().Text()
 															 from firstInputNumber in Parse.Number
 															 from firstComma in Parse.Char(',').Once().Text()
-															 from secondWhiteSpace in Parse.WhiteSpace
+															 from secondWhiteSpace in Parse.WhiteSpace.Once().Text()
 															 from startPointer in Parse.Char('[').Once().Text()
 															 from secondPrefix in Parse.Char('r').Once().Text()
 															 from secondInputNumber in Parse.Number
 															 from endPointer in Parse.Char(']').Once().Text()
-															 select instruction + firstInputNumber + startPointer + secondPrefix + secondInputNumber + endPointer;
+															 select instruction.Trim() + firstInputNumber.Trim() + startPointer.Trim() + secondPrefix.Trim() + secondInputNumber.Trim() + endPointer.Trim();
 		/// <summary>
 		/// Parser for nop: nop
 		/// </summary>
 		private static readonly Parser<string> _FifthType = from instruction in Parse.LetterOrDigit.Many().Text()
-															select instruction;
+															select instruction.Trim();
+		/// <summary>
+		/// Parser for beq, bgt, b, call: (beq|bgt|b|call) \w+
+		/// </summary>
+		private static readonly Parser<string> _SixthType = from instruction in Parse.LetterOrDigit.Many().Text()
+															from whiteSpace in Parse.WhiteSpace.Once().Text()
+															from label in Parse.LetterOrDigit.Many().Text()
+															select instruction.Trim() + label.Trim();
 		/// <summary>
 		/// Creates the main window
 		/// </summary>
@@ -141,7 +148,6 @@ namespace VichoRISC {
 				}
 				/*
 				 * Regex patterns
-				 * beq, bgt, b, call: (beq|bgt|b|call) \w+
 				 * @: @\w+
 				 * label: \w+:
 				 */
@@ -167,6 +173,8 @@ namespace VichoRISC {
 						detectedInput = line.Contains('[') && line.Contains(']') ? _FourthType.Parse(line) : _ThirdType.Parse(line);
 					} else if (line.Contains(Cpu.Keyword.NoOperation)) {
 						detectedInput = _FifthType.Parse(line);
+					} else if (line.Contains(Cpu.Keyword.Branch) || line.Contains(Cpu.Keyword.BranchEqual) || line.Contains(Cpu.Keyword.BranchGreaterThan) || line.Contains(Cpu.Keyword.Call)) {
+						detectedInput = _SixthType.Parse(line);
 					}
 					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
 					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
