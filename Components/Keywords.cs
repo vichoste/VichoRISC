@@ -99,6 +99,14 @@ namespace VichoRISC.Components {
 			/// Return
 			/// </summary>
 			public static string Return = "ret";
+			/// <summary>
+			/// Comment
+			/// </summary>
+			public static string Comment = "@";
+			/// <summary>
+			/// Label
+			/// </summary>
+			public static string Label = ":";
 		}
 		#endregion
 	}

@@ -88,6 +88,12 @@ namespace VichoRISC {
 															from label in Parse.LetterOrDigit.Many().Text()
 															select instruction.Trim() + label.Trim();
 		/// <summary>
+		/// Parser for @: @\w+
+		/// </summary>
+		private static readonly Parser<string> _SeventhType = from symbol in Parse.Char('@').Once().Text()
+															  from comment in Parse.LetterOrDigit.Many().Text()
+															  select symbol + comment;
+		/// <summary>
 		/// Creates the main window
 		/// </summary>
 		public MainWindow() => this.InitializeComponent();
@@ -148,7 +154,6 @@ namespace VichoRISC {
 				}
 				/*
 				 * Regex patterns
-				 * @: @\w+
 				 * label: \w+:
 				 */
 				try {
