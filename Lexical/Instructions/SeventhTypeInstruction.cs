@@ -19,6 +19,11 @@ namespace VichoRISC.Lexical.Instructions {
 		/// </summary>
 		/// <param name="keyword">Instruction keyword</param>
 		/// <param name="operand">Operand</param>
-		public SeventhTypeInstruction(string keyword, string operand) : base(keyword) => this.Operand = operand;
+		public SeventhTypeInstruction(string keyword, string operand) : base(keyword) {
+			if (!keyword.Equals(Keywords.Label)) {
+				throw new ArgumentException("Keyword not valid.");
+			}
+			this.Operand = operand;
+		}
 	}
 }

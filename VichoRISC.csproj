@@ -110,7 +110,7 @@
     <Compile Include="Lexical\Instructions\SeventhTypeInstruction.cs" />
     <Compile Include="Lexical\Instructions\SixthTypeInstruction.cs" />
     <Compile Include="Lexical\Instructions\ThirdTypeInstruction.cs" />
-    <Compile Include="Lexical\Keyword.cs" />
+    <Compile Include="Lexical\Keywords.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

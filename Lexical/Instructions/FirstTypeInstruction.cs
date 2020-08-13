@@ -35,7 +35,20 @@ namespace VichoRISC.Lexical.Instructions {
 		/// <param name="thirdOperandPrefix">Third operand prefix to determine if it's an immediate value</param>
 		/// <param name="thirdOperand">Third operand</param>
 		public FirstTypeInstruction(string keyword, string firstOperand, string secondOperand, string thirdOperandPrefix, string thirdOperand) : base(keyword) {
+			if (!(keyword.Equals(Keywords.Add)
+				|| keyword.Equals(Keywords.Substract)
+				|| keyword.Equals(Keywords.Multiply)
+				|| keyword.Equals(Keywords.Divide)
+				|| keyword.Equals(Keywords.Modulo)
+				|| keyword.Equals(Keywords.BitwiseAnd)
+				|| keyword.Equals(Keywords.BitwiseOr)
+				|| keyword.Equals(Keywords.LogicalShiftLeft)
+				|| keyword.Equals(Keywords.LogicalShiftRight)
+				|| keyword.Equals(Keywords.ArithmeticalShiftRight))) {
+				throw new ArgumentException("Keyword not valid.");
+			}
 			this.FirstOperand = firstOperand;
+			this.SecondOperand = secondOperand;
 			this.ThirdOperand = thirdOperand;
 			this.IsThirdOperandImmediate = string.Compare(thirdOperandPrefix, "r") != 0;
 		}

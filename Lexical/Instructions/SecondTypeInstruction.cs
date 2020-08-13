@@ -30,6 +30,12 @@ namespace VichoRISC.Lexical.Instructions {
 		/// <param name="secondOperandPrefix">Second operand prefix to determine if it's an immediate value</param>
 		/// <param name="secondOperand">Second operand</param>
 		public SecondTypeInstruction(string keyword, string firstOperand, string secondOperandPrefix, string secondOperand) : base(keyword) {
+			if (!(keyword.Equals(Keywords.Move)
+				|| keyword.Equals(Keywords.BitwiseNot)
+				|| keyword.Equals(Keywords.Load)
+				|| keyword.Equals(Keywords.Store))) {
+				throw new ArgumentException("Keyword not valid.");
+			}
 			this.FirstOperand = firstOperand;
 			this.SecondOperand = secondOperand;
 			this.IsSecondOperandImmediate = string.Compare(secondOperandPrefix, "r") != 0;

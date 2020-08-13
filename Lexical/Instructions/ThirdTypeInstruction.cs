@@ -25,6 +25,10 @@ namespace VichoRISC.Lexical.Instructions {
 		/// <param name="firstOperand">First operand</param>
 		/// <param name="secondOperand">Second operand</param>
 		public ThirdTypeInstruction(string keyword, string firstOperand, string secondOperand) : base(keyword) {
+			if (!(keyword.Equals(Keywords.Load)
+				|| keyword.Equals(Keywords.Store))) {
+				throw new ArgumentException("Keyword not valid.");
+			}
 			this.FirstOperand = firstOperand;
 			this.SecondOperand = secondOperand;
 		}

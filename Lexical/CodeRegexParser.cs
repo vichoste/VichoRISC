@@ -55,7 +55,7 @@ namespace VichoRISC.Lexical {
 																		  from endPointer in Parse.Char(']').Once().Text()
 																		  select new ThirdTypeInstruction(instruction.Trim(), firstInputNumber.Trim(), secondInputNumber.Trim());
 		/// <summary>
-		/// Parser for nop: nop
+		/// Parser for nop, ret: nop, ret
 		/// </summary>
 		private static readonly Parser<FourthTypeInstruction> _FourthType = from instruction in Parse.LetterOrDigit.Many().Text()
 																			select new FourthTypeInstruction(instruction);
@@ -84,30 +84,31 @@ namespace VichoRISC.Lexical {
 		public CodeRegexParser() => this._Instructions = new List<Instruction>();
 		public bool AddLine(int lineNumber, string line) {
 			Instruction detectedInstruction;
-			if (line.Contains(Keyword.Add)
-				|| line.Contains(Keyword.Substract)
-				|| line.Contains(Keyword.Multiply)
-				|| line.Contains(Keyword.Divide)
-				|| line.Contains(Keyword.Modulo)
-				|| line.Contains(Keyword.BitwiseAnd)
-				|| line.Contains(Keyword.BitwiseOr)
-				|| line.Contains(Keyword.LogicalShiftLeft)
-				|| line.Contains(Keyword.LogicalShiftRight)
-				|| line.Contains(Keyword.ArithmeticalShiftRight)) { // and, sub, mul, div, mod, and, or, lsl, lsr, asr
+			if (line.Contains(Keywords.Add)
+				|| line.Contains(Keywords.Substract)
+				|| line.Contains(Keywords.Multiply)
+				|| line.Contains(Keywords.Divide)
+				|| line.Contains(Keywords.Modulo)
+				|| line.Contains(Keywords.BitwiseAnd)
+				|| line.Contains(Keywords.BitwiseOr)
+				|| line.Contains(Keywords.LogicalShiftLeft)
+				|| line.Contains(Keywords.LogicalShiftRight)
+				|| line.Contains(Keywords.ArithmeticalShiftRight)) { // and, sub, mul, div, mod, and, or, lsl, lsr, asr
 				detectedInstruction = _FirstType.Parse(line);
-			} else if (line.Contains(Keyword.Move)
-				|| line.Contains(Keyword.BitwiseNot)) { // mov, not
+			} else if (line.Contains(Keywords.Move)
+				|| line.Contains(Keywords.BitwiseNot)) { // mov, not
 				detectedInstruction = _SecondType.Parse(line);
-			} else if (line.Contains(Keyword.Load)
-				|| line.Contains(Keyword.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
+			} else if (line.Contains(Keywords.Load)
+				|| line.Contains(Keywords.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
 				detectedInstruction = line.Contains('[') && line.Contains(']') ? _ThirdType.Parse(line) : _SecondType.Parse(line) as Instruction;
-			} else if (line.Contains(Keyword.NoOperation)) {
+			} else if (line.Contains(Keywords.NoOperation)
+				|| line.Contains(Keywords.Return)) {
 				detectedInstruction = _FourthType.Parse(line);
-			} else if (line.Contains(Keyword.Branch) || line.Contains(Keyword.BranchEqual) || line.Contains(Keyword.BranchGreaterThan) || line.Contains(Keyword.Call)) {
+			} else if (line.Contains(Keywords.Branch) || line.Contains(Keywords.BranchEqual) || line.Contains(Keywords.BranchGreaterThan) || line.Contains(Keywords.Call)) {
 				detectedInstruction = _FifthType.Parse(line);
-			} else if (line.Contains(Keyword.Comment)) { // Comment: @\w+
+			} else if (line.Contains(Keywords.Comment)) { // Comment: @\w+
 				detectedInstruction = _SixthType.Parse(line);
-			} else if (line.Contains(Keyword.Label)) { // Label: \w+:
+			} else if (line.Contains(Keywords.Label)) { // Label: \w+:
 				detectedInstruction = _SeventhType.Parse(line);
 			} else { // It's not a keyword
 				return false;

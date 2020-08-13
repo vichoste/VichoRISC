@@ -19,6 +19,14 @@ namespace VichoRISC.Lexical.Instructions {
 		/// </summary>
 		/// <param name="keyword">Instruction keyword</param>
 		/// <param name="operand">Operand</param>
-		public FifthTypeInstruction(string keyword, string operand) : base(keyword) => this.Operand = operand;
+		public FifthTypeInstruction(string keyword, string operand) : base(keyword) {
+			if (!(keyword.Equals(Keywords.BranchEqual)
+				|| keyword.Equals(Keywords.BranchGreaterThan)
+				|| keyword.Equals(Keywords.Branch)
+				|| keyword.Equals(Keywords.Call))) {
+				throw new ArgumentException("Keyword not valid.");
+			}
+			this.Operand = operand;
+		}
 	}
 }

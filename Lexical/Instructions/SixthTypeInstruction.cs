@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
 	/// Defines the sixth type of instruction
-	/// label: \w+:
+	/// comment: @\w+
 	/// </summary>
 	public sealed class SixthTypeInstruction : Instruction {
 		/// <summary>
@@ -19,6 +19,11 @@ namespace VichoRISC.Lexical.Instructions {
 		/// </summary>
 		/// <param name="keyword">Instruction keyword</param>
 		/// <param name="operand">Operand</param>
-		public SixthTypeInstruction(string keyword, string operand) : base(keyword) => this.Operand = operand;
+		public SixthTypeInstruction(string keyword, string operand) : base(keyword) {
+			if (!keyword.Equals(Keywords.Comment)) {
+				throw new ArgumentException("Keyword not valid.");
+			}
+			this.Operand = operand;
+		}
 	}
 }
