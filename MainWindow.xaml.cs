@@ -25,30 +25,30 @@ namespace VichoRISC {
 		/// Parser for: and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
 		/// </summary>
 		private static readonly Parser<string> _FirstType = from instruction in Parse.LetterOrDigit.Many().Text()
-											   from firstWhiteSpace in Parse.WhiteSpace
-											   from firstPrefix in Parse.Char('r').Once().Text()
-											   from firstInputNumber in Parse.Number
-											   from firstComma in Parse.Char(',').Once().Text()
-											   from secondWhiteSpace in Parse.WhiteSpace
-											   from secondPrefix in Parse.Char('r').Once().Text()
-											   from secondInputNumber in Parse.Number
-											   from secondComma in Parse.Char(',').Once().Text()
-											   from thirdWhiteSpace in Parse.WhiteSpace
-											   from thirdPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
-											   from thirdInputNumber in Parse.Number
-											   select instruction + firstInputNumber + secondInputNumber + thirdPrefix + thirdInputNumber;
-		/// <summary>
-		/// Parser for: mov, not: ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
-		/// </summary>
-		private static readonly Parser<string> _SecondType = from instruction in Parse.LetterOrDigit.Many().Text()
 															from firstWhiteSpace in Parse.WhiteSpace
 															from firstPrefix in Parse.Char('r').Once().Text()
 															from firstInputNumber in Parse.Number
 															from firstComma in Parse.Char(',').Once().Text()
 															from secondWhiteSpace in Parse.WhiteSpace
-															from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
+															from secondPrefix in Parse.Char('r').Once().Text()
 															from secondInputNumber in Parse.Number
-															select instruction + firstInputNumber + secondPrefix + secondInputNumber;
+															from secondComma in Parse.Char(',').Once().Text()
+															from thirdWhiteSpace in Parse.WhiteSpace
+															from thirdPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
+															from thirdInputNumber in Parse.Number
+															select instruction + firstInputNumber + secondInputNumber + thirdPrefix + thirdInputNumber;
+		/// <summary>
+		/// Parser for: mov, not: ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
+		/// </summary>
+		private static readonly Parser<string> _SecondType = from instruction in Parse.LetterOrDigit.Many().Text()
+															 from firstWhiteSpace in Parse.WhiteSpace
+															 from firstPrefix in Parse.Char('r').Once().Text()
+															 from firstInputNumber in Parse.Number
+															 from firstComma in Parse.Char(',').Once().Text()
+															 from secondWhiteSpace in Parse.WhiteSpace
+															 from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
+															 from secondInputNumber in Parse.Number
+															 select instruction + firstInputNumber + secondPrefix + secondInputNumber;
 		/// <summary>
 		/// Creates the main window
 		/// </summary>
