@@ -69,9 +69,7 @@ namespace VichoRISC {
 		/// </summary>
 		private void RunCode() {
 			System.Diagnostics.Debug.WriteLine("Run!");
-			var armCodeRichTextBox = this.ArmCodeRichTextBox;
-			var selection = new TextRange(armCodeRichTextBox.Document.ContentStart, armCodeRichTextBox.Document.ContentEnd);
-			var code = selection.Text;
+			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text;
 			System.Diagnostics.Debug.WriteLine(code);
 		}
 		/// <summary>
