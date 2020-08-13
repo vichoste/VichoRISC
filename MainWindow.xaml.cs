@@ -76,6 +76,11 @@ namespace VichoRISC {
 															 from endPointer in Parse.Char(']').Once().Text()
 															 select instruction + firstInputNumber + startPointer + secondPrefix + secondInputNumber + endPointer;
 		/// <summary>
+		/// Parser for nop: nop
+		/// </summary>
+		private static readonly Parser<string> _FifthType = from instruction in Parse.LetterOrDigit.Many().Text()
+															select instruction;
+		/// <summary>
 		/// Creates the main window
 		/// </summary>
 		public MainWindow() => this.InitializeComponent();
@@ -123,8 +128,8 @@ namespace VichoRISC {
 		/// <summary>
 		/// Actually runs the code
 		/// </summary>
-		private void VerifyCodeSyntax() {
-			var isTheCodeSyntaxGood = true;
+		private void VerifyCodeRegex() {
+			var isTheCodeRegexGood = true;
 			this.StatusListBox.Items.Clear();
 			System.Diagnostics.Debug.WriteLine("Run!");
 			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Replace("\r", string.Empty).Split('\n');
@@ -136,7 +141,6 @@ namespace VichoRISC {
 				}
 				/*
 				 * Regex patterns
-				 * nop: nop
 				 * beq, bgt, b, call: (beq|bgt|b|call) \w+
 				 * @: @\w+
 				 * label: \w+:
@@ -161,15 +165,17 @@ namespace VichoRISC {
 					} else if (line.Contains(Cpu.Keyword.Load)
 						|| line.Contains(Cpu.Keyword.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
 						detectedInput = line.Contains('[') && line.Contains(']') ? _FourthType.Parse(line) : _ThirdType.Parse(line);
+					} else if (line.Contains(Cpu.Keyword.NoOperation)) {
+						detectedInput = _FifthType.Parse(line);
 					}
 					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
 					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
 				} catch (Exception) {
 					_ = this.StatusListBox.Items.Add($"Error de sintaxis en la línea {lineNumber}");
-					isTheCodeSyntaxGood = false;
+					isTheCodeRegexGood = false;
 				}
 			}
-			if (isTheCodeSyntaxGood) {
+			if (isTheCodeRegexGood) {
 
 			}
 		}
@@ -178,13 +184,13 @@ namespace VichoRISC {
 		/// </summary>
 		/// <param name="sender">Whos ends the event</param>
 		/// <param name="e">Event arguments</param>
-		private void Run(object sender, ExecutedRoutedEventArgs e) => this.VerifyCodeSyntax();
+		private void Run(object sender, ExecutedRoutedEventArgs e) => this.VerifyCodeRegex();
 		/// <summary>
 		/// Executes the run command
 		/// </summary>
 		/// <param name="sender">Who sends the event</param>
 		/// <param name="e">Event arguments</param>
-		private void RunMenuItem_Click(object sender, RoutedEventArgs e) => this.VerifyCodeSyntax();
+		private void RunMenuItem_Click(object sender, RoutedEventArgs e) => this.VerifyCodeRegex();
 		#endregion
 	}
 }
