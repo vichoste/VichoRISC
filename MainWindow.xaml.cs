@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sprache;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,6 +73,16 @@ namespace VichoRISC {
 			System.Diagnostics.Debug.WriteLine("Run!");
 			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Split('\t');
 			foreach (var line in code) {
+				/*
+				 * Regex patterns
+				 * and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
+				 * mov, not: ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
+				 * ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
+				 * nop: nop
+				 * beq, bgt, b, call: (beq|bgt|b|call) \w+
+				 * @: @\w+
+				 * .: \.\w+
+				 */
 				System.Diagnostics.Debug.WriteLine(line);
 			}
 		}
