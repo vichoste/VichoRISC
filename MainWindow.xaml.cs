@@ -97,7 +97,8 @@ namespace VichoRISC {
 		/// <summary>
 		/// Actually runs the code
 		/// </summary>
-		private void RunCode() {
+		private void VerifyCodeSyntax() {
+			var isTheCodeSyntaxGood = true;
 			this.StatusListBox.Items.Clear();
 			System.Diagnostics.Debug.WriteLine("Run!");
 			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Replace("\r", string.Empty).Split('\n');
@@ -137,6 +138,7 @@ namespace VichoRISC {
 					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
 				} catch (Exception) {
 					_ = this.StatusListBox.Items.Add($"Error de sintaxis en la línea {lineNumber}");
+					isTheCodeSyntaxGood = false;
 				}
 			}
 		}
@@ -145,13 +147,13 @@ namespace VichoRISC {
 		/// </summary>
 		/// <param name="sender">Whos ends the event</param>
 		/// <param name="e">Event arguments</param>
-		private void Run(object sender, ExecutedRoutedEventArgs e) => this.RunCode();
-		#endregion
+		private void Run(object sender, ExecutedRoutedEventArgs e) => this.VerifyCodeSyntax();
 		/// <summary>
 		/// Executes the run command
 		/// </summary>
 		/// <param name="sender">Who sends the event</param>
 		/// <param name="e">Event arguments</param>
-		private void RunMenuItem_Click(object sender, RoutedEventArgs e) => this.RunCode();
+		private void RunMenuItem_Click(object sender, RoutedEventArgs e) => this.VerifyCodeSyntax();
+		#endregion
 	}
 }
