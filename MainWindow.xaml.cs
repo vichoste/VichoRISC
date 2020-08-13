@@ -21,6 +21,9 @@ namespace VichoRISC {
 	/// Main window
 	/// </summary>
 	public partial class MainWindow : Window {
+		/// <summary>
+		/// and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
+		/// </summary>
 		private static readonly Parser<string> _Type1 = from instruction in Parse.LetterOrDigit.Many().Text()
 											   from firstWhiteSpace in Parse.WhiteSpace
 											   from firstPrefix in Parse.Char('r').Once().Text()
@@ -94,7 +97,6 @@ namespace VichoRISC {
 				}
 				/*
 				 * Regex patterns
-				 * and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
 				 * mov, not: ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
 				 * ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
 				 * nop: nop
