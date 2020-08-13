@@ -63,13 +63,28 @@ namespace VichoRISC {
 		private void Exit(object sender, ExecutedRoutedEventArgs e) {
 
 		}
+		#region Run
+		/// <summary>
+		/// Actually runs the code
+		/// </summary>
+		private void RunCode() {
+			System.Diagnostics.Debug.WriteLine("Run!");
+			var armCodeRichTextBox = this.ArmCodeRichTextBox;
+			var wholeCode = new TextRange(armCodeRichTextBox.Document.ContentStart, armCodeRichTextBox.Document.ContentEnd);
+			System.Diagnostics.Debug.WriteLine(wholeCode.Text);
+		}
 		/// <summary>
 		/// Executes the run command
 		/// </summary>
 		/// <param name="sender">Who sends the event</param>
 		/// <param name="e">Event arguments</param>
-		private void Run(object sender, ExecutedRoutedEventArgs e) {
-
-		}
+		private void Run(object sender, ExecutedRoutedEventArgs e) => this.RunCode();
+		#endregion
+		/// <summary>
+		/// Executes the run command
+		/// </summary>
+		/// <param name="sender">Who sends the event</param>
+		/// <param name="e">Event arguments</param>
+		private void RunMenuItem_Click(object sender, RoutedEventArgs e) => this.RunCode();
 	}
 }

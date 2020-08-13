@@ -35,12 +35,12 @@
 		<CommandBinding Command="{StaticResource Exit}" Executed="Exit"/>
 	</Window.CommandBindings>
 	<Window.InputBindings>
-		<KeyBinding Key="N" Modifiers="Ctrl" Command="{StaticResource New}"/>
-		<KeyBinding Key="O" Modifiers="Ctrl" Command="{StaticResource Open}"/>
-		<KeyBinding Key="S" Modifiers="Ctrl" Command="{StaticResource Save}"/>
-		<KeyBinding Key="A" Modifiers="Ctrl" Command="{StaticResource SaveAs}"/>
-		<KeyBinding Key="R" Modifiers="Ctrl" Command="{StaticResource Run}"/>
-		<KeyBinding Key="Q" Modifiers="Ctrl" Command="{StaticResource Exit}"/>
+		<KeyBinding Key="N" Modifiers="Shift" Command="{StaticResource New}"/>
+		<KeyBinding Key="O" Modifiers="Shift" Command="{StaticResource Open}"/>
+		<KeyBinding Key="S" Modifiers="Shift" Command="{StaticResource Save}"/>
+		<KeyBinding Key="A" Modifiers="Shift" Command="{StaticResource SaveAs}"/>
+		<KeyBinding Key="R" Modifiers="Shift" Command="{StaticResource Run}"/>
+		<KeyBinding Key="Q" Modifiers="Shift" Command="{StaticResource Exit}"/>
 	</Window.InputBindings>
 	<DockPanel Margin="16">
 		<materialDesign:Card DockPanel.Dock="Top" Margin="0,0,0,16">
@@ -52,7 +52,7 @@
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar Como" TabIndex="7"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Salir" TabIndex="8"/>
 				</MenuItem>
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar" TabIndex="9"></MenuItem>
+				<MenuItem x:Name="RunMenuItem" Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar" TabIndex="9" Click="RunMenuItem_Click"></MenuItem>
 			</Menu>
 		</materialDesign:Card>
 		<materialDesign:Card DockPanel.Dock="Left">
@@ -71,7 +71,7 @@
 			</StatusBar>
 		</materialDesign:Card>
 		<materialDesign:Card Margin="16,0,0,0">
-			<RichTextBox Margin="16" Style="{DynamicResource MaterialDesignRichTextBox}" FontFamily="Consolas" Block.LineHeight="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" TabIndex="1" ToolTip="Ingrese aquí su código de ensamblador ARM" UndoLimit="128" UseLayoutRounding="False" VerticalContentAlignment="Stretch"/>
+			<RichTextBox x:Name="ArmCodeRichTextBox" Margin="16" Style="{DynamicResource MaterialDesignRichTextBox}" FontFamily="Consolas" Block.LineHeight="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" TabIndex="1" ToolTip="Ingrese aquí su código de ensamblador ARM" UndoLimit="128" UseLayoutRounding="False" VerticalContentAlignment="Stretch"/>
 		</materialDesign:Card>
 	</DockPanel>
 </Window>
