@@ -24,7 +24,7 @@ namespace VichoRISC {
 		/// <summary>
 		/// and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
 		/// </summary>
-		private static readonly Parser<string> _Type1 = from instruction in Parse.LetterOrDigit.Many().Text()
+		private static readonly Parser<string> FirstType = from instruction in Parse.LetterOrDigit.Many().Text()
 											   from firstWhiteSpace in Parse.WhiteSpace
 											   from firstPrefix in Parse.Char('r').Once().Text()
 											   from firstInputNumber in Parse.Number
@@ -105,7 +105,7 @@ namespace VichoRISC {
 				 * .: \.\w+
 				 */
 				try {
-					var detectedInput = _Type1.Parse(line);
+					var detectedInput = FirstType.Parse(line);
 					System.Diagnostics.Debug.WriteLine($"Línea: {line}");
 					System.Diagnostics.Debug.WriteLine($"Parser {detectedInput}");
 				} catch (Exception) {
