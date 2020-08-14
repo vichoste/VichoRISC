@@ -89,8 +89,10 @@ namespace VichoRISC {
 				}
 			}
 			if (isTheCodeRegexGood) {
-
+				System.Diagnostics.Debug.WriteLine($"(i) Parsing done. There are {lineNumber - 1} lines (i)");
+				this.Cpu.Execute(codeRegexParser, lineNumber - 1);
 			}
+			System.Diagnostics.Debug.WriteLine($"(i) Program execution complete (i)");
 			this.ArmCodeRichTextBox.IsEnabled = true;
 		}
 		/// <summary>

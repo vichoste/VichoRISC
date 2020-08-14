@@ -77,8 +77,26 @@ namespace VichoRISC.Lexical {
 																			 select new SeventhTypeInstrucion(symbol.Trim(), label.Trim());
 
 		#endregion
+		/// <summary>
+		/// List containing the instructions
+		/// </summary>
 		private readonly List<Instruction> _Instructions;
+		/// <summary>
+		/// Creates a regex code parser
+		/// </summary>
 		public CodeRegexParser() => this._Instructions = new List<Instruction>();
+		/// <summary>
+		/// Gets an instruction from the list
+		/// </summary>
+		/// <param name="lineNumber">Desired line</param>
+		/// <returns>Instruction on the specified line</returns>
+		public Instruction this[int lineNumber] => this._Instructions[lineNumber];
+		/// <summary>
+		/// Adds a line into the list
+		/// </summary>
+		/// <param name="lineNumber">Line order</param>
+		/// <param name="line">Line content</param>
+		/// <returns>True if the line is valid and added successfuly into the list</returns>
 		public bool AddLine(int lineNumber, string line) {
 			Instruction detectedInstruction;
 			if (line.StartsWith(Keywords.Add)
@@ -111,7 +129,7 @@ namespace VichoRISC.Lexical {
 			} else if (line.Contains(Keywords.Label)) { // Label: \w+:
 				detectedInstruction = _SeventhType.Parse(line);
 			} else { // It's not a keyword
-				System.Diagnostics.Debug.WriteLine($"Line {line} is not a keyword.");
+				System.Diagnostics.Debug.WriteLine($"(!) \"{line}\" on line {lineNumber} is not a keyword (!)");
 				return false;
 			}
 			detectedInstruction.LineNumber = lineNumber;
