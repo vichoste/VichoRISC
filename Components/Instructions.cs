@@ -9,39 +9,74 @@
 		/// </summary>
 		/// <param name="destinationRegister">Saves the sum result into this register</param>
 		/// <param name="firstRegister">First register</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Add(ref int destinationRegister, ref int firstRegister, ref int secondRegisterOrImmediate) => destinationRegister = firstRegister + secondRegisterOrImmediate;
+		public void Add(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = first + second;
+		}
 		/// <summary>
 		/// Substracts two registers
 		/// </summary>
 		/// <param name="destinationRegister">Saves the substraction result into this register</param>
 		/// <param name="firstRegister">First register</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Substract(ref int destinationRegister, ref int firstRegister, ref int secondRegisterOrImmediate) => destinationRegister = firstRegister - secondRegisterOrImmediate;
+		public void Substract(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = first - second;
+		}
 		/// <summary>
 		/// Multiply two registers
 		/// </summary>
 		/// <param name="destinationRegister">Saves the multiplication result into this register</param>
 		/// <param name="firstRegister">First register</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Multiply(ref int destinationRegister, ref int firstRegister, ref int secondRegisterOrImmediate) => destinationRegister = firstRegister * secondRegisterOrImmediate;
+		public void Multiply(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = first * second;
+		}
 		/// <summary>
 		/// Divides two registers
 		/// </summary>
 		/// <param name="destinationRegister">Saves the division result into this register</param>
 		/// <param name="firstRegister">First register</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Divide(ref int destinationRegister, ref int firstRegister, ref int secondRegisterOrImmediate) => destinationRegister = firstRegister / secondRegisterOrImmediate;
+		public void Divide(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = first / second;
+		}
+		/// <summary>
+		/// Applies modulo between two registers
+		/// </summary>
+		/// <param name="destinationRegister">Saves the division result into this register</param>
+		/// <param name="firstRegister">First register</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
+		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
+		public void Modulo(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = first % second;
+		}
 		/// <summary>
 		/// Compares two registers
 		/// </summary>
 		/// <param name="firstRegister">First register</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Compare(ref int firstRegister, ref int secondRegisterOrImmediate) {
-			if (firstRegister > secondRegisterOrImmediate) {
+		public void Compare(int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			if (first > second) {
 				this.GreaterThanFlag = true;
 				this.EqualFlag = false;
-			} else if (firstRegister == secondRegisterOrImmediate) {
+			} else if (first == second) {
 				this.GreaterThanFlag = false;
 				this.EqualFlag = true;
 			} else {
@@ -53,48 +88,77 @@
 		/// </summary>
 		/// <param name="destinationRegister">Saves the bitwise operation result into this register</param>
 		/// <param name="firstRegister">First register</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void BitwiseAnd(ref int destinationRegister, ref int firstRegister, ref int secondRegisterOrImmediate) => destinationRegister = firstRegister & secondRegisterOrImmediate;
+		public void BitwiseAnd(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = first & second;
+		}
 		/// <summary>
 		/// Applies bitwise OR between two registers
 		/// </summary>
 		/// <param name="destinationRegister">Saves the bitwise operation result into this register</param>
 		/// <param name="firstRegister">First register</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void BitwiseOr(ref int destinationRegister, ref int firstRegister, ref int secondRegisterOrImmediate) => destinationRegister = firstRegister | secondRegisterOrImmediate;
+		public void BitwiseOr(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = first | second;
+		}
 		/// <summary>
 		/// Applies bitwise NOT in a register
 		/// </summary>
 		/// <param name="destinationRegister">Saves the bitwise operation result into this register</param>
-		/// <param name="sourceRegister">Register that will be used for the bitwise operation</param>
-		public void BitwiseNot(ref int destinationRegister, ref int sourceRegister) => destinationRegister = ~sourceRegister;
+		/// <param name="register">Register that will be used for the bitwise operation</param>
+		public void BitwiseNot(int destinationRegister, int register) => this.Registers[destinationRegister].Value = ~this.Registers[destinationRegister].Value;
 		/// <summary>
 		/// Moves content between two registers
 		/// </summary>
 		/// <param name="destinationRegister">Contents will be moved to this register</param>
+		/// <param name="isImmediate">Establish if the source register is actually an immediate value</param>
 		/// <param name="sourceRegisterOrImmediate">Register who has the source content</param>
-		public void Move(ref int destinationRegister, ref int sourceRegisterOrImmediate) => destinationRegister = sourceRegisterOrImmediate;
+		public void Move(int destinationRegister, bool isImmediate, int sourceRegisterOrImmediate) {
+			var source = isImmediate ? sourceRegisterOrImmediate : this.Registers[sourceRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = source;
+		}
 		/// <summary>
 		/// Applies a left logical shift in a register
 		/// </summary>
 		/// <param name="destinationRegister">Saves the shift operation result into this register</param>
 		/// <param name="firstRegister">Register that will be used for the shift operation</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value used for offset</param>
-		public void LogicalShiftLeft(ref int destinationRegister, ref int firstRegister, ref int secondRegisterOrImmediate) => destinationRegister = firstRegister << secondRegisterOrImmediate;
+		public void LogicalShiftLeft(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = first << second;
+		}
 		/// <summary>
 		/// Applies a right logical shift in a register
 		/// </summary>
 		/// <param name="destinationRegister">Saves the shift operation result into this register</param>
 		/// <param name="firstRegister">Register that will be used for the shift operation</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value used for offset</param>
-		public void LogicalShiftRight(ref int destinationRegister, ref int firstRegister, ref int secondRegisterOrImmediate) => destinationRegister = (int)((uint) firstRegister >> secondRegisterOrImmediate);
+		public void LogicalShiftRight(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = (int)((uint)first >> second);
+		}
 		/// <summary>
 		/// Applies a right arithmetic shift in a register
 		/// </summary>
 		/// <param name="destinationRegister">Saves the shift operation result into this register</param>
 		/// <param name="firstRegister">Register that will be used for the shift operation</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value used for offset</param>
-		public void ArithmeticlShiftRight(ref int destinationRegister, ref int firstRegister, ref int secondRegisterOrImmediate) => destinationRegister = firstRegister >> secondRegisterOrImmediate;
+		public void ArithmeticlShiftRight(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+			var first = this.Registers[firstRegister].Value;
+			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			this.Registers[destinationRegister].Value = first >> second;
+		}
 		/// <summary>
 		/// Does nothing
 		/// </summary>
@@ -106,7 +170,7 @@
 		/// </summary>
 		/// <param name="destinationRegister">Register used for storing the content</param>
 		/// <param name="sourceFromMemory">Pointer locating the data in memory</param>
-		public void Load(ref int destinationRegister, ref int sourceFromMemory) {
+		public void Load(int destinationRegister, int sourceFromMemory) {
 
 		}
 		/// <summary>
@@ -114,35 +178,35 @@
 		/// </summary>
 		/// <param name="sourceRegister">Register used as the source of the content</param>
 		/// <param name="destinationIntoMemory">Pointer locating the location into memory where the content must be saved</param>
-		public void Store(ref int sourceRegister, ref int destinationIntoMemory) {
+		public void Store(int sourceRegister, int destinationIntoMemory) {
 
 		}
 		/// <summary>
 		/// Jumps if the comparison done previously is equal
 		/// </summary>
 		/// <param name="label">Destination label</param>
-		public void BranchEqual(ref string label) {
+		public void BranchEqual(string label) {
 
 		}
 		/// <summary>
 		/// Jumps if the comparison done previously is greater than
 		/// </summary>
 		/// <param name="label">Destination label</param>
-		public void BranchGreaterThan(ref string label) {
+		public void BranchGreaterThan(string label) {
 
 		}
 		/// <summary>
 		/// Jumps unconditionally
 		/// </summary>
 		/// <param name="label">Destination label</param>
-		public void Branch(ref string label) {
+		public void Branch(string label) {
 
 		}
 		/// <summary>
 		/// Calls a function
 		/// </summary>
 		/// <param name="label">Function label</param>
-		public void Call(ref string label) {
+		public void Call(string label) {
 
 		}
 		/// <summary>

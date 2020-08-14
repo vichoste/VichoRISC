@@ -56,7 +56,7 @@
 			</Menu>
 		</materialDesign:Card>
 		<materialDesign:Card DockPanel.Dock="Left">
-			<DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Registers}" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" TabIndex="2" ToolTip="Visor de valores de registros">
+			<DataGrid x:Name="RegistersDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Registers}" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" TabIndex="2" ToolTip="Visor de valores de registros">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Registro"></DataGridTextColumn>
 					<DataGridTextColumn Binding="{Binding Value}" Header="Valor"></DataGridTextColumn>

@@ -52,6 +52,9 @@ namespace VichoRISC.Lexical.Instructions {
 			if (string.Compare(thirdOperandPrefix, "r") == 0 && (int.Parse(thirdOperand) < 0 || int.Parse(thirdOperand) > 15)) {
 				throw new ArgumentException("Register from third operand is not valid.");
 			}
+			if (string.Compare(thirdOperand, "r") != 0 && keyword.Equals(Keywords.Divide) && int.Parse(thirdOperand) == 0) {
+				throw new ArithmeticException("Can't divide by zero!");
+			}
 			this.FirstOperand = firstOperand;
 			this.SecondOperand = secondOperand;
 			this.ThirdOperand = thirdOperand;

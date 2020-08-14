@@ -32,19 +32,58 @@ namespace VichoRISC.Components {
 		/// Executes the parsed instructions into the CPU
 		/// </summary>
 		/// <param name="instructions">Parsed instructions</param>
-		/// <param name="lineCount">Amount of lines of code</param>
 		public void Execute(CodeRegexParser instructions) {
 			System.Diagnostics.Debug.WriteLine("(i) Program excecution started (i)");
 			for (var i = 0; i < instructions.Count; i++) {
 				var currentInstruction = instructions[i];
 				System.Diagnostics.Debug.WriteLine($"(i) Executing line {i + 1}. The keyword is {currentInstruction.Keyword} (i)");
 				if (currentInstruction is FirstTypeInstruction firstTypeInstruction) {
+					var firstOperand = int.Parse(firstTypeInstruction.FirstOperand);
+					var secondOperand = int.Parse(firstTypeInstruction.SecondOperand);
+					var isThirdOperandImmediate = firstTypeInstruction.IsThirdOperandImmediate;
+					var thirdOperand = int.Parse(firstTypeInstruction.ThirdOperand);
 					switch (firstTypeInstruction.Keyword) {
 						case "add":
+							this.Add(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							break;
+						case "sub":
+							this.Substract(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							break;
+						case "mul":
+							this.Multiply(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							break;
+						case "div":
+							this.Divide(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							break;
+						case "mod":
+							this.Modulo(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							break;
+						case "and":
+							this.BitwiseAnd(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							break;
+						case "or":
+							this.BitwiseOr(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							break;
+						case "lsl":
+							this.LogicalShiftLeft(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							break;
+						case "lsr":
+							this.LogicalShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							break;
+						case "asr":
+							this.ArithmeticlShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
 							break;
 					}
 				} else if (currentInstruction is SecondTypeInstruction secondTypeInstruction) {
-					System.Diagnostics.Debug.WriteLine($"Second");
+					var firstOperand = int.Parse(secondTypeInstruction.FirstOperand);
+					var isSecondOperandImmediate = secondTypeInstruction.IsSecondOperandImmediate;
+					var secondOperand = int.Parse(secondTypeInstruction.SecondOperand);
+					switch (secondTypeInstruction.Keyword) {
+						case "mov":
+							this.Move(firstOperand, isSecondOperandImmediate, secondOperand);
+							break;
+						// TODO el resto
+					}
 				} else if (currentInstruction is ThirdTypeInstruction thirdTypeInstruction) {
 					System.Diagnostics.Debug.WriteLine($"Third");
 				} else if (currentInstruction is FourthTypeInstruction fourthTypeInstruction) {

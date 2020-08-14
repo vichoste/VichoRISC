@@ -9,6 +9,14 @@ namespace VichoRISC.Components {
 		/// Register values
 		/// </summary>
 		public List<Register> Registers { get; set; }
+		/// <summary>
+		/// Resets all the values of the registers
+		/// </summary>
+		public void ClearRegisters() {
+			foreach (var register in this.Registers) {
+				register.Value = 0;
+			}
+		}
 		#region General purpose registers
 		/// <summary>
 		/// General purpose register 0
