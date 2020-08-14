@@ -28,13 +28,21 @@ namespace VichoRISC.Components {
 				new Register("R14 (LR)"),
 				new Register("R15 (PC)"),
 			};
-		public void Execute(CodeRegexParser instructions, int lineCount) {
+		/// <summary>
+		/// Executes the parsed instructions into the CPU
+		/// </summary>
+		/// <param name="instructions">Parsed instructions</param>
+		/// <param name="lineCount">Amount of lines of code</param>
+		public void Execute(CodeRegexParser instructions) {
 			System.Diagnostics.Debug.WriteLine("(i) Program excecution started (i)");
-			for (var i = 0; i < lineCount; i++) {
+			for (var i = 0; i < instructions.Count; i++) {
 				var currentInstruction = instructions[i];
 				System.Diagnostics.Debug.WriteLine($"(i) Executing line {i + 1}. The keyword is {currentInstruction.Keyword} (i)");
 				if (currentInstruction is FirstTypeInstruction firstTypeInstruction) {
-					System.Diagnostics.Debug.WriteLine($"First");
+					switch (firstTypeInstruction.Keyword) {
+						case "add":
+							break;
+					}
 				} else if (currentInstruction is SecondTypeInstruction secondTypeInstruction) {
 					System.Diagnostics.Debug.WriteLine($"Second");
 				} else if (currentInstruction is ThirdTypeInstruction thirdTypeInstruction) {

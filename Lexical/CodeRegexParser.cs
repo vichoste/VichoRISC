@@ -92,6 +92,10 @@ namespace VichoRISC.Lexical {
 		/// <returns>Instruction on the specified line</returns>
 		public Instruction this[int lineNumber] => this._Instructions[lineNumber];
 		/// <summary>
+		/// Gets the amount of instructions inside this sturcture
+		/// </summary>
+		public int Count => this._Instructions.Count;
+		/// <summary>
 		/// Adds a line into the list
 		/// </summary>
 		/// <param name="lineNumber">Line order</param>

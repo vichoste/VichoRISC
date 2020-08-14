@@ -92,7 +92,7 @@ namespace VichoRISC {
 			if (isTheCodeRegexGood) {
 				try {
 					System.Diagnostics.Debug.WriteLine($"(i) Parsing done. There are {lineNumber - 1} lines (i)");
-					this.Cpu.Execute(codeRegexParser, lineNumber - 1);
+					this.Cpu.Execute(codeRegexParser);
 				} catch (Exception) {
 					_ = this.StatusListBox.Items.Add($"El programa no tiene instrucciones");
 				}
