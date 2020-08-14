@@ -23,14 +23,19 @@ namespace VichoRISC.Lexical.Instructions {
 		/// </summary>
 		public bool IsThirdOperandImmediate { get; private set; }
 		/// <summary>
+		/// Determines if the third operand is negative
+		/// </summary>
+		public bool IsThirdOperandNegative { get; private set; }
+		/// <summary>
 		/// Creates a first type instruction
 		/// </summary>
 		/// <param name="keyword">Instruction keyword</param>
 		/// <param name="firstOperand">First operand</param>
 		/// <param name="secondOperand">Second operand</param>
 		/// <param name="thirdOperandPrefix">Third operand prefix to determine if it's an immediate value</param>
+		/// <param name="negativeSign">Negative sign</param>
 		/// <param name="thirdOperand">Third operand</param>
-		public FirstTypeInstruction(string keyword, string firstOperand, string secondOperand, string thirdOperandPrefix, string thirdOperand) : base(keyword) {
+		public FirstTypeInstruction(string keyword, string firstOperand, string secondOperand, string thirdOperandPrefix, string negativeSign, string thirdOperand) : base(keyword) {
 			if (!(keyword.Equals(Keywords.Add)
 				|| keyword.Equals(Keywords.Substract)
 				|| keyword.Equals(Keywords.Multiply)
@@ -59,10 +64,11 @@ namespace VichoRISC.Lexical.Instructions {
 			this.SecondOperand = secondOperand;
 			this.ThirdOperand = thirdOperand;
 			this.IsThirdOperandImmediate = string.Compare(thirdOperandPrefix, "r") != 0;
+			this.IsThirdOperandNegative = string.Compare(negativeSign, "-") == 0;
 		}
 		/// <summary>
 		/// Prints to debug
 		/// </summary>
-		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"(i) First type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} - 1: r{this.FirstOperand} - 2: r{this.SecondOperand} - 3: {(this.IsThirdOperandImmediate ? "#" : "r")}{this.ThirdOperand} (i)");
+		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"(i) First type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} - 1: r{this.FirstOperand} - 2: r{this.SecondOperand} - 3: {(this.IsThirdOperandImmediate ? "#" : "r")}{(this.IsThirdOperandNegative ? "-" : string.Empty)}{this.ThirdOperand} (i)");
 	}
 }

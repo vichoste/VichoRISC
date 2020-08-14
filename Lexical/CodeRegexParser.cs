@@ -23,8 +23,9 @@ namespace VichoRISC.Lexical {
 																		  from secondComma in Parse.Char(',').Once().Text()
 																		  from thirdWhiteSpace in Parse.WhiteSpace.Many().Text()
 																		  from thirdPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
+																		  from negativeSign in Parse.Char('-').Once().Text()
 																		  from thirdInputNumber in Parse.Number
-																		  select new FirstTypeInstruction(instruction.Trim(), firstInputNumber.Trim(), secondInputNumber.Trim(), thirdPrefix.Trim(), thirdInputNumber.Trim());
+																		  select new FirstTypeInstruction(instruction.Trim(), firstInputNumber.Trim(), secondInputNumber.Trim(), thirdPrefix.Trim(), negativeSign.Trim(), thirdInputNumber.Trim());
 		/// <summary>
 		/// Parser for: mov, not, ld (no pointer), st (no pointer): ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
 		/// </summary>
@@ -35,8 +36,9 @@ namespace VichoRISC.Lexical {
 																			from firstComma in Parse.Char(',').Once().Text()
 																			from secondWhiteSpace in Parse.WhiteSpace.Many().Text()
 																			from secondPrefix in Parse.Char('r').Or(Parse.Char('#')).Once().Text()
+																			from negativeSign in Parse.Char('-').Once().Text()
 																			from secondInputNumber in Parse.Number
-																			select new SecondTypeInstruction(instruction.Trim(), firstInputNumber.Trim(), secondPrefix.Trim(), secondInputNumber.Trim());
+																			select new SecondTypeInstruction(instruction.Trim(), firstInputNumber.Trim(), secondPrefix.Trim(), negativeSign.Trim(), secondInputNumber.Trim());
 		/// <summary>
 		/// Parser for ld, st: (ld|st) r[0-9]+, \[r[0-9]+\]
 		/// </summary>

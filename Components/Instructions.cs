@@ -10,10 +10,12 @@
 		/// <param name="destinationRegister">Saves the sum result into this register</param>
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
+		/// <param name="isNegative">Establish if the second immediate value is negative</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Add(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void Add(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			second = isNegative && isImmediate ? -second : second;
 			this.Registers[destinationRegister].Value = first + second;
 		}
 		/// <summary>
@@ -23,9 +25,10 @@
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Substract(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void Substract(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			second = isNegative && isImmediate ? -second : second;
 			this.Registers[destinationRegister].Value = first - second;
 		}
 		/// <summary>
@@ -35,9 +38,10 @@
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Multiply(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void Multiply(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			second = isNegative && isImmediate ? -second : second;
 			this.Registers[destinationRegister].Value = first * second;
 		}
 		/// <summary>
@@ -47,9 +51,10 @@
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Divide(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void Divide(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			second = isNegative && isImmediate ? -second : second;
 			this.Registers[destinationRegister].Value = first / second;
 		}
 		/// <summary>
@@ -59,7 +64,7 @@
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Modulo(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void Modulo(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first % second;
@@ -90,7 +95,7 @@
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void BitwiseAnd(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void BitwiseAnd(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first & second;
@@ -102,7 +107,7 @@
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void BitwiseOr(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void BitwiseOr(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first | second;
@@ -118,9 +123,11 @@
 		/// </summary>
 		/// <param name="destinationRegister">Contents will be moved to this register</param>
 		/// <param name="isImmediate">Establish if the source register is actually an immediate value</param>
+		/// <param name="isNegative">Establish if the source value is negative</param>
 		/// <param name="sourceRegisterOrImmediate">Register who has the source content</param>
-		public void Move(int destinationRegister, bool isImmediate, int sourceRegisterOrImmediate) {
+		public void Move(int destinationRegister, bool isImmediate, bool isNegative, int sourceRegisterOrImmediate) {
 			var source = isImmediate ? sourceRegisterOrImmediate : this.Registers[sourceRegisterOrImmediate].Value;
+			source = isNegative && isImmediate ? -source : source;
 			this.Registers[destinationRegister].Value = source;
 		}
 		/// <summary>
@@ -130,7 +137,7 @@
 		/// <param name="firstRegister">Register that will be used for the shift operation</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value used for offset</param>
-		public void LogicalShiftLeft(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void LogicalShiftLeft(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first << second;
@@ -142,7 +149,7 @@
 		/// <param name="firstRegister">Register that will be used for the shift operation</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value used for offset</param>
-		public void LogicalShiftRight(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void LogicalShiftRight(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = (int)((uint)first >> second);
@@ -154,7 +161,7 @@
 		/// <param name="firstRegister">Register that will be used for the shift operation</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value used for offset</param>
-		public void ArithmeticlShiftRight(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void ArithmeticlShiftRight(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first >> second;

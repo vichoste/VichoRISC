@@ -41,46 +41,48 @@ namespace VichoRISC.Components {
 					var firstOperand = int.Parse(firstTypeInstruction.FirstOperand);
 					var secondOperand = int.Parse(firstTypeInstruction.SecondOperand);
 					var isThirdOperandImmediate = firstTypeInstruction.IsThirdOperandImmediate;
+					var isThirdOperandNegative = firstTypeInstruction.IsThirdOperandNegative;
 					var thirdOperand = int.Parse(firstTypeInstruction.ThirdOperand);
 					switch (firstTypeInstruction.Keyword) {
 						case "add":
-							this.Add(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							this.Add(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 						case "sub":
-							this.Substract(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							this.Substract(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 						case "mul":
-							this.Multiply(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							this.Multiply(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 						case "div":
-							this.Divide(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							this.Divide(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 						case "mod":
-							this.Modulo(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							this.Modulo(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 						case "and":
-							this.BitwiseAnd(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							this.BitwiseAnd(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 						case "or":
-							this.BitwiseOr(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							this.BitwiseOr(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 						case "lsl":
-							this.LogicalShiftLeft(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							this.LogicalShiftLeft(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 						case "lsr":
-							this.LogicalShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							this.LogicalShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 						case "asr":
-							this.ArithmeticlShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
+							this.ArithmeticlShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 					}
 				} else if (currentInstruction is SecondTypeInstruction secondTypeInstruction) {
 					var firstOperand = int.Parse(secondTypeInstruction.FirstOperand);
 					var isSecondOperandImmediate = secondTypeInstruction.IsSecondOperandImmediate;
+					var isSecondOperandNegative = secondTypeInstruction.IsSecondOperandNegative;
 					var secondOperand = int.Parse(secondTypeInstruction.SecondOperand);
 					switch (secondTypeInstruction.Keyword) {
 						case "mov":
-							this.Move(firstOperand, isSecondOperandImmediate, secondOperand);
+							this.Move(firstOperand, isSecondOperandImmediate, isSecondOperandNegative, secondOperand);
 							break;
 						// TODO el resto
 					}
