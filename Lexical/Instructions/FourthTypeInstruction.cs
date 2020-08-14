@@ -19,6 +19,6 @@ namespace VichoRISC.Lexical.Instructions {
 		/// <summary>
 		/// Prints to debug
 		/// </summary>
-		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"Fourth type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword}");
+		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"(i) Fourth type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} (i)");
 	}
 }

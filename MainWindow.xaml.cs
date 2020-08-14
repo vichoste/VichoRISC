@@ -66,6 +66,7 @@ namespace VichoRISC {
 		/// Actually runs the code
 		/// </summary>
 		private void VerifyCodeRegex() {
+			System.Diagnostics.Debug.WriteLine($"(i) Program execution started (i)");
 			this.ArmCodeRichTextBox.IsEnabled = false;
 			var isTheCodeRegexGood = true;
 			this.StatusListBox.Items.Clear();
@@ -89,8 +90,12 @@ namespace VichoRISC {
 				}
 			}
 			if (isTheCodeRegexGood) {
-				System.Diagnostics.Debug.WriteLine($"(i) Parsing done. There are {lineNumber - 1} lines (i)");
-				this.Cpu.Execute(codeRegexParser, lineNumber - 1);
+				try {
+					System.Diagnostics.Debug.WriteLine($"(i) Parsing done. There are {lineNumber - 1} lines (i)");
+					this.Cpu.Execute(codeRegexParser, lineNumber - 1);
+				} catch (Exception) {
+					_ = this.StatusListBox.Items.Add($"El programa no tiene instrucciones");
+				}
 			}
 			System.Diagnostics.Debug.WriteLine($"(i) Program execution complete (i)");
 			this.ArmCodeRichTextBox.IsEnabled = true;

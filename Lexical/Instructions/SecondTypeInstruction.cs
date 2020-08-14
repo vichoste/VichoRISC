@@ -45,6 +45,6 @@ namespace VichoRISC.Lexical.Instructions {
 		/// <summary>
 		/// Prints to debug
 		/// </summary>
-		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"Second type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} - 1: r{this.FirstOperand} - 2: {(this.IsSecondOperandImmediate ? "#" : "r")}{this.SecondOperand}");
+		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"(i) Second type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} - 1: r{this.FirstOperand} - 2: {(this.IsSecondOperandImmediate ? "#" : "r")}{this.SecondOperand} (i)");
 	}
 }

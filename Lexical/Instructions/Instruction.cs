@@ -19,6 +19,6 @@
 		/// <summary>
 		/// Prints to debug
 		/// </summary>
-		public virtual void PrintDebug() => System.Diagnostics.Debug.WriteLine($"Generic instruction. Line: {this.LineNumber} - Keyword: {this.Keyword}");
+		public virtual void PrintDebug() => System.Diagnostics.Debug.WriteLine($"(i) Generic instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} (i)");
 	}
 }

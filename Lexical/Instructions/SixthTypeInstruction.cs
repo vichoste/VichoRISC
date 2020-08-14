@@ -24,6 +24,6 @@ namespace VichoRISC.Lexical.Instructions {
 		/// <summary>
 		/// Prints to debug
 		/// </summary>
-		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"Sixth type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} - 1: {this.Operand}");
+		public override void PrintDebug() => System.Diagnostics.Debug.WriteLine($"(i) Sixth type instruction. Line: {this.LineNumber} - Keyword: {this.Keyword} - 1: {this.Operand} (i)");
 	}
 }
