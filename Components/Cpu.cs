@@ -33,10 +33,8 @@ namespace VichoRISC.Components {
 		/// </summary>
 		/// <param name="instructions">Parsed instructions</param>
 		public void Execute(CodeRegexParser instructions) {
-			System.Diagnostics.Debug.WriteLine("(i) Program excecution started (i)");
 			for (var i = 0; i < instructions.Count; i++) {
 				var currentInstruction = instructions[i];
-				System.Diagnostics.Debug.WriteLine($"(i) Executing line {i + 1}. The keyword is {currentInstruction.Keyword} (i)");
 				if (currentInstruction is FirstTypeInstruction firstTypeInstruction) {
 					var firstOperand = int.Parse(firstTypeInstruction.FirstOperand);
 					var secondOperand = int.Parse(firstTypeInstruction.SecondOperand);
@@ -84,20 +82,16 @@ namespace VichoRISC.Components {
 						case "mov":
 							this.Move(firstOperand, isSecondOperandImmediate, isSecondOperandNegative, secondOperand);
 							break;
-						// TODO el resto
+						case "not":
+							this.BitwiseNot(firstOperand, secondOperand);
+							break;
 					}
 				} else if (currentInstruction is ThirdTypeInstruction thirdTypeInstruction) {
-					System.Diagnostics.Debug.WriteLine($"Third");
 				} else if (currentInstruction is FourthTypeInstruction fourthTypeInstruction) {
-					System.Diagnostics.Debug.WriteLine($"Fourth");
 				} else if (currentInstruction is FifthTypeInstruction fifthTypeInstruction) {
-					System.Diagnostics.Debug.WriteLine($"Fifth");
 				} else if (currentInstruction is SixthTypeInstruction sixthTypeInstruction) {
-					System.Diagnostics.Debug.WriteLine($"Sixth");
 				} else if (currentInstruction is SeventhTypeInstrucion seventhTypeInstrucion) {
-					System.Diagnostics.Debug.WriteLine($"Seventh");
 				} else {
-					System.Diagnostics.Debug.WriteLine($"(!) It's not an instruction (!)");
 				}
 			}
 		}

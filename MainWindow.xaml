@@ -66,7 +66,7 @@
 		<materialDesign:Card DockPanel.Dock="Bottom" Margin="16,16,0,0">
 			<StatusBar Foreground="{DynamicResource MaterialDesignBodyLight}" Background="{DynamicResource MaterialDesignPaper}">
 				<StatusBarItem MinHeight="114" MaxHeight="114" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-					<ListBox x:Name="StatusListBox" Style="{DynamicResource MaterialDesignListBox}" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" TabIndex="9" HorizontalContentAlignment="Stretch">Listo</ListBox>
+					<ListBox ToolTip="Mensajes de la compilación" x:Name="StatusListBox" Style="{DynamicResource MaterialDesignListBox}" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" TabIndex="9" HorizontalContentAlignment="Stretch"></ListBox>
 				</StatusBarItem>
 			</StatusBar>
 		</materialDesign:Card>

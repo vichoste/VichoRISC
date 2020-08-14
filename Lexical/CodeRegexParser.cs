@@ -135,11 +135,9 @@ namespace VichoRISC.Lexical {
 			} else if (line.Contains(Keywords.Label)) { // Label: \w+:
 				detectedInstruction = _SeventhType.Parse(line);
 			} else { // It's not a keyword
-				System.Diagnostics.Debug.WriteLine($"(!) \"{line}\" on line {lineNumber} is not a keyword (!)");
 				return false;
 			}
 			detectedInstruction.LineNumber = lineNumber;
-			detectedInstruction.PrintDebug();
 			this._Instructions.Add(detectedInstruction);
 			return true;
 		}

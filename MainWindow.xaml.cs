@@ -66,7 +66,6 @@ namespace VichoRISC {
 		/// Actually runs the code
 		/// </summary>
 		private void VerifyCodeRegex() {
-			System.Diagnostics.Debug.WriteLine($"(i) Program execution started (i)");
 			this.ArmCodeRichTextBox.IsEnabled = false;
 			this.Cpu.ClearRegisters();
 			this.RegistersDataGrid.ItemsSource = null;
@@ -94,7 +93,6 @@ namespace VichoRISC {
 			}
 			if (isTheCodeRegexGood) {
 				try {
-					System.Diagnostics.Debug.WriteLine($"(i) Parsing done. There are {lineNumber - 1} lines (i)");
 					this.Cpu.Execute(codeRegexParser);
 					this.RegistersDataGrid.ItemsSource = null;
 					this.RegistersDataGrid.ItemsSource = this.Cpu.Registers;
@@ -103,7 +101,6 @@ namespace VichoRISC {
 				}
 			}
 			this.ArmCodeRichTextBox.IsEnabled = true;
-			System.Diagnostics.Debug.WriteLine($"(i) Program execution complete (i)");
 		}
 		/// <summary>
 		/// Executes the run command
