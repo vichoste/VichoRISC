@@ -86,6 +86,9 @@ namespace VichoRISC {
 						_ = this.StatusListBox.Items.Add($"Instrucción no válida en la línea {lineNumber}");
 						isTheCodeRegexGood = false;
 					}
+				} catch (ArithmeticException) {
+					_ = this.StatusListBox.Items.Add($"Se está dividiendo por cero en la línea {lineNumber}");
+					isTheCodeRegexGood = false;
 				} catch (Exception) {
 					_ = this.StatusListBox.Items.Add($"Error de sintaxis en la línea {lineNumber}");
 					isTheCodeRegexGood = false;

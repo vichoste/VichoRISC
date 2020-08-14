@@ -85,11 +85,23 @@ namespace VichoRISC.Components {
 						case "not":
 							this.BitwiseNot(firstOperand, secondOperand);
 							break;
+						case "ld":
+							break;
+						case "st":
+							break;
 					}
 				} else if (currentInstruction is ThirdTypeInstruction thirdTypeInstruction) {
+					var firstOperand = int.Parse(thirdTypeInstruction.FirstOperand);
+					var secondOperand = int.Parse(thirdTypeInstruction.SecondOperand);
+					switch (thirdTypeInstruction.Keyword) {
+						case "ld":
+							break;
+						case "st":
+							break;
+					}
 				} else if (currentInstruction is FourthTypeInstruction fourthTypeInstruction) {
+
 				} else if (currentInstruction is FifthTypeInstruction fifthTypeInstruction) {
-				} else if (currentInstruction is SixthTypeInstruction sixthTypeInstruction) {
 				} else if (currentInstruction is SeventhTypeInstrucion seventhTypeInstrucion) {
 				} else {
 				}

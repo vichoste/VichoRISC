@@ -1,4 +1,6 @@
-﻿namespace VichoRISC.Components {
+﻿using System;
+
+namespace VichoRISC.Components {
 	/// <summary>
 	/// Defines the CPU
 	/// </summary>
@@ -55,6 +57,9 @@
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			second = isNegative && isImmediate ? -second : second;
+			if (second == 0) {
+				throw new ArithmeticException("Can't divide by zero!");
+			}
 			this.Registers[destinationRegister].Value = first / second;
 		}
 		/// <summary>
@@ -67,6 +72,9 @@
 		public void Modulo(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			if (second == 0) {
+				throw new ArithmeticException("Can't divide by zero!");
+			}
 			this.Registers[destinationRegister].Value = first % second;
 		}
 		/// <summary>
