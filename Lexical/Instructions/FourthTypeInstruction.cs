@@ -3,7 +3,7 @@
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
 	/// Defines the fourth type of instruction
-	/// nop: nop
+	/// nop
 	/// </summary>
 	public sealed class FourthTypeInstruction : Instruction {
 		/// <summary>

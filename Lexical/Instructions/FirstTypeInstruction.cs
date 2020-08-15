@@ -3,7 +3,7 @@
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
 	/// Defines the first type of instruction
-	/// and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
+	/// and, sub, mul, div, mod, and, or, lsl, lsr, asr
 	/// </summary>
 	public sealed class FirstTypeInstruction : Instruction {
 		/// <summary>

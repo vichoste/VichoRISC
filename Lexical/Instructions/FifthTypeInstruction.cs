@@ -3,7 +3,7 @@
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
 	/// Defines the fifth type of instruction
-	/// beq, bgt, b: (beq|bgt|b) \w+
+	/// beq, bgt, b
 	/// </summary>
 	public sealed class FifthTypeInstruction : Instruction {
 		/// <summary>

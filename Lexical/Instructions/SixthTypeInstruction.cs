@@ -3,7 +3,7 @@
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
 	/// Defines the sixth type of instruction
-	/// comment: @\w+
+	/// Comment
 	/// </summary>
 	public sealed class SixthTypeInstruction : Instruction {
 		/// <summary>

@@ -108,7 +108,7 @@ namespace VichoRISC.Components {
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void BitwiseAnd(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
+		public void BitwiseAnd(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first & second;
@@ -120,7 +120,7 @@ namespace VichoRISC.Components {
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void BitwiseOr(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
+		public void BitwiseOr(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first | second;
@@ -130,7 +130,7 @@ namespace VichoRISC.Components {
 		/// </summary>
 		/// <param name="destinationRegister">Saves the bitwise operation result into this register</param>
 		/// <param name="register">Register that will be used for the bitwise operation</param>
-		public void BitwiseNot(int destinationRegister, int register) => this.Registers[destinationRegister].Value = ~this.Registers[destinationRegister].Value;
+		public void BitwiseNot(int destinationRegister, int register) => this.Registers[destinationRegister].Value = ~this.Registers[register].Value;
 		/// <summary>
 		/// Moves content between two registers
 		/// </summary>
@@ -150,7 +150,7 @@ namespace VichoRISC.Components {
 		/// <param name="firstRegister">Register that will be used for the shift operation</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value used for offset</param>
-		public void LogicalShiftLeft(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
+		public void LogicalShiftLeft(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first << second;
@@ -162,7 +162,7 @@ namespace VichoRISC.Components {
 		/// <param name="firstRegister">Register that will be used for the shift operation</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value used for offset</param>
-		public void LogicalShiftRight(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
+		public void LogicalShiftRight(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = (int)((uint)first >> second);
@@ -174,15 +174,11 @@ namespace VichoRISC.Components {
 		/// <param name="firstRegister">Register that will be used for the shift operation</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value used for offset</param>
-		public void ArithmeticlShiftRight(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
+		public void ArithmeticlShiftRight(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first >> second;
 		}
-		/// <summary>
-		/// Does nothing
-		/// </summary>
-		public void NoOperation() => ++this.ProgramCounter;
 		/// <summary>
 		/// Loads content from memory into a register
 		/// </summary>
