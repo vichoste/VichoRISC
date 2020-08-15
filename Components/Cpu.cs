@@ -7,10 +7,12 @@ namespace VichoRISC.Components {
 	/// Defines the CPU
 	/// </summary>
 	public sealed partial class Cpu {
+		private readonly Memory _Memory;
 		/// <summary>
 		/// Creates a new CPU
 		/// </summary>
-		public Cpu() => this.Registers = new List<Register>() {
+		public Cpu() {
+			this.Registers = new List<Register>() {
 				new Register("R0"),
 				new Register("R1"),
 				new Register("R2"),
@@ -28,13 +30,15 @@ namespace VichoRISC.Components {
 				new Register("R14 (LR)"),
 				new Register("R15 (PC)"),
 			};
+			this._Memory = new Memory();
+		}
 		/// <summary>
 		/// Executes the parsed instructions into the CPU
 		/// </summary>
 		/// <param name="instructions">Parsed instructions</param>
 		public void Execute(CodeRegexParser instructions) {
-			for (var i = 0; i < instructions.Count; i++) {
-				var currentInstruction = instructions[i];
+			while (this.ProgramCounter < instructions.Count) {
+				var currentInstruction = instructions[this.ProgramCounter];
 				if (currentInstruction is FirstTypeInstruction firstTypeInstruction) {
 					var firstOperand = int.Parse(firstTypeInstruction.FirstOperand);
 					var secondOperand = int.Parse(firstTypeInstruction.SecondOperand);
@@ -73,6 +77,7 @@ namespace VichoRISC.Components {
 							this.ArithmeticlShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 					}
+					this.ProgramCounter++;
 				} else if (currentInstruction is SecondTypeInstruction secondTypeInstruction) {
 					var firstOperand = int.Parse(secondTypeInstruction.FirstOperand);
 					var isSecondOperandImmediate = secondTypeInstruction.IsSecondOperandImmediate;
@@ -86,10 +91,12 @@ namespace VichoRISC.Components {
 							this.BitwiseNot(firstOperand, secondOperand);
 							break;
 						case "ld":
+							this.
 							break;
 						case "st":
 							break;
 					}
+					this.ProgramCounter++;
 				} else if (currentInstruction is ThirdTypeInstruction thirdTypeInstruction) {
 					var firstOperand = int.Parse(thirdTypeInstruction.FirstOperand);
 					var secondOperand = int.Parse(thirdTypeInstruction.SecondOperand);
@@ -99,8 +106,8 @@ namespace VichoRISC.Components {
 						case "st":
 							break;
 					}
+					this.ProgramCounter++;
 				} else if (currentInstruction is FourthTypeInstruction fourthTypeInstruction) {
-
 				} else if (currentInstruction is FifthTypeInstruction fifthTypeInstruction) {
 				} else if (currentInstruction is SeventhTypeInstrucion seventhTypeInstrucion) {
 				} else {

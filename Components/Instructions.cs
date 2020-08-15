@@ -184,17 +184,30 @@ namespace VichoRISC.Components {
 		/// Loads content from memory into a register
 		/// </summary>
 		/// <param name="destinationRegister">Register used for storing the content</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
+		///  <param name="isPointer">Establish if the second register is a pointer to memory</param>
+		/// <param name="isNegative">Establish if the second register is negative</param>
 		/// <param name="sourceFromMemory">Pointer locating the data in memory</param>
-		public void Load(int destinationRegister, int sourceFromMemory) {
-
+		public void Load(int destinationRegister, bool isImmediate, bool isPointer, bool isNegative, int sourceFromMemory) {
+			if (isPointer) {
+				this.Registers[destinationRegister].Value = this._Memory
+			}
 		}
 		/// <summary>
 		/// Saves content from a register into memory
 		/// </summary>
 		/// <param name="sourceRegister">Register used as the source of the content</param>
+		/// <param name="isImmediate">Establish if the second register is immediate</param>
+		/// <param name="isPointer">Establish if the second register is a pointer to memory</param>
+		/// <param name="isNegative">Establish if the second register is negative</param>
 		/// <param name="destinationIntoMemory">Pointer locating the location into memory where the content must be saved</param>
-		public void Store(int sourceRegister, int destinationIntoMemory) {
+		public void Store(int sourceRegister, bool isImmediate, bool isPointer, bool isNegative, int destinationIntoMemory) {
+			var sourceValue = this.Registers[sourceRegister].Value;
+			if (isPointer) {
+				this._Memory[destinationIntoMemory] = sourceValue;
+			} else {
 
+			}
 		}
 		/// <summary>
 		/// Jumps if the comparison done previously is equal

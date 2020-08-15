@@ -17,6 +17,10 @@ namespace VichoRISC.Components {
 				register.Value = 0;
 			}
 		}
+		/// <summary>
+		/// Clears all the memory
+		/// </summary>
+		public void ClearMemory() => this._Memory.ClearMemory();
 		#region General purpose registers
 		/// <summary>
 		/// General purpose register 0

@@ -99,6 +99,7 @@
     <Compile Include="Components\Cpu.cs" />
     <Compile Include="Components\Instructions.cs" />
     <Compile Include="Components\CurrentProgramStatusRegister.cs" />
+    <Compile Include="Components\Memory.cs" />
     <Compile Include="Components\Register.cs" />
     <Compile Include="Components\Registers.cs" />
     <Compile Include="Lexical\CodeRegexParser.cs" />

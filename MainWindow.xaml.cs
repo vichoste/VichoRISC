@@ -68,6 +68,7 @@ namespace VichoRISC {
 		private void VerifyCodeRegex() {
 			this.ArmCodeRichTextBox.IsEnabled = false;
 			this.Cpu.ClearRegisters();
+			this.Cpu.ClearMemory();
 			this.RegistersDataGrid.ItemsSource = null;
 			this.RegistersDataGrid.ItemsSource = this.Cpu.Registers;
 			var isTheCodeRegexGood = true;
@@ -87,10 +88,10 @@ namespace VichoRISC {
 						isTheCodeRegexGood = false;
 					}
 				} catch (ArithmeticException) {
-					_ = this.StatusListBox.Items.Add($"Se está dividiendo por cero en la línea {lineNumber}");
+					_ = this.StatusListBox.Items.Add($"Error de parseo: Se está dividiendo por cero en la línea {lineNumber}");
 					isTheCodeRegexGood = false;
 				} catch (Exception) {
-					_ = this.StatusListBox.Items.Add($"Error de sintaxis en la línea {lineNumber}");
+					_ = this.StatusListBox.Items.Add($"Error de parseo: Error de sintaxis en la línea {lineNumber}");
 					isTheCodeRegexGood = false;
 				}
 			}
@@ -99,8 +100,10 @@ namespace VichoRISC {
 					this.Cpu.Execute(codeRegexParser);
 					this.RegistersDataGrid.ItemsSource = null;
 					this.RegistersDataGrid.ItemsSource = this.Cpu.Registers;
+				} catch (NullReferenceException) {
+					_ = this.StatusListBox.Items.Add($"Error de runtime: Se está tratando de acceder a una dirección que no tiene nada asignado");
 				} catch (Exception) {
-					_ = this.StatusListBox.Items.Add($"El programa no tiene instrucciones");
+					_ = this.StatusListBox.Items.Add($"Error de runtime: El programa no tiene instrucciones");
 				}
 			}
 			this.ArmCodeRichTextBox.IsEnabled = true;
