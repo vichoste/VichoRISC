@@ -193,7 +193,7 @@ namespace VichoRISC.Components {
 		/// <param name="sourceFromMemory">Pointer locating the data in memory</param>
 		public void Load(int destinationRegister, bool isImmediate, bool isPointer, bool isNegative, int sourceFromMemory) {
 			if (isPointer) {
-				this.Registers[destinationRegister].Value = this._Memory[sourceFromMemory];
+				this.Registers[destinationRegister].Value = this._Memory[this.Registers[sourceFromMemory].Value];
 			} else {
 				this.Move(destinationRegister, isImmediate, isNegative, sourceFromMemory);
 			}
@@ -208,7 +208,7 @@ namespace VichoRISC.Components {
 		/// <param name="destinationIntoMemory">Pointer locating the location into memory where the content must be saved</param>
 		public void Store(int sourceRegister, bool isImmediate, bool isPointer, bool isNegative, int destinationIntoMemory) {
 			if (isPointer) {
-				this._Memory[destinationIntoMemory] = this.Registers[sourceRegister].Value;
+				this._Memory[this.Registers[destinationIntoMemory].Value] = this.Registers[sourceRegister].Value;
 			} else {
 				this.Move(destinationIntoMemory, isImmediate, isNegative, sourceRegister);
 			}
