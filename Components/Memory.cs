@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 namespace VichoRISC.Components {
 	/// <summary>
@@ -8,7 +9,7 @@ namespace VichoRISC.Components {
 		/// <summary>
 		/// Instead of a long array that overflows, I'm using a hashtable that emulates RAM
 		/// </summary>
-		private Hashtable _Ram;
+		private readonly Hashtable _Ram;
 		/// <summary>
 		/// Creates a memory
 		/// </summary>
@@ -19,7 +20,13 @@ namespace VichoRISC.Components {
 		/// <param name="address">Desired address</param>
 		/// <returns>Value of the address</returns>
 		public int this[int address] {
-			get => (int)this._Ram[address];
+			get {
+				if (this._Ram[address] == null) {
+					throw new NullReferenceException();
+				}
+				var value = (int)this._Ram[address];
+				return value;
+			}
 			set {
 				if (!this._Ram.ContainsKey(address)) {
 					this._Ram.Add(address, value);

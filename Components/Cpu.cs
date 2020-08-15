@@ -91,9 +91,10 @@ namespace VichoRISC.Components {
 							this.BitwiseNot(firstOperand, secondOperand);
 							break;
 						case "ld":
-							this.
+							this.Load(firstOperand, isSecondOperandImmediate, false, isSecondOperandNegative, secondOperand);
 							break;
 						case "st":
+							this.Store(firstOperand, isSecondOperandImmediate, false, isSecondOperandNegative, secondOperand);
 							break;
 					}
 					this.ProgramCounter++;
@@ -102,8 +103,10 @@ namespace VichoRISC.Components {
 					var secondOperand = int.Parse(thirdTypeInstruction.SecondOperand);
 					switch (thirdTypeInstruction.Keyword) {
 						case "ld":
+							this.Load(firstOperand, false, true, false, secondOperand);
 							break;
 						case "st":
+							this.Store(firstOperand, false, true, false, secondOperand);
 							break;
 					}
 					this.ProgramCounter++;
