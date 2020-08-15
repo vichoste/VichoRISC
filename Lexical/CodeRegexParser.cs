@@ -55,12 +55,12 @@ namespace VichoRISC.Lexical {
 																		  from endPointer in Parse.Char(']').Once().Text()
 																		  select new ThirdTypeInstruction(instruction.Trim(), firstInputNumber.Trim(), secondInputNumber.Trim());
 		/// <summary>
-		/// Parser for nop, ret: nop, ret
+		/// Parser for nop: nop
 		/// </summary>
 		private static readonly Parser<FourthTypeInstruction> _FourthType = from instruction in Parse.LetterOrDigit.Many().Text()
 																			select new FourthTypeInstruction(instruction);
 		/// <summary>
-		/// Parser for beq, bgt, b, call: (beq|bgt|b|call) \w+
+		/// Parser for beq, bgt, b: (beq|bgt|b) \w+
 		/// </summary>
 		private static readonly Parser<FifthTypeInstruction> _FifthType = from instruction in Parse.LetterOrDigit.Many().Text()
 																		  from whiteSpace in Parse.WhiteSpace.Many().Text()
@@ -131,13 +131,11 @@ namespace VichoRISC.Lexical {
 			} else if (line.StartsWith(Keywords.Load)
 				|| line.StartsWith(Keywords.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
 				detectedInstruction = line.Contains('[') && line.Contains(']') ? _ThirdType.Parse(line) : _SecondType.Parse(line) as Instruction;
-			} else if (line.StartsWith(Keywords.NoOperation)
-				|| line.StartsWith(Keywords.Return)) {
+			} else if (line.StartsWith(Keywords.NoOperation)) {
 				detectedInstruction = _FourthType.Parse(line);
 			} else if (line.StartsWith(Keywords.Branch)
 				|| line.StartsWith(Keywords.BranchEqual)
-				|| line.StartsWith(Keywords.BranchGreaterThan)
-				|| line.StartsWith(Keywords.Call)) {
+				|| line.StartsWith(Keywords.BranchGreaterThan)) {
 				detectedInstruction = _FifthType.Parse(line);
 			} else if (line.StartsWith(Keywords.Comment)) { // Comment: @\w+
 				detectedInstruction = _SixthType.Parse(line);

@@ -3,7 +3,7 @@
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
 	/// Defines the fifth type of instruction
-	/// beq, bgt, b, call: (beq|bgt|b|call) \w+
+	/// beq, bgt, b: (beq|bgt|b) \w+
 	/// </summary>
 	public sealed class FifthTypeInstruction : Instruction {
 		/// <summary>
@@ -18,8 +18,7 @@ namespace VichoRISC.Lexical.Instructions {
 		public FifthTypeInstruction(string keyword, string operand) : base(keyword) {
 			if (!(keyword.Equals(Keywords.BranchEqual)
 				|| keyword.Equals(Keywords.BranchGreaterThan)
-				|| keyword.Equals(Keywords.Branch)
-				|| keyword.Equals(Keywords.Call))) {
+				|| keyword.Equals(Keywords.Branch))) {
 				throw new ArgumentException("Keyword not valid.");
 			}
 			this.Operand = operand;

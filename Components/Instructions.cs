@@ -254,24 +254,6 @@ namespace VichoRISC.Components {
 			}
 			this.ProgramCounter = line;
 		}
-		/// <summary>
-		/// Calls a function
-		/// </summary>
-		/// <param name="label">Function label</param>
-		public void Call(string label, CodeRegexParser instructions) {
-			this.LinkRegister = this.ProgramCounter + 1;
-			this._LinkRegisterStack.Push(this.LinkRegister);
-			this.Branch(label, instructions);
-		}
-		/// <summary>
-		/// Exits the current function
-		/// </summary>
-		public void Return() {
-			this.ProgramCounter = this.LinkRegister;
-			if (this._LinkRegisterStack.Count > 0) {
-				this.LinkRegister = this._LinkRegisterStack.Pop();
-			}
-		}
 		#endregion
 	}
 }

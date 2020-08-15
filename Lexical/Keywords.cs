@@ -81,14 +81,6 @@
 		/// </summary>
 		public static string Branch = "b";
 		/// <summary>
-		/// Call procedure
-		/// </summary>
-		public static string Call = "call";
-		/// <summary>
-		/// Return
-		/// </summary>
-		public static string Return = "ret";
-		/// <summary>
 		/// Comment
 		/// </summary>
 		public static string Comment = "@";

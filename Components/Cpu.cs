@@ -123,9 +123,6 @@ namespace VichoRISC.Components {
 						case "nop":
 							this.NoOperation();
 							break;
-						case "ret":
-							this.Return();
-							break;
 					}
 				} else if (currentInstruction is FifthTypeInstruction fifthTypeInstruction) {
 					switch (fifthTypeInstruction.Keyword) {
@@ -137,9 +134,6 @@ namespace VichoRISC.Components {
 							break;
 						case "b":
 							this.Branch(fifthTypeInstruction.Operand, instructions);
-							break;
-						case "call":
-							this.Call(fifthTypeInstruction.Operand, instructions);
 							break;
 					}
 				} else if (currentInstruction is SixthTypeInstruction || currentInstruction is SeventhTypeInstruction) {
