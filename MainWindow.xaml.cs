@@ -101,7 +101,7 @@ namespace VichoRISC {
 					this.RegistersDataGrid.ItemsSource = null;
 					this.RegistersDataGrid.ItemsSource = this.Cpu.Registers;
 				} catch (NullReferenceException) {
-					_ = this.StatusListBox.Items.Add($"Error de runtime: Se está tratando de acceder a una dirección que no tiene nada asignado");
+					_ = this.StatusListBox.Items.Add($"Error de runtime: Se está tratando de acceder a una dirección de memoria que no tiene nada asignado");
 				} catch (Exception) {
 					_ = this.StatusListBox.Items.Add($"Error de runtime: El programa no tiene instrucciones");
 				}
