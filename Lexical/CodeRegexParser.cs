@@ -126,7 +126,8 @@ namespace VichoRISC.Lexical {
 				|| line.StartsWith(Keywords.ArithmeticalShiftRight)) { // and, sub, mul, div, mod, and, or, lsl, lsr, asr
 				detectedInstruction = _FirstType.Parse(line);
 			} else if (line.StartsWith(Keywords.Move)
-				|| line.StartsWith(Keywords.BitwiseNot)) { // mov, not
+				|| line.StartsWith(Keywords.BitwiseNot)
+				|| line.StartsWith(Keywords.Compare)) { // mov, not
 				detectedInstruction = _SecondType.Parse(line);
 			} else if (line.StartsWith(Keywords.Load)
 				|| line.StartsWith(Keywords.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])

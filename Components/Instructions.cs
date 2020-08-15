@@ -226,6 +226,8 @@ namespace VichoRISC.Components {
 					throw new ArgumentException("Label doesn't exist");
 				}
 				this.ProgramCounter = line;
+			} else {
+				this.ProgramCounter++;
 			}
 		}
 		/// <summary>
@@ -239,6 +241,8 @@ namespace VichoRISC.Components {
 					throw new ArgumentException("Label doesn't exist");
 				}
 				this.ProgramCounter = line;
+			} else {
+				this.ProgramCounter++;
 			}
 		}
 		/// <summary>

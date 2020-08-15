@@ -84,7 +84,7 @@ namespace VichoRISC {
 				try {
 					var isLineParsingSuccessfull = codeRegexParser.AddLine(lineNumber, line);
 					if (!isLineParsingSuccessfull) {
-						_ = this.StatusListBox.Items.Add($"Instrucción no válida en la línea {lineNumber}");
+						_ = this.StatusListBox.Items.Add($"Error de parseo: Instrucción no válida en la línea {lineNumber}");
 						isTheCodeRegexGood = false;
 					}
 				} catch (ArithmeticException) {
