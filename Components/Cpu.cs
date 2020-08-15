@@ -115,6 +115,13 @@ namespace VichoRISC.Components {
 					}
 					this.ProgramCounter++;
 				} else if (currentInstruction is FourthTypeInstruction fourthTypeInstruction) {
+					switch (fourthTypeInstruction.Keyword) {
+						case "nop":
+							this.NoOperation();
+							break;
+						case "ret":
+							break;
+					}
 				} else if (currentInstruction is FifthTypeInstruction fifthTypeInstruction) {
 					switch (fifthTypeInstruction.Keyword) {
 						case "beq":
@@ -130,6 +137,8 @@ namespace VichoRISC.Components {
 							this.Call(fifthTypeInstruction.Operand, instructions);
 							break;
 					}
+				} else if (currentInstruction is SixthTypeInstruction sixthTypeInstruction){
+					this.Comment();
 				} else if (currentInstruction is SeventhTypeInstruction seventhTypeInstrucion) {
 					this.ProgramCounter++;
 				} else {

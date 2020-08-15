@@ -182,9 +182,7 @@ namespace VichoRISC.Components {
 		/// <summary>
 		/// Does nothing
 		/// </summary>
-		public void NoOperation() {
-
-		}
+		public void NoOperation() => ++this.ProgramCounter;
 		/// <summary>
 		/// Loads content from memory into a register
 		/// </summary>
@@ -227,7 +225,7 @@ namespace VichoRISC.Components {
 				}
 				this.ProgramCounter = line;
 			} else {
-				this.ProgramCounter++;
+				++this.ProgramCounter;
 			}
 		}
 		/// <summary>
@@ -242,7 +240,7 @@ namespace VichoRISC.Components {
 				}
 				this.ProgramCounter = line;
 			} else {
-				this.ProgramCounter++;
+				++this.ProgramCounter;
 			}
 		}
 		/// <summary>
@@ -267,7 +265,10 @@ namespace VichoRISC.Components {
 		public void Return() {
 
 		}
-		
+		/// <summary>
+		/// Skips the comment
+		/// </summary>
+		public void Comment() => ++this.ProgramCounter;
 		#endregion
 	}
 }
