@@ -7,7 +7,11 @@ namespace VichoRISC.Components {
 	/// Defines the CPU
 	/// </summary>
 	public sealed partial class Cpu {
+		/// <summary>
+		/// Defines a instance of RAM
+		/// </summary>
 		private readonly Memory _Memory;
+		private readonly Stack<int> _LinkRegisterStack;
 		/// <summary>
 		/// Creates a new CPU
 		/// </summary>
@@ -31,6 +35,7 @@ namespace VichoRISC.Components {
 				new Register("R15 (PC)"),
 			};
 			this._Memory = new Memory();
+			this._LinkRegisterStack = new Stack<int>();
 		}
 		/// <summary>
 		/// Executes the parsed instructions into the CPU
@@ -119,6 +124,7 @@ namespace VichoRISC.Components {
 							this.NoOperation();
 							break;
 						case "ret":
+							this.Return();
 							break;
 					}
 				} else if (currentInstruction is FifthTypeInstruction fifthTypeInstruction) {
@@ -138,7 +144,6 @@ namespace VichoRISC.Components {
 					}
 				} else if (currentInstruction is SixthTypeInstruction || currentInstruction is SeventhTypeInstruction) {
 					this.ProgramCounter++;
-				} else {
 				}
 			}
 		}
