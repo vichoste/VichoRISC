@@ -265,10 +265,6 @@ namespace VichoRISC.Components {
 		public void Return() {
 
 		}
-		/// <summary>
-		/// Skips the comment
-		/// </summary>
-		public void Comment() => ++this.ProgramCounter;
 		#endregion
 	}
 }

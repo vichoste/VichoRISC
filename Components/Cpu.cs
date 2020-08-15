@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VichoRISC.Lexical;
 using VichoRISC.Lexical.Instructions;
 
@@ -137,9 +136,7 @@ namespace VichoRISC.Components {
 							this.Call(fifthTypeInstruction.Operand, instructions);
 							break;
 					}
-				} else if (currentInstruction is SixthTypeInstruction sixthTypeInstruction){
-					this.Comment();
-				} else if (currentInstruction is SeventhTypeInstruction seventhTypeInstrucion) {
+				} else if (currentInstruction is SixthTypeInstruction || currentInstruction is SeventhTypeInstruction) {
 					this.ProgramCounter++;
 				} else {
 				}

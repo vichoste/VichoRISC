@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Shapes;
 using VichoRISC.Lexical.Instructions;
 
 namespace VichoRISC.Lexical {
@@ -77,8 +76,8 @@ namespace VichoRISC.Lexical {
 		/// Parser for label: \w+:
 		/// </summary>
 		private static readonly Parser<SeventhTypeInstruction> _SeventhType = from label in Parse.LetterOrDigit.Many().Text()
-																			 from symbol in Parse.Char(':').Once().Text()
-																			 select new SeventhTypeInstruction(symbol.Trim(), label.Trim());
+																			  from symbol in Parse.Char(':').Once().Text()
+																			  select new SeventhTypeInstruction(symbol.Trim(), label.Trim());
 
 		#endregion
 		/// <summary>
