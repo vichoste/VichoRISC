@@ -1,4 +1,5 @@
 ﻿using System;
+using VichoRISC.Lexical;
 
 namespace VichoRISC.Components {
 	/// <summary>
@@ -214,30 +215,44 @@ namespace VichoRISC.Components {
 		/// Jumps if the comparison done previously is equal
 		/// </summary>
 		/// <param name="label">Destination label</param>
-		public void BranchEqual(string label) {
-
+		public void BranchEqual(string label, CodeRegexParser instructions) {
+			if (this.EqualFlag) {
+				var line = instructions.FindLine(label);
+				if (line == -1) {
+					throw new ArgumentException("Label doesn't exist");
+				}
+				this.ProgramCounter = line;
+			}
 		}
 		/// <summary>
 		/// Jumps if the comparison done previously is greater than
 		/// </summary>
 		/// <param name="label">Destination label</param>
-		public void BranchGreaterThan(string label) {
-
+		public void BranchGreaterThan(string label, CodeRegexParser instructions) {
+			if (this.GreaterThanFlag) {
+				var line = instructions.FindLine(label);
+				if (line == -1) {
+					throw new ArgumentException("Label doesn't exist");
+				}
+				this.ProgramCounter = line;
+			}
 		}
 		/// <summary>
 		/// Jumps unconditionally
 		/// </summary>
 		/// <param name="label">Destination label</param>
-		public void Branch(string label) {
-
+		public void Branch(string label, CodeRegexParser instructions) {
+			var line = instructions.FindLine(label);
+			if (line == -1) {
+				throw new ArgumentException("Label doesn't exist");
+			}
+			this.ProgramCounter = line;
 		}
 		/// <summary>
 		/// Calls a function
 		/// </summary>
 		/// <param name="label">Function label</param>
-		public void Call(string label) {
-
-		}
+		public void Call(string label, CodeRegexParser instructions) => this.Branch(label, instructions);
 		/// <summary>
 		/// Exits the current function
 		/// </summary>

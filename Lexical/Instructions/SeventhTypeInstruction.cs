@@ -5,7 +5,7 @@ namespace VichoRISC.Lexical.Instructions {
 	/// Defines the sixth type of instruction
 	/// label: \w+:
 	/// </summary>
-	public sealed class SeventhTypeInstrucion : Instruction {
+	public sealed class SeventhTypeInstruction : Instruction {
 		/// <summary>
 		/// Operand
 		/// </summary>
@@ -15,7 +15,7 @@ namespace VichoRISC.Lexical.Instructions {
 		/// </summary>
 		/// <param name="keyword">Instruction keyword</param>
 		/// <param name="operand">Operand</param>
-		public SeventhTypeInstrucion(string keyword, string operand) : base(keyword) {
+		public SeventhTypeInstruction(string keyword, string operand) : base(keyword) {
 			if (!keyword.Equals(Keywords.Label)) {
 				throw new ArgumentException("Keyword not valid.");
 			}

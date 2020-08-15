@@ -71,8 +71,8 @@ namespace VichoRISC {
 			this.Cpu.ClearMemory();
 			this.RegistersDataGrid.ItemsSource = null;
 			this.RegistersDataGrid.ItemsSource = this.Cpu.Registers;
-			var isTheCodeRegexGood = true;
 			this.StatusListBox.Items.Clear();
+			var isTheCodeRegexGood = true;
 			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Replace("\r", string.Empty).Split('\n');
 			var lineNumber = 0;
 			var codeRegexParser = new CodeRegexParser();
@@ -90,6 +90,9 @@ namespace VichoRISC {
 				} catch (ArithmeticException) {
 					_ = this.StatusListBox.Items.Add($"Error de parseo: Se está dividiendo por cero en la línea {lineNumber}");
 					isTheCodeRegexGood = false;
+				} catch (ArgumentException) {
+					_ = this.StatusListBox.Items.Add($"Error de parseo: La etiqueta {line} ya existe en otra línea");
+					isTheCodeRegexGood = false;
 				} catch (Exception) {
 					_ = this.StatusListBox.Items.Add($"Error de parseo: Error de sintaxis en la línea {lineNumber}");
 					isTheCodeRegexGood = false;
@@ -102,6 +105,8 @@ namespace VichoRISC {
 					this.RegistersDataGrid.ItemsSource = this.Cpu.Registers;
 				} catch (NullReferenceException) {
 					_ = this.StatusListBox.Items.Add($"Error de runtime: Se está tratando de acceder a una dirección de memoria que no tiene nada asignado");
+				} catch (ArgumentException) {
+					_ = this.StatusListBox.Items.Add($"Error de runtime: Se quiere saltar a una etiqueta que no existe");
 				} catch (Exception) {
 					_ = this.StatusListBox.Items.Add($"Error de runtime: El programa no tiene instrucciones");
 				}

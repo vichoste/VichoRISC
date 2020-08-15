@@ -113,7 +113,21 @@ namespace VichoRISC.Components {
 					this.ProgramCounter++;
 				} else if (currentInstruction is FourthTypeInstruction fourthTypeInstruction) {
 				} else if (currentInstruction is FifthTypeInstruction fifthTypeInstruction) {
-				} else if (currentInstruction is SeventhTypeInstrucion seventhTypeInstrucion) {
+					switch (fifthTypeInstruction.Keyword) {
+						case "beq":
+							this.BranchEqual(fifthTypeInstruction.Operand, instructions);
+							break;
+						case "bgt":
+							this.BranchGreaterThan(fifthTypeInstruction.Operand, instructions);
+							break;
+						case "b":
+							this.Branch(fifthTypeInstruction.Operand, instructions);
+							break;
+						case "call":
+							this.Call(fifthTypeInstruction.Operand, instructions);
+							break;
+					}
+				} else if (currentInstruction is SeventhTypeInstruction seventhTypeInstrucion) {
 				} else {
 				}
 			}

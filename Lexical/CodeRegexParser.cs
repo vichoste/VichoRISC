@@ -1,6 +1,8 @@
 ﻿using Sprache;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Shapes;
 using VichoRISC.Lexical.Instructions;
 
 namespace VichoRISC.Lexical {
@@ -74,19 +76,15 @@ namespace VichoRISC.Lexical {
 		/// <summary>
 		/// Parser for label: \w+:
 		/// </summary>
-		private static readonly Parser<SeventhTypeInstrucion> _SeventhType = from label in Parse.LetterOrDigit.Many().Text()
+		private static readonly Parser<SeventhTypeInstruction> _SeventhType = from label in Parse.LetterOrDigit.Many().Text()
 																			 from symbol in Parse.Char(':').Once().Text()
-																			 select new SeventhTypeInstrucion(symbol.Trim(), label.Trim());
+																			 select new SeventhTypeInstruction(symbol.Trim(), label.Trim());
 
 		#endregion
 		/// <summary>
 		/// List containing the instructions
 		/// </summary>
 		private readonly List<Instruction> _Instructions;
-		/// <summary>
-		/// Creates a regex code parser
-		/// </summary>
-		public CodeRegexParser() => this._Instructions = new List<Instruction>();
 		/// <summary>
 		/// Gets an instruction from the list
 		/// </summary>
@@ -97,6 +95,17 @@ namespace VichoRISC.Lexical {
 		/// Gets the amount of instructions inside this sturcture
 		/// </summary>
 		public int Count => this._Instructions.Count;
+		/// <summary>
+		/// Holds the label list
+		/// </summary>
+		public List<string> _Labels;
+		/// <summary>
+		/// Creates a regex code parser
+		/// </summary>
+		public CodeRegexParser() {
+			this._Instructions = new List<Instruction>();
+			this._Labels = new List<string>();
+		}
 		/// <summary>
 		/// Adds a line into the list
 		/// </summary>
@@ -134,12 +143,33 @@ namespace VichoRISC.Lexical {
 				detectedInstruction = _SixthType.Parse(line);
 			} else if (line.Contains(Keywords.Label)) { // Label: \w+:
 				detectedInstruction = _SeventhType.Parse(line);
+				var detectedLabel = detectedInstruction as SeventhTypeInstruction;
+				if (this._Labels.Contains(detectedLabel.Operand)) {
+					throw new ArgumentException("Label already exists");
+				}
 			} else { // It's not a keyword
 				return false;
 			}
 			detectedInstruction.LineNumber = lineNumber;
 			this._Instructions.Add(detectedInstruction);
 			return true;
+		}
+		/// <summary>
+		/// Finds the line where the label is
+		/// </summary>
+		/// <param name="label">Label to find its line</param>
+		/// <returns>Line number</returns>
+		public int FindLine(string label) {
+			var line = -1;
+			foreach (var instruction in this._Instructions) {
+				if (instruction is SeventhTypeInstruction seventhTypeInstruction) {
+					if (seventhTypeInstruction.Operand.Equals(label)) {
+						line = seventhTypeInstruction.LineNumber - 1;
+						break;
+					}
+				}
+			}
+			return line;
 		}
 	}
 }
