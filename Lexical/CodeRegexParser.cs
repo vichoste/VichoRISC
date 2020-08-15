@@ -11,7 +11,7 @@ namespace VichoRISC.Lexical {
 	public sealed class CodeRegexParser {
 		#region Parsers
 		/// <summary>
-		/// Parser for: and, sub, mul, div, mod, and, or, lsl, lsr, asr: (\w+ r[0-9]+, r[0-9]+, r[0-9]+)|(\w+ r[0-9]+, r[0-9]+, #[0-9]+)
+		/// Parser for: and, sub, mul, div, mod, and, or, lsl, lsr, asr
 		/// </summary>
 		private static readonly Parser<FirstTypeInstruction> _FirstType = from instruction in Parse.LetterOrDigit.Many().Text()
 																		  from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
@@ -28,7 +28,7 @@ namespace VichoRISC.Lexical {
 																		  from thirdInputNumber in Parse.Number
 																		  select new FirstTypeInstruction(instruction.Trim(), firstInputNumber.Trim(), secondInputNumber.Trim(), thirdPrefix.Trim(), !negativeSign.IsDefined ? string.Empty : negativeSign.Get().Trim(), thirdInputNumber.Trim());
 		/// <summary>
-		/// Parser for: mov, not, ld (no pointer), st, cmp (no pointer): ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
+		/// Parser for: mov, not, ld (no pointer), st (no pointer), cmp
 		/// </summary>
 		private static readonly Parser<SecondTypeInstruction> _SecondType = from instruction in Parse.LetterOrDigit.Many().Text()
 																			from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
@@ -41,7 +41,7 @@ namespace VichoRISC.Lexical {
 																			from secondInputNumber in Parse.Number
 																			select new SecondTypeInstruction(instruction.Trim(), firstInputNumber.Trim(), secondPrefix.Trim(), !negativeSign.IsDefined ? string.Empty : negativeSign.Get().Trim(), secondInputNumber.Trim());
 		/// <summary>
-		/// Parser for ld, st: (ld|st) r[0-9]+, \[r[0-9]+\]
+		/// Parser for: ld, st
 		/// </summary>
 		private static readonly Parser<ThirdTypeInstruction> _ThirdType = from instruction in Parse.LetterOrDigit.Many().Text()
 																		  from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
@@ -55,25 +55,25 @@ namespace VichoRISC.Lexical {
 																		  from endPointer in Parse.Char(']').Once().Text()
 																		  select new ThirdTypeInstruction(instruction.Trim(), firstInputNumber.Trim(), secondInputNumber.Trim());
 		/// <summary>
-		/// Parser for nop: nop
+		/// Parser for: nop
 		/// </summary>
 		private static readonly Parser<FourthTypeInstruction> _FourthType = from instruction in Parse.LetterOrDigit.Many().Text()
 																			select new FourthTypeInstruction(instruction);
 		/// <summary>
-		/// Parser for beq, bgt, b: (beq|bgt|b) \w+
+		/// Parser for: beq, bgt, b
 		/// </summary>
 		private static readonly Parser<FifthTypeInstruction> _FifthType = from instruction in Parse.LetterOrDigit.Many().Text()
 																		  from whiteSpace in Parse.WhiteSpace.Many().Text()
 																		  from label in Parse.LetterOrDigit.Many().Text()
 																		  select new FifthTypeInstruction(instruction.Trim(), label.Trim());
 		/// <summary>
-		/// Parser for comment: @\w+
+		/// Parser for: comment
 		/// </summary>
 		private static readonly Parser<SixthTypeInstruction> _SixthType = from symbol in Parse.Char('@').Once().Text()
 																		  from comment in Parse.LetterOrDigit.Or(Parse.WhiteSpace).Many().Text()
 																		  select new SixthTypeInstruction(symbol.Trim(), comment.Trim());
 		/// <summary>
-		/// Parser for label: \w+:
+		/// Parser for: label
 		/// </summary>
 		private static readonly Parser<SeventhTypeInstruction> _SeventhType = from label in Parse.LetterOrDigit.Many().Text()
 																			  from symbol in Parse.Char(':').Once().Text()
@@ -122,14 +122,14 @@ namespace VichoRISC.Lexical {
 				|| line.StartsWith(Keywords.BitwiseOr)
 				|| line.StartsWith(Keywords.LogicalShiftLeft)
 				|| line.StartsWith(Keywords.LogicalShiftRight)
-				|| line.StartsWith(Keywords.ArithmeticalShiftRight)) { // and, sub, mul, div, mod, and, or, lsl, lsr, asr
+				|| line.StartsWith(Keywords.ArithmeticalShiftRight)) {
 				detectedInstruction = _FirstType.Parse(line);
 			} else if (line.StartsWith(Keywords.Move)
 				|| line.StartsWith(Keywords.BitwiseNot)
-				|| line.StartsWith(Keywords.Compare)) { // mov, not
+				|| line.StartsWith(Keywords.Compare)) {
 				detectedInstruction = _SecondType.Parse(line);
 			} else if (line.StartsWith(Keywords.Load)
-				|| line.StartsWith(Keywords.Store)) { // ld, st: ((ld|st) r[0-9]+, #[0-9]+)|((ld|st) r[0-9]+, r[0-9]+)|((ld|st) r[0-9]+, \[r[0-9]+\])
+				|| line.StartsWith(Keywords.Store)) {
 				detectedInstruction = line.Contains('[') && line.Contains(']') ? _ThirdType.Parse(line) : _SecondType.Parse(line) as Instruction;
 			} else if (line.StartsWith(Keywords.NoOperation)) {
 				detectedInstruction = _FourthType.Parse(line);
@@ -137,16 +137,16 @@ namespace VichoRISC.Lexical {
 				|| line.StartsWith(Keywords.BranchEqual)
 				|| line.StartsWith(Keywords.BranchGreaterThan)) {
 				detectedInstruction = _FifthType.Parse(line);
-			} else if (line.StartsWith(Keywords.Comment)) { // Comment: @\w+
+			} else if (line.StartsWith(Keywords.Comment)) {
 				detectedInstruction = _SixthType.Parse(line);
-			} else if (line.Contains(Keywords.Label)) { // Label: \w+:
+			} else if (line.Contains(Keywords.Label)) {
 				detectedInstruction = _SeventhType.Parse(line);
 				var detectedLabel = detectedInstruction as SeventhTypeInstruction;
 				if (this._Labels.Contains(detectedLabel.Operand)) {
 					throw new ArgumentException("Label already exists");
 				}
 				this._Labels.Add(detectedLabel.Operand);
-			} else { // It's not a keyword
+			} else {
 				return false;
 			}
 			detectedInstruction.LineNumber = lineNumber;

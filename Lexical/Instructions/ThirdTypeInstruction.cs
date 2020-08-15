@@ -3,7 +3,7 @@
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
 	/// Defines the third type of instruction
-	/// ld, st: (ld|st) r[0-9]+, \[r[0-9]+\]
+	/// ld, st
 	/// </summary>
 	public sealed class ThirdTypeInstruction : Instruction {
 		/// <summary>

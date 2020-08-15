@@ -3,7 +3,7 @@
 namespace VichoRISC.Lexical.Instructions {
 	/// <summary>
 	/// Defines the second type of instruction
-	/// mov, not, ld (no pointer), st (no pointer): ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
+	/// mov, not, ld (no pointer), st (no pointer), cmp
 	/// </summary>
 	public sealed class SecondTypeInstruction : Instruction {
 		/// <summary>

@@ -65,22 +65,22 @@ namespace VichoRISC.Components {
 							this.Modulo(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
 							break;
 						case "and":
-							this.BitwiseAnd(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
+							this.BitwiseAnd(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
 							break;
 						case "or":
-							this.BitwiseOr(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
+							this.BitwiseOr(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
 							break;
 						case "lsl":
-							this.LogicalShiftLeft(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
+							this.LogicalShiftLeft(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
 							break;
 						case "lsr":
-							this.LogicalShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
+							this.LogicalShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
 							break;
 						case "asr":
-							this.ArithmeticlShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
+							this.ArithmeticlShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
 							break;
 					}
-					this.ProgramCounter++;
+					++this.ProgramCounter;
 				} else if (currentInstruction is SecondTypeInstruction secondTypeInstruction) {
 					var firstOperand = int.Parse(secondTypeInstruction.FirstOperand);
 					var isSecondOperandImmediate = secondTypeInstruction.IsSecondOperandImmediate;
@@ -103,7 +103,7 @@ namespace VichoRISC.Components {
 							this.Compare(firstOperand, isSecondOperandImmediate, isSecondOperandNegative, secondOperand);
 							break;
 					}
-					this.ProgramCounter++;
+					++this.ProgramCounter;
 				} else if (currentInstruction is ThirdTypeInstruction thirdTypeInstruction) {
 					var firstOperand = int.Parse(thirdTypeInstruction.FirstOperand);
 					var secondOperand = int.Parse(thirdTypeInstruction.SecondOperand);
@@ -115,13 +115,7 @@ namespace VichoRISC.Components {
 							this.Store(firstOperand, false, true, false, secondOperand);
 							break;
 					}
-					this.ProgramCounter++;
-				} else if (currentInstruction is FourthTypeInstruction fourthTypeInstruction) {
-					switch (fourthTypeInstruction.Keyword) {
-						case "nop":
-							this.NoOperation();
-							break;
-					}
+					++this.ProgramCounter;
 				} else if (currentInstruction is FifthTypeInstruction fifthTypeInstruction) {
 					switch (fifthTypeInstruction.Keyword) {
 						case "beq":
@@ -134,8 +128,8 @@ namespace VichoRISC.Components {
 							this.Branch(fifthTypeInstruction.Operand, instructions);
 							break;
 					}
-				} else if (currentInstruction is SixthTypeInstruction || currentInstruction is SeventhTypeInstruction) {
-					this.ProgramCounter++;
+				} else if (currentInstruction is FourthTypeInstruction || currentInstruction is SixthTypeInstruction || currentInstruction is SeventhTypeInstruction) {
+					++this.ProgramCounter;
 				}
 			}
 		}
