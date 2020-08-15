@@ -148,6 +148,7 @@ namespace VichoRISC.Lexical {
 				if (this._Labels.Contains(detectedLabel.Operand)) {
 					throw new ArgumentException("Label already exists");
 				}
+				this._Labels.Add(detectedLabel.Operand);
 			} else { // It's not a keyword
 				return false;
 			}
