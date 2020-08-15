@@ -29,7 +29,7 @@ namespace VichoRISC.Lexical {
 																		  from thirdInputNumber in Parse.Number
 																		  select new FirstTypeInstruction(instruction.Trim(), firstInputNumber.Trim(), secondInputNumber.Trim(), thirdPrefix.Trim(), !negativeSign.IsDefined ? string.Empty : negativeSign.Get().Trim(), thirdInputNumber.Trim());
 		/// <summary>
-		/// Parser for: mov, not, ld (no pointer), st (no pointer): ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
+		/// Parser for: mov, not, ld (no pointer), st, cmp (no pointer): ((mov|not) r[0-9]+, r[0-9]+)|((mov|not) r[0-9]+, #[0-9]+)
 		/// </summary>
 		private static readonly Parser<SecondTypeInstruction> _SecondType = from instruction in Parse.LetterOrDigit.Many().Text()
 																			from firstWhiteSpace in Parse.WhiteSpace.Many().Text()
@@ -164,7 +164,7 @@ namespace VichoRISC.Lexical {
 			foreach (var instruction in this._Instructions) {
 				if (instruction is SeventhTypeInstruction seventhTypeInstruction) {
 					if (seventhTypeInstruction.Operand.Equals(label)) {
-						line = seventhTypeInstruction.LineNumber - 1;
+						line = seventhTypeInstruction.LineNumber;
 						break;
 					}
 				}

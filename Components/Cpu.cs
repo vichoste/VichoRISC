@@ -60,7 +60,7 @@ namespace VichoRISC.Components {
 							this.Divide(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
 							break;
 						case "mod":
-							this.Modulo(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
+							this.Modulo(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
 							break;
 						case "and":
 							this.BitwiseAnd(firstOperand, secondOperand, isThirdOperandImmediate, isThirdOperandNegative, thirdOperand);
@@ -97,6 +97,9 @@ namespace VichoRISC.Components {
 						case "st":
 							this.Store(firstOperand, isSecondOperandImmediate, false, isSecondOperandNegative, secondOperand);
 							break;
+						case "cmp":
+							this.Compare(firstOperand, isSecondOperandImmediate, isSecondOperandNegative, secondOperand);
+							break;
 					}
 					this.ProgramCounter++;
 				} else if (currentInstruction is ThirdTypeInstruction thirdTypeInstruction) {
@@ -128,6 +131,7 @@ namespace VichoRISC.Components {
 							break;
 					}
 				} else if (currentInstruction is SeventhTypeInstruction seventhTypeInstrucion) {
+					this.ProgramCounter++;
 				} else {
 				}
 			}

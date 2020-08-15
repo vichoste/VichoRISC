@@ -33,7 +33,8 @@ namespace VichoRISC.Lexical.Instructions {
 			if (!(keyword.Equals(Keywords.Move)
 				|| keyword.Equals(Keywords.BitwiseNot)
 				|| keyword.Equals(Keywords.Load)
-				|| keyword.Equals(Keywords.Store))) {
+				|| keyword.Equals(Keywords.Store)
+				|| keyword.Equals(Keywords.Compare))) {
 				throw new ArgumentException("Keyword not valid.");
 			}
 			if (int.Parse(firstOperand) < 0 || int.Parse(firstOperand) > 15) {

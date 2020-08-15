@@ -27,6 +27,7 @@ namespace VichoRISC.Components {
 		/// <param name="destinationRegister">Saves the substraction result into this register</param>
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
+		/// <param name="isNegative">Establish if the second immediate value is negative</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
 		public void Substract(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
@@ -40,6 +41,7 @@ namespace VichoRISC.Components {
 		/// <param name="destinationRegister">Saves the multiplication result into this register</param>
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
+		/// <param name="isNegative">Establish if the second immediate value is negative</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
 		public void Multiply(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
@@ -53,6 +55,7 @@ namespace VichoRISC.Components {
 		/// <param name="destinationRegister">Saves the division result into this register</param>
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
+		/// <param name="isNegative">Establish if the second immediate value is negative</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
 		public void Divide(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
@@ -70,7 +73,7 @@ namespace VichoRISC.Components {
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Modulo(int destinationRegister, int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
+		public void Modulo(int destinationRegister, int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			if (second == 0) {
@@ -84,9 +87,10 @@ namespace VichoRISC.Components {
 		/// <param name="firstRegister">First register</param>
 		/// <param name="isImmediate">Establish if the second register is immediate</param>
 		/// <param name="secondRegisterOrImmediate">Second register or immediate value</param>
-		public void Compare(int firstRegister, bool isImmediate, int secondRegisterOrImmediate) {
+		public void Compare(int firstRegister, bool isImmediate, bool isNegative, int secondRegisterOrImmediate) {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
+			second = isNegative && isImmediate ? -second : second;
 			if (first > second) {
 				this.GreaterThanFlag = true;
 				this.EqualFlag = false;
@@ -259,6 +263,7 @@ namespace VichoRISC.Components {
 		public void Return() {
 
 		}
+		
 		#endregion
 	}
 }
