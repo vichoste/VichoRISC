@@ -18,7 +18,7 @@
 	<Window.DataContext>
 		<Components:Cpu x:Name="Cpu"/>
 	</Window.DataContext>
-	<Window.Resources>
+	<!--<Window.Resources>
 		<RoutedUICommand x:Key="New"/>
 		<RoutedUICommand x:Key="Open"/>
 		<RoutedUICommand x:Key="Save"/>
@@ -41,17 +41,17 @@
 		<KeyBinding Key="A" Gesture="Alt" Command="{StaticResource SaveAs}"/>
 		<KeyBinding Key="R" Gesture="Alt" Command="{StaticResource Run}"/>
 		<KeyBinding Key="Q" Gesture="Alt" Command="{StaticResource Exit}"/>
-	</Window.InputBindings>
+	</Window.InputBindings>-->
 	<DockPanel Margin="16">
 		<materialDesign:Card DockPanel.Dock="Top" Margin="0,0,0,16">
 			<Menu Style="{DynamicResource MaterialDesignMenu}">
-				<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Archivo" TabIndex="3">
+				<!--<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Archivo" TabIndex="3">
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Nuevo" TabIndex="4"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Abrir" TabIndex="5"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar" TabIndex="6"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar Como" TabIndex="7"/>
 					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Salir" TabIndex="8"/>
-				</MenuItem>
+				</MenuItem>-->
 				<MenuItem x:Name="RunMenuItem" Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar" TabIndex="9" Click="RunMenuItem_Click"></MenuItem>
 			</Menu>
 		</materialDesign:Card>
