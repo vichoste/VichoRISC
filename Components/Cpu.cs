@@ -11,7 +11,6 @@ namespace VichoRISC.Components {
 		/// Defines a instance of RAM
 		/// </summary>
 		private readonly Memory _Memory;
-		private readonly Stack<int> _LinkRegisterStack;
 		/// <summary>
 		/// Creates a new CPU
 		/// </summary>
@@ -35,7 +34,6 @@ namespace VichoRISC.Components {
 				new Register("R15 (PC)"),
 			};
 			this._Memory = new Memory();
-			this._LinkRegisterStack = new Stack<int>();
 		}
 		/// <summary>
 		/// Executes the parsed instructions into the CPU
