@@ -7,6 +7,7 @@ namespace VichoRISC.Components {
 	/// Defines the CPU
 	/// </summary>
 	public sealed partial class Cpu {
+		#region CPU definitions
 		/// <summary>
 		/// Defines a instance of RAM
 		/// </summary>
@@ -35,6 +36,8 @@ namespace VichoRISC.Components {
 			};
 			this.Memory = new Memory();
 		}
+		#endregion
+		#region Program excecution
 		/// <summary>
 		/// Executes the parsed instructions into the CPU
 		/// </summary>
@@ -131,4 +134,5 @@ namespace VichoRISC.Components {
 			}
 		}
 	}
+	#endregion
 }

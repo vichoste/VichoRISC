@@ -13,54 +13,6 @@ namespace VichoRISC {
 		/// Creates the main window
 		/// </summary>
 		public MainWindow() => this.InitializeComponent();
-		#region New
-		/// <summary>
-		/// Executes the new command
-		/// </summary>
-		/// <param name="sender">Who sends the event</param>
-		/// <param name="e">Event arguments</param>
-		private void New(object sender, ExecutedRoutedEventArgs e) {
-
-		}
-		#endregion
-		#region Open
-		/// <summary>
-		/// Executes the open command
-		/// </summary>
-		/// <param name="sender">Who sends the event</param>
-		/// <param name="e">Event arguments</param>
-		private void Open(object sender, ExecutedRoutedEventArgs e) {
-
-		}
-		#endregion
-		#region Save and Save As
-		/// <summary>
-		/// Executes the save command
-		/// </summary>
-		/// <param name="sender">Who sends the event</param>
-		/// <param name="e">Event arguments</param>
-		private void Save(object sender, ExecutedRoutedEventArgs e) {
-
-		}
-		/// <summary>
-		/// Executes the save as command
-		/// </summary>
-		/// <param name="sender">Who sends the event</param>
-		/// <param name="e">Event arguments</param>
-		private void SaveAs(object sender, ExecutedRoutedEventArgs e) {
-
-		}
-		#endregion
-		#region Exit
-		/// <summary>
-		/// Executes the exit command
-		/// </summary>
-		/// <param name="sender">Who sends the event</param>
-		/// <param name="e">Event arguments</param>
-		private void Exit(object sender, ExecutedRoutedEventArgs e) {
-
-		}
-		#endregion
 		#region Run
 		/// <summary>
 		/// Actually runs the code

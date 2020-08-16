@@ -5,7 +5,7 @@ namespace VichoRISC.Components {
 	/// <summary>
 	/// Defines the memory
 	/// </summary>
-	public class Memory {
+	public sealed class Memory {
 		/// <summary>
 		/// Instead of a long array that overflows, I'm using a hashtable that emulates RAM
 		/// </summary>
