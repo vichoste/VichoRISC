@@ -80,7 +80,6 @@ namespace VichoRISC.Components {
 							this.ArithmeticlShiftRight(firstOperand, secondOperand, isThirdOperandImmediate, thirdOperand);
 							break;
 					}
-					++this.ProgramCounter;
 				} else if (currentInstruction is SecondTypeInstruction secondTypeInstruction) {
 					var firstOperand = int.Parse(secondTypeInstruction.FirstOperand);
 					var isSecondOperandImmediate = secondTypeInstruction.IsSecondOperandImmediate;
@@ -103,7 +102,6 @@ namespace VichoRISC.Components {
 							this.Compare(firstOperand, isSecondOperandImmediate, isSecondOperandNegative, secondOperand);
 							break;
 					}
-					++this.ProgramCounter;
 				} else if (currentInstruction is ThirdTypeInstruction thirdTypeInstruction) {
 					var firstOperand = int.Parse(thirdTypeInstruction.FirstOperand);
 					var secondOperand = int.Parse(thirdTypeInstruction.SecondOperand);
@@ -115,7 +113,6 @@ namespace VichoRISC.Components {
 							this.Store(firstOperand, false, true, false, secondOperand);
 							break;
 					}
-					++this.ProgramCounter;
 				} else if (currentInstruction is FifthTypeInstruction fifthTypeInstruction) {
 					switch (fifthTypeInstruction.Keyword) {
 						case "beq":
@@ -129,7 +126,7 @@ namespace VichoRISC.Components {
 							break;
 					}
 				} else if (currentInstruction is FourthTypeInstruction || currentInstruction is SixthTypeInstruction || currentInstruction is SeventhTypeInstruction) {
-					++this.ProgramCounter;
+					this.NoOperation();
 				}
 			}
 		}
