@@ -20,6 +20,7 @@ namespace VichoRISC.Components {
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			second = isNegative && isImmediate ? -second : second;
 			this.Registers[destinationRegister].Value = first + second;
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Substracts two registers
@@ -34,6 +35,7 @@ namespace VichoRISC.Components {
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			second = isNegative && isImmediate ? -second : second;
 			this.Registers[destinationRegister].Value = first - second;
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Multiply two registers
@@ -48,6 +50,7 @@ namespace VichoRISC.Components {
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			second = isNegative && isImmediate ? -second : second;
 			this.Registers[destinationRegister].Value = first * second;
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Divides two registers
@@ -65,6 +68,7 @@ namespace VichoRISC.Components {
 				throw new ArithmeticException("Can't divide by zero!");
 			}
 			this.Registers[destinationRegister].Value = first / second;
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Applies modulo between two registers
@@ -80,6 +84,7 @@ namespace VichoRISC.Components {
 				throw new ArithmeticException("Can't divide by zero!");
 			}
 			this.Registers[destinationRegister].Value = first % second;
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Compares two registers
@@ -100,6 +105,7 @@ namespace VichoRISC.Components {
 			} else {
 				this.GreaterThanFlag = this.EqualFlag = false;
 			}
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Applies bitwise AND between two registers
@@ -112,6 +118,7 @@ namespace VichoRISC.Components {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first & second;
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Applies bitwise OR between two registers
@@ -124,13 +131,17 @@ namespace VichoRISC.Components {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first | second;
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Applies bitwise NOT in a register
 		/// </summary>
 		/// <param name="destinationRegister">Saves the bitwise operation result into this register</param>
 		/// <param name="register">Register that will be used for the bitwise operation</param>
-		public void BitwiseNot(int destinationRegister, int register) => this.Registers[destinationRegister].Value = ~this.Registers[register].Value;
+		public void BitwiseNot(int destinationRegister, int register) {
+			this.Registers[destinationRegister].Value = ~this.Registers[register].Value;
+			++this.ProgramCounter;
+		}
 		/// <summary>
 		/// Moves content between two registers
 		/// </summary>
@@ -142,6 +153,7 @@ namespace VichoRISC.Components {
 			var source = isImmediate ? sourceRegisterOrImmediate : this.Registers[sourceRegisterOrImmediate].Value;
 			source = isNegative && isImmediate ? -source : source;
 			this.Registers[destinationRegister].Value = source;
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Applies a left logical shift in a register
@@ -154,6 +166,7 @@ namespace VichoRISC.Components {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first << second;
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Applies a right logical shift in a register
@@ -166,6 +179,7 @@ namespace VichoRISC.Components {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = (int)((uint)first >> second);
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Applies a right arithmetic shift in a register
@@ -178,6 +192,7 @@ namespace VichoRISC.Components {
 			var first = this.Registers[firstRegister].Value;
 			var second = isImmediate ? secondRegisterOrImmediate : this.Registers[secondRegisterOrImmediate].Value;
 			this.Registers[destinationRegister].Value = first >> second;
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Loads content from memory into a register
@@ -193,6 +208,7 @@ namespace VichoRISC.Components {
 			} else {
 				this.Move(destinationRegister, isImmediate, isNegative, sourceFromMemory);
 			}
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Saves content from a register into memory
@@ -208,6 +224,7 @@ namespace VichoRISC.Components {
 			} else {
 				this.Move(destinationIntoMemory, isImmediate, isNegative, sourceRegister);
 			}
+			++this.ProgramCounter;
 		}
 		/// <summary>
 		/// Jumps if the comparison done previously is equal
@@ -250,6 +267,10 @@ namespace VichoRISC.Components {
 			}
 			this.ProgramCounter = line;
 		}
+		/// <summary>
+		/// Does nothing; actually just increases the program counter
+		/// </summary>
+		public void NoOperation() => ++this.ProgramCounter;
 		#endregion
 	}
 }
