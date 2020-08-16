@@ -80,6 +80,7 @@ namespace VichoRISC.Lexical {
 																			  select new SeventhTypeInstruction(symbol.Trim(), label.Trim());
 
 		#endregion
+		#region Actual definition of the class
 		/// <summary>
 		/// List containing the instructions
 		/// </summary>
@@ -171,4 +172,5 @@ namespace VichoRISC.Lexical {
 			return line;
 		}
 	}
+	#endregion
 }

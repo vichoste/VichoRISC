@@ -3,7 +3,6 @@
 	/// Defines the CPU
 	/// </summary>
 	public sealed partial class Cpu {
-		#region Current Program Status (Flags)
 		/// <summary>
 		/// Equal flag
 		/// </summary>
@@ -12,6 +11,5 @@
 		/// Greater than flag
 		/// </summary>
 		private bool GreaterThanFlag { get; set; }
-		#endregion
 	}
 }
