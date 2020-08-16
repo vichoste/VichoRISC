@@ -10,7 +10,7 @@ namespace VichoRISC.Components {
 		/// <summary>
 		/// Defines a instance of RAM
 		/// </summary>
-		private readonly Memory _Memory;
+		public Memory Memory { get; set; }
 		/// <summary>
 		/// Creates a new CPU
 		/// </summary>
@@ -33,7 +33,7 @@ namespace VichoRISC.Components {
 				new Register("R14 (LR)"),
 				new Register("R15 (PC)"),
 			};
-			this._Memory = new Memory();
+			this.Memory = new Memory();
 		}
 		/// <summary>
 		/// Executes the parsed instructions into the CPU

@@ -18,40 +18,9 @@
 	<Window.DataContext>
 		<Components:Cpu x:Name="Cpu"/>
 	</Window.DataContext>
-	<!--<Window.Resources>
-		<RoutedUICommand x:Key="New"/>
-		<RoutedUICommand x:Key="Open"/>
-		<RoutedUICommand x:Key="Save"/>
-		<RoutedUICommand x:Key="SaveAs"/>
-		<RoutedUICommand x:Key="Run"/>
-		<RoutedUICommand x:Key="Exit"/>
-	</Window.Resources>
-	<Window.CommandBindings>
-		<CommandBinding Command="{StaticResource New}" Executed="New"/>
-		<CommandBinding Command="{StaticResource Open}" Executed="Open"/>
-		<CommandBinding Command="{StaticResource Save}" Executed="Save"/>
-		<CommandBinding Command="{StaticResource SaveAs}" Executed="SaveAs"/>
-		<CommandBinding Command="{StaticResource Run}" Executed="Run"/>
-		<CommandBinding Command="{StaticResource Exit}" Executed="Exit"/>
-	</Window.CommandBindings>
-	<Window.InputBindings>
-		<KeyBinding Key="N" Gesture="Alt" Command="{StaticResource New}"/>
-		<KeyBinding Key="O" Gesture="Alt" Command="{StaticResource Open}"/>
-		<KeyBinding Key="S" Gesture="Alt" Command="{StaticResource Save}"/>
-		<KeyBinding Key="A" Gesture="Alt" Command="{StaticResource SaveAs}"/>
-		<KeyBinding Key="R" Gesture="Alt" Command="{StaticResource Run}"/>
-		<KeyBinding Key="Q" Gesture="Alt" Command="{StaticResource Exit}"/>
-	</Window.InputBindings>-->
 	<DockPanel Margin="16">
 		<materialDesign:Card DockPanel.Dock="Top" Margin="0,0,0,16">
 			<Menu Style="{DynamicResource MaterialDesignMenu}">
-				<!--<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Archivo" TabIndex="3">
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Nuevo" TabIndex="4"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Abrir" TabIndex="5"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar" TabIndex="6"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Guardar Como" TabIndex="7"/>
-					<MenuItem Style="{DynamicResource MaterialDesignMenuItem}" Header="Salir" TabIndex="8"/>
-				</MenuItem>-->
 				<MenuItem x:Name="RunMenuItem" Style="{DynamicResource MaterialDesignMenuItem}" Header="Ejecutar" TabIndex="9" Click="RunMenuItem_Click"></MenuItem>
 			</Menu>
 		</materialDesign:Card>
@@ -59,6 +28,14 @@
 			<DataGrid x:Name="RegistersDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Registers}" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" TabIndex="2" ToolTip="Visor de valores de registros">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Registro"></DataGridTextColumn>
+					<DataGridTextColumn Binding="{Binding Value}" Header="Valor"></DataGridTextColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+		</materialDesign:Card>
+		<materialDesign:Card DockPanel.Dock="Right" Margin="16,0,0,0">
+			<DataGrid x:Name="MemoryDataGrid" AutoGenerateColumns="False" GridLinesVisibility="None" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" TabIndex="2" ToolTip="Visor de valores de memoria" ItemsSource="{Binding Memory.Ram}">
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding Key}" Header="Dirección"></DataGridTextColumn>
 					<DataGridTextColumn Binding="{Binding Value}" Header="Valor"></DataGridTextColumn>
 				</DataGrid.Columns>
 			</DataGrid>
@@ -71,7 +48,7 @@
 			</StatusBar>
 		</materialDesign:Card>
 		<materialDesign:Card Margin="16,0,0,0">
-			<RichTextBox x:Name="ArmCodeRichTextBox" Margin="16" Style="{DynamicResource MaterialDesignRichTextBox}" FontFamily="Consolas" Block.LineHeight="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" TabIndex="0" ToolTip="Ingrese aquí su código de ensamblador ARM" UndoLimit="128" UseLayoutRounding="False" VerticalContentAlignment="Stretch" AcceptsTab="True"/>
+			<RichTextBox x:Name="ArmCodeRichTextBox" Margin="16" Style="{DynamicResource MaterialDesignRichTextBox}" FontFamily="Consolas" Block.LineHeight="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" TabIndex="0" ToolTip="Ingrese aquí su código de ensamblador RISC" UndoLimit="128" UseLayoutRounding="False" VerticalContentAlignment="Stretch" AcceptsTab="True"/>
 		</materialDesign:Card>
 	</DockPanel>
 </Window>

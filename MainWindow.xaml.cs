@@ -71,6 +71,8 @@ namespace VichoRISC {
 			this.Cpu.ClearMemory();
 			this.RegistersDataGrid.ItemsSource = null;
 			this.RegistersDataGrid.ItemsSource = this.Cpu.Registers;
+			this.MemoryDataGrid.ItemsSource = null;
+			this.MemoryDataGrid.ItemsSource = this.Cpu.Memory.Ram;
 			this.StatusListBox.Items.Clear();
 			var isTheCodeRegexGood = true;
 			var code = new TextRange(this.ArmCodeRichTextBox.Document.ContentStart, this.ArmCodeRichTextBox.Document.ContentEnd).Text.Replace("\r", string.Empty).Split('\n');
@@ -103,12 +105,14 @@ namespace VichoRISC {
 					this.Cpu.Execute(codeRegexParser);
 					this.RegistersDataGrid.ItemsSource = null;
 					this.RegistersDataGrid.ItemsSource = this.Cpu.Registers;
+					this.MemoryDataGrid.ItemsSource = null;
+					this.MemoryDataGrid.ItemsSource = this.Cpu.Memory.Ram;
 				} catch (NullReferenceException) {
 					_ = this.StatusListBox.Items.Add($"Error de runtime: Se está tratando de acceder a una dirección de memoria que no tiene nada asignado");
 				} catch (ArgumentException) {
 					_ = this.StatusListBox.Items.Add($"Error de runtime: Se quiere saltar a una etiqueta que no existe");
 				} catch (Exception) {
-					_ = this.StatusListBox.Items.Add($"Error de runtime: El programa no tiene instrucciones");
+					_ = this.StatusListBox.Items.Add($"Error de runtime genérico");
 				}
 			}
 			this.ArmCodeRichTextBox.IsEnabled = true;
