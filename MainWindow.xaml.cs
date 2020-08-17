@@ -72,12 +72,6 @@ namespace VichoRISC {
 		/// <summary>
 		/// Executes the run command
 		/// </summary>
-		/// <param name="sender">Whos ends the event</param>
-		/// <param name="e">Event arguments</param>
-		private void Run(object sender, ExecutedRoutedEventArgs e) => this.VerifyCodeRegex();
-		/// <summary>
-		/// Executes the run command
-		/// </summary>
 		/// <param name="sender">Who sends the event</param>
 		/// <param name="e">Event arguments</param>
 		private void RunMenuItem_Click(object sender, RoutedEventArgs e) => this.VerifyCodeRegex();
